@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Инфографика: Архитектура OLAP-моделей</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        /* Обновленные стили для карточек */
+        .card {
+            background-color: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        /* Стиль градиентного фона шапки по шаблону */
+        .header-bg {
+            background: linear-gradient(135deg, #6ac1e3, #5FA6C7);
+        }
+        /* Стиль заглушки для картинок */
+        .placeholder {
+            min-height: 200px;
+            background-color: #e0f7fa;
+            border: 2px dashed #00bcd4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: #00838f;
+            border-radius: 0.5rem;
+            text-align: center;
+            padding: 1rem;
+        }
+        /* Стили для новой схемы Roll-Up */
+        .rollup-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        .data-block {
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.375rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #ffffff;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            width: 90%;
+            font-size: 0.875rem;
+        }
+        .arrow-down {
+            margin: 0.5rem 0;
+            font-size: 1.5rem;
+            color: #bc5090;
+            font-weight: 900;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-5xl">
+
+        <!-- Back to Main Page Button -->
+        <div class="mb-4">
+            <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/" class="inline-flex items-center text-sky-700 hover:text-sky-900 transition-colors font-semibold">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                <span>Назад к списку лекций</span>
+            </a>
+        </div>
+        
+        <!-- Header, стилизованный по шаблону -->
+        <header class="text-center mb-12 p-8 rounded-2xl header-bg text-white shadow-xl">
+            <img src="/IITU_OLAP_Course/assets/Logo-white.png"
+                 alt="Casplan Logo"
+                 class="mx-auto mb-6 h-16">
+            <h1 class="text-4xl md:text-5xl font-bold mb-2">Архитектура OLAP-моделей</h1>
+            <p class="text-lg md:text-xl text-sky-200">Кубы, измерения и иерархии: как строится фундамент для интегрированного бизнес-планирования (IBP).</p>
+        </header>
+
+        <section id="olap-vs-excel" class="card">
+            <h2 class="text-3xl font-bold text-center mb-6 text-[#003f5c]">OLAP: Многомерный анализ против Excel-плоскости</h2>
+            <p class="text-center mb-8 max-w-3xl mx-auto">OLAP (Online Analytical Processing) — технология, позволяющая смотреть на одни и те же данные под разными углами. Это фундаментальное отличие от традиционных таблиц.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4 text-[#ff6361]">Excel: Плоский лист</h3>
+                    <div class="placeholder">
+                        <p>ЗАГЛУШКА: Изображение листа Excel с длинным списком транзакций (факт-таблица)</p>
+                    </div>
+                    <ul class="space-y-3 mt-4 text-gray-600">
+                        <li>&#9679; **Структура:** Двумерная таблица (строки/столбцы).</li>
+                        <li>&#9679; **Скорость:** Медленный пересчет при большом объеме данных.</li>
+                        <li>&#9679; **Анализ:** Сложно увидеть взаимосвязи.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4 text-[#58508d]">OLAP: 3D-модель данных</h3>
+                    <div class="placeholder">
+                        <p>ЗАГЛУШКА: Изображение 3D-куба с осями "Продукт", "География", "Время"</p>
+                    </div>
+                     <ul class="space-y-3 mt-4 text-gray-600">
+                        <li>&#9679; **Структура:** Многомерный куб (Cube).</li>
+                        <li>&#9679; **Скорость:** Мгновенная благодаря агрегациям.</li>
+                        <li>&#9679; **Анализ:** Легко "повернуть" данные и получить контекст.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="cube-anatomy" class="card">
+            <h2 class="text-3xl font-bold text-center mb-6 text-[#003f5c]">Анатомия OLAP-Куба: Мера и Измерения</h2>
+            <p class="text-center mb-8 max-w-3xl mx-auto">Куб — это хранилище **одного** ключевого показателя, окруженного осями контекста, которые позволяют его анализировать. Пересечение всех осей — это уникальная ячейка данных (факт).</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="p-5 rounded-lg border-b-4 border-[#003f5c] bg-gray-50">
+                    <div class="text-4xl mb-2 text-[#003f5c]">🧊</div>
+                    <h3 class="text-xl font-bold mb-1">КУБ (Cube)</h3>
+                    <p class="text-sm text-gray-600">Место, где хранится или рассчитывается **один** показатель (Мера), например, **Выручка** или **Плановый выпуск**.</p>
+                </div>
+                <div class="p-5 rounded-lg border-b-4 border-[#58508d] bg-gray-50">
+                    <div class="text-4xl mb-2 text-[#58508d]">📐</div>
+                    <h3 class="text-xl font-bold mb-1">ИЗМЕРЕНИЯ (Dimensions)</h3>
+                    <p class="text-sm text-gray-600">Оси, задающие структуру анализа: **Продукты**, **Регионы**, **Время**, **Версии**.</p>
+                </div>
+                <div class="p-5 rounded-lg border-b-4 border-[#bc5090] bg-gray-50">
+                    <div class="text-4xl mb-2 text-[#bc5090]">📍</div>
+                    <h3 class="text-xl font-bold mb-1">ФАКТ (Fact)</h3>
+                    <p class="text-sm text-gray-600">Значение в уникальной ячейке, на пересечении всех Измерений (напр., Выручка от Продукта X в Регионе Y в Месяце Z).</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="dimensions" class="card">
+            <h2 class="text-3xl font-bold text-center mb-6 text-[#003f5c]">Измерения и Справочники: Единый язык компании</h2>
+            <p class="text-center mb-8 max-w-3xl mx-auto">Каждое Измерение опирается на Справочник (master data). Справочники гарантируют, что "Клапан" в продажах, производстве и финансах — это один и тот же Клапан. Это основа доверия к данным.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="placeholder">
+                    <p>ЗАГЛУШКА: Скриншот Casplan со Справочником "Организационная структура" или "Номенклатура" (Роль: задает структуру данных)</p>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4 text-[#58508d]">Примеры Измерений</h3>
+                    <ul class="space-y-2 list-disc list-inside text-gray-700">
+                        <li>**Номенклатура:** Продукты, услуги, сырье.</li>
+                        <li>**Оргструктура:** Отделы, филиалы, центры прибыли.</li>
+                        <li>**Время:** Годы, кварталы, месяцы, дни.</li>
+                        <li>**Сценарии:** План, Факт, Бюджет, Прогноз.</li>
+                    </ul>
+                    <h3 class="text-2xl font-semibold mt-6 mb-4 text-[#ff6361]">Бизнес-Эффект</h3>
+                    <p class="text-gray-700">Справочники устраняют разночтения. Когда данные "чистые", интегрированное планирование (IBP) становится возможным.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="hierarchy" class="card">
+            <h2 class="text-3xl font-bold text-center mb-6 text-[#003f5c]">Иерархии: Roll-Up и Drill-Down</h2>
+            <p class="text-center mb-8 max-w-3xl mx-auto">Иерархия — это вложенная логика внутри Измерения (например: Города &rarr; Регионы &rarr; Страна). Это позволяет мгновенно менять уровень детализации анализа.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+                <div class="text-center">
+                    <div class="text-5xl mb-3 text-[#ffa600]">&#8679;</div>
+                    <h3 class="text-xl font-bold text-[#ffa600]">Roll-Up (Свертывание)</h3>
+                    <p class="text-sm text-gray-600">Агрегация данных на уровень выше. <br> **Пример:** Суммируем продажи всех филиалов, чтобы увидеть итог по стране.</p>
+                </div>
+                <div class="placeholder">
+                    <p>ЗАГЛУШКА: Схема Roll-Up/Drill-Down или скриншот Casplan с иерархией продукта (например, "Запорная арматура" &rarr; "Клапан" &rarr; "SKU")</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-5xl mb-3 text-[#bc5090]">&#8681;</div>
+                    <h3 class="text-xl font-bold text-[#bc5090]">Drill-Down (Детализация)</h3>
+                    <p class="text-sm text-gray-600">Раскрытие данных на уровень ниже. <br> **Пример:** Видим, что продажи страны упали, и проваливаемся до уровня конкретного города.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="aggregation" class="card">
+            <h2 class="text-3xl font-bold text-center mb-6 text-[#003f5c]">Агрегации: Секрет скорости OLAP</h2>
+            <p class="text-center mb-8 max-w-3xl mx-auto">Агрегация — это процесс предварительного подсчета итогов. OLAP-система не пересчитывает суммы каждый раз, когда вы делаете запрос; она хранит их готовыми. Это позволяет работать с Big Data мгновенно.</p>
+            
+            <!-- НОВАЯ СХЕМА ROLL-UP (визуализация агрегации) -->
+            <div class="grid grid-cols-3 gap-4 text-center items-start justify-items-center mt-6">
+                <!-- Шаг 1: Детали (SKU) -->
+                <div class="rollup-step w-full">
+                    <div class="data-block bg-[#ff6361]">SKU 1: $100</div>
+                    <div class="data-block bg-[#ff6361]">SKU 2: $250</div>
+                    <div class="data-block bg-[#ff6361]">SKU 3: $50</div>
+                    <p class="mt-2 text-sm font-medium text-gray-600">Уровень: Детали (SKU)</p>
+                </div>
+
+                <!-- Шаг 2: Стрелка Roll-Up -->
+                <div class="flex flex-col items-center justify-center h-full pt-10">
+                    <div class="text-2xl font-bold text-[#58508d]">ROLL-UP</div>
+                    <div class="arrow-down">&#8679;</div>
+                    <p class="text-xs text-gray-500">Предварительный подсчет</p>
+                </div>
+                
+                <!-- Шаг 3: Агрегированный Итог (Категория) -->
+                <div class="rollup-step w-full">
+                    <div class="data-block bg-[#003f5c] h-32 flex items-center justify-center text-2xl">
+                        Категория A: $400
+                    </div>
+                    <p class="mt-2 text-sm font-medium text-gray-600">Уровень: Категория</p>
+                </div>
+            </div>
+            <!-- КОНЕЦ НОВОЙ СХЕМЫ -->
+
+            <ul class="space-y-3 mt-8 text-gray-700">
+                <li class="flex items-center"><span class="text-green-500 mr-2">&#10003;</span> **Ускорение анализа:** Итоги уже посчитаны заранее.</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">&#10003;</span> **Масштабируемость:** Система быстро работает с миллионами строк.</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">&#10003;</span> **Точность:** Данные автоматически суммируются по всей структуре иерархий.</li>
+            </ul>
+        </section>
+
+        <section id="multicube" class="card">
+            <h2 class="text-3xl font-bold text-center mb-6 text-[#003f5c]">Мультикуб: Связывание бизнес-процессов</h2>
+            <p class="text-center mb-8 max-w-3xl mx-auto">Мультикуб (или связанная система кубов) — это то, что позволяет реализовать IBP. Разные функциональные области (Продажи, Производство, Финансы) имеют свои Кубы, но они связаны общими Измерениями (например, "Время" и "Продукт").</p>
+             <div class="placeholder">
+                <p>ЗАГЛУШКА: Блок-схема или схема Мультикуба Casplan, где Куб P&L связан с Кубом Продаж, Кубом Затрат и Кубом Cash Flow.</p>
+            </div>
+            <h3 class="text-2xl font-semibold mt-6 mb-4 text-[#58508d]">Бизнес-Эффект (P&L как Мультикуб)</h3>
+            <p class="text-gray-700">Модель P&L (Отчет о прибылях и убытках) становится не отдельным документом, а **результатом** расчетов из других кубов. Casplan берет данные о Выручке из Куба Продаж и данные о Себестоимости из Куба Производства, чтобы посчитать Прибыль.</p>
+        </section>
+
+        <footer class="text-center mt-12 py-6 border-t">
+            <p class="text-gray-600">OLAP-архитектура — технологическая основа для принятия решений на основе данных. Casplan позволяет использовать эти принципы для построения комплексных моделей интегрированного планирования.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        window.onload = function() {
+            const wrapLabel = (label) => {
+                const maxLength = 16;
+                if (label.length <= maxLength) {
+                    return label;
+                }
+                const words = label.split(' ');
+                let lines = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + ' ' + word).trim().length > maxLength) {
+                        lines.push(currentLine.trim());
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                });
+                lines.push(currentLine.trim());
+                return lines;
+            };
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                }
+                return label;
+            };
+            
+            const commonChartOptions = {
+                maintainAspectRatio: false,
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            };
+
+            const colors = {
+                blue: '#003f5c',
+                purple: '#58508d',
+                magenta: '#bc5090',
+                red: '#ff6361',
+                orange: '#ffa600',
+                green: '#22c55e',
+                yellow: '#f59e0b',
+                base: '#6b7280'
+            };
+        };
+    </script>
+</body>
+</html>
