@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Инфографика: Интегрированное Бизнес-Планирование (IBP)</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -13,21 +14,34 @@
             font-family: 'Inter', sans-serif;
             background-color: #f0f4f8;
         }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        /* Обновленные стили для карточек по вашему шаблону */
         .card {
             background-color: white;
             border-radius: 1rem;
             padding: 2rem;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .card:hover {
             transform: translateY(-5px);
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
-        .icon-bg {
-            background-color: #e0f2fe;
-            color: #0c4a6e;
-        }
+        /* Стиль градиентного фона шапки по вашему шаблону */
         .header-bg {
             background: linear-gradient(135deg, #6ac1e3, #5FA6C7);
         }
@@ -35,7 +49,8 @@
 </head>
 <body class="text-gray-800">
 
-    <div class="container mx-auto p-4 md:p-8">
+    <div class="container mx-auto p-4 md:p-8 max-w-5xl">
+
         <!-- Back to Main Page Button -->
         <div class="mb-4">
             <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/" class="inline-flex items-center text-sky-700 hover:text-sky-900 transition-colors font-semibold">
@@ -46,8 +61,10 @@
             </a>
         </div>
         
-        <!-- Header -->
-        <header class="text-center mb-12 p-8 rounded-2xl header-bg text-white">
+        <!-- Header, стилизованный по вашему шаблону -->
+        <header class="text-center mb-12 p-8 rounded-2xl header-bg text-white shadow-xl">
+            <!-- Здесь предполагается логотип, путь к которому взят из вашего шаблона -->
+            <!-- Примечание: Логотип не отобразится, если путь /IITU_OLAP_Course/assets/Logo-white.png не ведет к реальному файлу в текущей среде -->
             <img src="/IITU_OLAP_Course/assets/Logo-white.png"
                  alt="Casplan Logo"
                  class="mx-auto mb-6 h-16">
