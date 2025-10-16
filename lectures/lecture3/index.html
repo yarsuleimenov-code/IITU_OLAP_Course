@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S&OP: Планирование продаж и операций</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            /* Изменен фоновый цвет, чтобы соответствовать стилю index (2).html */
+            background-color: #f0f4f8; 
+            color: #1f2937; /* Более темный основной текст */
+        }
+        /* Стили для карточек, чтобы соответствовать стилю index (2).html */
+        .card-style { 
+            background-color: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-style:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        /* Стили для шапки из index (2).html */
+        .header-bg {
+            background: linear-gradient(135deg, #6ac1e3, #5FA6C7);
+        }
+        
+        /* Стили для графиков */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        /* Стили для шагов процесса S&OP */
+        .flow-step {
+            border-left-width: 4px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        }
+        .flow-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .flow-connector {
+            display: none;
+        }
+         @media (min-width: 1024px) {
+            .flow-step-container {
+                position: relative;
+            }
+            .flow-connector {
+                display: block;
+                position: absolute;
+                top: 50%;
+                left: 100%;
+                transform: translate(-50%, -50%);
+                color: #cbd5e1;
+                font-size: 2.5rem;
+                line-height: 1;
+                z-index: 0;
+            }
+         }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+        <!-- Блок "Назад к списку лекций" из index (2).html -->
+        <div class="mb-4">
+            <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/" class="inline-flex items-center text-sky-700 hover:text-sky-900 transition-colors font-semibold">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                <span>Назад к списку лекций</span>
+            </a>
+        </div>
+        
+        <!-- Header (единый стиль с лого) из index (2).html -->
+        <header class="text-center mb-12 p-8 rounded-2xl header-bg text-white">
+            <!-- Логотип из assets -->
+            <img src="/IITU_OLAP_Course/assets/Logo-white.png"
+                 alt="Casplan Logo"
+                 class="mx-auto mb-6 h-16">
+            <!-- Заголовок и подзаголовок из sop_info.html -->
+            <h1 class="text-4xl md:text-5xl font-bold mb-2">S&OP: Планирование продаж и операций</h1>
+            <p class="text-lg md:text-xl text-sky-200">Двигатель интегрированного бизнес-планирования, который соединяет стратегию компании с ежедневными действиями.</p>
+        </header>
+
+        <main class="container mx-auto p-4 md:p-8 pt-0"> <!-- Удален лишний padding-top -->
+
+            <section id="balance" class="my-12">
+                <div class="text-center max-w-3xl mx-auto">
+                    <h2 class="text-3xl font-bold mb-2 text-gray-700">Ключевая задача: Баланс Спроса и Предложения</h2>
+                    <p class="text-slate-600 mb-8">S&OP помогает компаниям избежать двух дорогостоящих ошибок, находя идеальное равновесие между рыночными возможностями и производственными реалиями.</p>
+                </div>
+                <!-- Добавлен класс card-style для единого стиля карточек -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <div class="card-style p-8 border border-red-200">
+                        <div class="flex items-center">
+                            <span class="text-4xl mr-4">📉</span>
+                            <div>
+                                <h3 class="text-xl font-bold text-red-600">Дефицит: Риск упущенной выгоды</h3>
+                                <p class="text-slate-600 mt-2">Когда спрос превышает предложение. Компания не может удовлетворить всех клиентов, теряя долю рынка и прибыль.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-style p-8 border border-blue-200">
+                        <div class="flex items-center">
+                            <span class="text-4xl mr-4">📦</span>
+                            <div>
+                                <h3 class="text-xl font-bold text-blue-600">Профицит: Риск замороженных активов</h3>
+                                <p class="text-slate-600 mt-2">Когда предложение превышает спрос. Капитал заморожен в излишках запасов, растут затраты на хранение.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="cycle" class="my-16 md:my-24">
+                 <div class="text-center max-w-3xl mx-auto">
+                    <h2 class="text-3xl font-bold mb-2 text-gray-700">Управляемый процесс: 5 шагов цикла S&OP</h2>
+                    <p class="text-slate-600 mb-12">S&OP – это не хаотичные совещания, а структурированный ежемесячный цикл, где каждый этап готовит данные для следующего.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+                    <div class="flow-step-container flex justify-center">
+                        <div class="flow-step bg-white p-6 rounded-lg shadow-md border-teal-500 w-full">
+                            <h4 class="font-bold text-lg text-teal-600">1. Обзор Продукта</h4>
+                            <p class="text-sm text-slate-600 mt-2">Анализ портфеля: какие продукты выводим на рынок, а какие снимаем с производства (делистинг).</p>
+                        </div>
+                        <div class="flow-connector hidden lg:block">→</div>
+                    </div>
+                     <div class="flow-step-container flex justify-center">
+                        <div class="flow-step bg-white p-6 rounded-lg shadow-md border-sky-500 w-full">
+                            <h4 class="font-bold text-lg text-sky-600">2. Обзор Спроса</h4>
+                            <p class="text-sm text-slate-600 mt-2">Формирование "неограниченного" прогноза продаж на основе статистики, планов маркетинга и данных от отдела продаж.</p>
+                        </div>
+                        <div class="flow-connector hidden lg:block">→</div>
+                    </div>
+                     <div class="flow-step-container flex justify-center">
+                        <div class="flow-step bg-white p-6 rounded-lg shadow-md border-amber-500 w-full">
+                            <h4 class="font-bold text-lg text-amber-600">3. Обзор Предложения</h4>
+                            <p class="text-sm text-slate-600 mt-2">Оценка производственных мощностей и выявление "узких мест" (bottlenecks), которые не позволяют выполнить неограниченный спрос.</p>
+                        </div>
+                        <div class="flow-connector hidden lg:block">→</div>
+                    </div>
+                     <div class="flow-step-container flex justify-center">
+                        <div class="flow-step bg-white p-6 rounded-lg shadow-md border-violet-500 w-full">
+                            <h4 class="font-bold text-lg text-violet-600">4. Финансовый Обзор</h4>
+                            <p class="text-sm text-slate-600 mt-2">Трансформация согласованного операционного плана (в штуках) в финансовые показатели (P&L, Cash Flow).</p>
+                        </div>
+                        <div class="flow-connector hidden lg:block">→</div>
+                    </div>
+                     <div class="flow-step-container flex justify-center">
+                         <div class="flow-step bg-white p-6 rounded-lg shadow-md border-rose-500 w-full">
+                            <h4 class="font-bold text-lg text-rose-600">5. Собрание Руководства</h4>
+                            <p class="text-sm text-slate-600 mt-2">Принятие финальных решений по компромиссам (trade-offs) и утверждение единого плана для всей компании.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="players" class="my-16 md:my-24">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                     <div>
+                        <h2 class="text-3xl font-bold mb-2 text-gray-700">Кросс-функциональная команда и их цели</h2>
+                        <p class="text-slate-600 mb-6">Успех S&OP зависит от слаженной работы команды, где у каждого отдела свои цели. OLAP-системы, такие как Casplan, создают "единый источник правды", чтобы все говорили на одном языке данных.</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start"><span class="text-blue-500 font-bold mr-3">✓</span> <strong>Коммерция:</strong> Максимизировать выручку и долю рынка.</li>
+                            <li class="flex items-start"><span class="text-amber-500 font-bold mr-3">✓</span> <strong>Производство:</strong> Минимизировать себестоимость и обеспечить стабильность загрузки.</li>
+                            <li class="flex items-start"><span class="text-teal-500 font-bold mr-3">✓</span> <strong>Логистика:</strong> Оптимизировать затраты на доставку и уровень запасов.</li>
+                            <li class="flex items-start"><span class="text-violet-500 font-bold mr-3">✓</span> <strong>Финансы:</strong> Обеспечить максимальную прибыльность (EBITDA) и управляемость денежного потока.</li>
+                        </ul>
+                    </div>
+                    <!-- Добавлен класс card-style для единого стиля карточек -->
+                    <div class="card-style p-6">
+                        <div class="chart-container">
+                            <canvas id="playersChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="reality-check" class="my-16 md:my-24">
+                <div class="text-center max-w-3xl mx-auto">
+                    <h2 class="text-3xl font-bold mb-2 text-gray-700">От Мечты к Реальности: Выявление "Узких Мест"</h2>
+                    <p class="text-slate-600 mb-12">Процесс S&OP сталкивает идеальный план продаж с суровой реальностью производственных ограничений, чтобы сформировать выполнимый план.</p>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                     <!-- Добавлен класс card-style для единого стиля карточек -->
+                    <div class="card-style p-6">
+                        <h3 class="text-xl font-bold text-center mb-4 text-gray-700">Шаг 1: Неограниченный прогноз спроса</h3>
+                        <div class="chart-container">
+                            <canvas id="demandChart"></canvas>
+                        </div>
+                    </div>
+                     <!-- Добавлен класс card-style для единого стиля карточек -->
+                     <div class="card-style p-6">
+                        <h3 class="text-xl font-bold text-center mb-4 text-gray-700">Шаг 2: Поиск узкого места (Bottleneck)</h3>
+                         <div class="chart-container">
+                            <canvas id="supplyChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="scenarios" class="my-16 md:my-24">
+                 <div class="text-center max-w-3xl mx-auto">
+                    <h2 class="text-3xl font-bold mb-2 text-gray-700">Сила OLAP: "Что-если" сценарии для принятия решений</h2>
+                    <p class="text-slate-600 mb-12">Главное преимущество OLAP-систем в S&OP – возможность мгновенно моделировать разные сценарии и видеть их финансовый результат, выбирая наиболее прибыльный компромисс.</p>
+                </div>
+                 <!-- Добавлен класс card-style для единого стиля карточек -->
+                <div class="card-style p-6">
+                    <h3 class="text-xl font-bold text-center mb-1 text-gray-700">Анализ компромиссов (Trade-offs)</h3>
+                    <p class="text-center text-slate-500 mb-6">Сравнение финансового результата трех возможных решений для устранения "узкого места".</p>
+                    <div class="chart-container">
+                        <canvas id="scenariosChart"></canvas>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <!-- Footer из index (2).html (обновлен для соответствия контенту S&OP) -->
+    <footer class="text-center mt-12 pt-8 border-t border-gray-300">
+        <p class="text-gray-600">S&OP это культура принятия решений на основе данных.</p>
+        <p class="text-sm text-gray-500">Инфографика на основе лекции для платформы Casplan.</p>
+    </footer>
+
+<script>
+    // Весь JS-код остался без изменений, так как он отвечает только за графики Chart.js
+    function wrapLabels(label) {
+        if (typeof label === 'string' && label.length > 16) {
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + word).length > 16) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            });
+            lines.push(currentLine.trim());
+            return lines;
+        }
+        return label;
+    }
+
+    const tooltipTitleCallback = function(tooltipItems) {
+        const item = tooltipItems[0];
+        let label = item.chart.data.labels[item.dataIndex];
+        if (Array.isArray(label)) {
+            return label.join(' ');
+        } else {
+            return label;
+        }
+    };
+
+    const sharedChartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                position: 'bottom',
+                labels: {
+                    padding: 20,
+                    font: {
+                       size: 14
+                    }
+                }
+            },
+            tooltip: {
+                callbacks: {
+                    title: tooltipTitleCallback
+                }
+            }
+        },
+        scales: {
+             r: {
+                angleLines: {
+                    display: false
+                },
+                suggestedMin: 0,
+                suggestedMax: 100,
+                pointLabels: {
+                    font: {
+                        size: 14
+                    }
+                }
+            },
+            x: {
+                grid: {
+                    display: false
+                },
+                 ticks: {
+                    font: {
+                       size: 12
+                    }
+                }
+            },
+            y: {
+                beginAtZero: true,
+                grid: {
+                    color: '#e2e8f0'
+                },
+                 ticks: {
+                    font: {
+                       size: 12
+                    }
+                }
+            }
+        }
+    };
+
+    const playersChartCtx = document.getElementById('playersChart');
+    if (playersChartCtx) {
+        new Chart(playersChartCtx, {
+            type: 'radar',
+            data: {
+                labels: ['Выручка', 'Прибыль (EBITDA)', 'Низкая себестоимость', 'Стабильность плана', 'Доля рынка'],
+                datasets: [{
+                    label: 'Коммерция',
+                    data: [95, 70, 20, 30, 90],
+                    fill: true,
+                    backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                    borderColor: 'rgb(59, 130, 246)',
+                    pointBackgroundColor: 'rgb(59, 130, 246)',
+                }, {
+                    label: 'Производство',
+                    data: [40, 60, 95, 90, 30],
+                    fill: true,
+                    backgroundColor: 'rgba(245, 158, 11, 0.2)',
+                    borderColor: 'rgb(245, 158, 11)',
+                    pointBackgroundColor: 'rgb(245, 158, 11)',
+                },
+                {
+                    label: 'Финансы',
+                    data: [80, 95, 80, 70, 75],
+                    fill: true,
+                    backgroundColor: 'rgba(139, 92, 246, 0.2)',
+                    borderColor: 'rgb(139, 92, 246)',
+                    pointBackgroundColor: 'rgb(139, 92, 246)',
+                }
+                ]
+            },
+            options: sharedChartOptions
+        });
+    }
+
+    const demandChartCtx = document.getElementById('demandChart');
+    if (demandChartCtx) {
+        new Chart(demandChartCtx, {
+            type: 'line',
+            data: {
+                labels: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн'],
+                datasets: [
+                    {
+                        label: 'Исторические продажи',
+                        data: [1200, 1150, 1300, 1250, 1400, 1350],
+                        borderColor: '#94a3b8',
+                        backgroundColor: '#94a3b8',
+                        tension: 0.3
+                    },
+                     {
+                        label: 'Неограниченный прогноз',
+                        data: [1300, 1400, 1600, 1800, 1750, 1900],
+                        borderColor: '#0ea5e9',
+                        backgroundColor: '#0ea5e9',
+                        tension: 0.3,
+                        borderDash: [5, 5]
+                    }
+                ]
+            },
+            options: sharedChartOptions
+        });
+    }
+
+    const supplyChartCtx = document.getElementById('supplyChart');
+    if (supplyChartCtx) {
+        new Chart(supplyChartCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Сборка, чел./ч', 'Тестирование, ст./ч', 'Плавильный участок, ч', 'Упаковка, чел./ч'].map(wrapLabels),
+                datasets: [{
+                    label: 'Потребность в ресурсах',
+                    data: [480, 350, 650, 500],
+                    backgroundColor: ['#34d399', '#34d399', '#ef4444', '#34d399'],
+                },
+                {
+                    label: 'Доступная мощность',
+                    data: [500, 400, 500, 500],
+                    type: 'line',
+                    borderColor: '#4f46e5',
+                    backgroundColor: '#4f46e5',
+                    fill: false,
+                    pointRadius: 5,
+                    pointHoverRadius: 7
+                }]
+            },
+            options: { ...sharedChartOptions, scales: { ...sharedChartOptions.scales, x: { ...sharedChartOptions.scales.x, stacked: true }, y: { ...sharedChartOptions.scales.y, stacked: true } } }
+        });
+    }
+    
+    const scenariosChartCtx = document.getElementById('scenariosChart');
+    if (scenariosChartCtx) {
+        new Chart(scenariosChartCtx, {
+            type: 'bar',
+            data: {
+                labels: ['План A: Снизить продажи', 'План B: Сверхурочная работа', 'План C: Аутсорсинг'].map(wrapLabels),
+                datasets: [
+                    {
+                        label: 'Выручка',
+                        data: [700, 1000, 1000],
+                        backgroundColor: '#3b82f6',
+                    },
+                    {
+                        label: 'Себестоимость',
+                        data: [-400, -700, -800],
+                        backgroundColor: '#f59e0b',
+                    },
+                     {
+                        label: 'Прибыль (EBITDA)',
+                        data: [300, 300, 200],
+                        backgroundColor: '#10b981',
+                    }
+                ]
+            },
+            options: {
+                ...sharedChartOptions,
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        stacked: true,
+                        grid: { color: '#e2e8f0' }
+                    },
+                    y: {
+                        stacked: true,
+                         grid: { display: false }
+                    }
+                }
+            }
+        });
+    }
+
+</script>
+</body>
+</html>
