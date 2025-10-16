@@ -185,156 +185,158 @@
     </div>
 
     <script>
-        const wrapLabel = (label) => {
-            const maxLength = 16;
-            if (label.length <= maxLength) {
+        window.onload = function() {
+            const wrapLabel = (label) => {
+                const maxLength = 16;
+                if (label.length <= maxLength) {
+                    return label;
+                }
+                const words = label.split(' ');
+                let lines = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + ' ' + word).trim().length > maxLength) {
+                        lines.push(currentLine.trim());
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                });
+                lines.push(currentLine.trim());
+                return lines;
+            };
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                }
                 return label;
-            }
-            const words = label.split(' ');
-            let lines = [];
-            let currentLine = '';
-            words.forEach(word => {
-                if ((currentLine + ' ' + word).trim().length > maxLength) {
-                    lines.push(currentLine.trim());
-                    currentLine = word;
-                } else {
-                    currentLine = (currentLine + ' ' + word).trim();
+            };
+            
+            const commonChartOptions = {
+                maintainAspectRatio: false,
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            };
+
+            const colors = {
+                blue: '#003f5c',
+                purple: '#58508d',
+                magenta: '#bc5090',
+                red: '#ff6361',
+                orange: '#ffa600',
+                green: '#22c55e',
+                yellow: '#f59e0b',
+                base: '#6b7280'
+            };
+
+            new Chart(document.getElementById('cascadeChart'), {
+                type: 'bar',
+                data: {
+                    labels: ['Прогноз Отдела Продаж', 'Ограничения Производства', 'Согласованный План', 'Финансовый Результат (P&L)'].map(wrapLabel),
+                    datasets: [{
+                        label: 'Объем (в единицах и млн. $)',
+                        data: [1000, 700, 700, 3.5],
+                        backgroundColor: [colors.blue, colors.red, colors.purple, colors.green],
+                        borderColor: '#ffffff',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    ...commonChartOptions,
+                     scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value, index, values) {
+                                    if (index === 3) return '$' + value + 'M';
+                                    return value;
+                                }
+                            }
+                        }
+                    }
                 }
             });
-            lines.push(currentLine.trim());
-            return lines;
-        };
-
-        const tooltipTitleCallback = (tooltipItems) => {
-            const item = tooltipItems[0];
-            let label = item.chart.data.labels[item.dataIndex];
-            if (Array.isArray(label)) {
-                return label.join(' ');
-            }
-            return label;
-        };
-        
-        const commonChartOptions = {
-            maintainAspectRatio: false,
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'top',
+            
+            new Chart(document.getElementById('scenarioChart'), {
+                type: 'line',
+                data: {
+                    labels: ['Q1', 'Q2', 'Q3', 'Q4', 'Q1+1', 'Q2+1'],
+                    datasets: [{
+                        label: 'Оптимистичный сценарий',
+                        data: [5.0, 5.5, 6.2, 7.0, 7.5, 8.2],
+                        borderColor: colors.green,
+                        backgroundColor: 'rgba(34, 197, 94, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }, {
+                        label: 'Базовый сценарий',
+                        data: [5.0, 5.2, 5.5, 5.8, 6.1, 6.4],
+                        borderColor: colors.base,
+                        backgroundColor: 'rgba(107, 114, 128, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }, {
+                        label: 'Пессимистичный сценарий',
+                        data: [5.0, 4.8, 4.5, 4.2, 4.0, 3.8],
+                        borderColor: colors.red,
+                        backgroundColor: 'rgba(255, 99, 97, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
                 },
-                tooltip: {
-                    callbacks: {
-                        title: tooltipTitleCallback
-                    }
-                }
-            }
-        };
-
-        const colors = {
-            blue: '#003f5c',
-            purple: '#58508d',
-            magenta: '#bc5090',
-            red: '#ff6361',
-            orange: '#ffa600',
-            green: '#22c55e',
-            yellow: '#f59e0b',
-            base: '#6b7280'
-        };
-
-        new Chart(document.getElementById('cascadeChart'), {
-            type: 'bar',
-            data: {
-                labels: ['Прогноз Отдела Продаж', 'Ограничения Производства', 'Согласованный План', 'Финансовый Результат (P&L)'].map(wrapLabel),
-                datasets: [{
-                    label: 'Объем (в единицах и млн. $)',
-                    data: [1000, 700, 700, 3.5],
-                    backgroundColor: [colors.blue, colors.red, colors.purple, colors.green],
-                    borderColor: '#ffffff',
-                    borderWidth: 2
-                }]
-            },
-            options: {
-                ...commonChartOptions,
-                 scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            callback: function(value, index, values) {
-                                if (index === 3) return '$' + value + 'M';
-                                return value;
+                options: {
+                    ...commonChartOptions,
+                    scales: {
+                         y: {
+                            beginAtZero: false,
+                            ticks: {
+                                callback: function(value) {
+                                    return '$' + value + 'M';
+                                }
+                            },
+                            title: {
+                                display: true,
+                                text: 'Прогнозируемая Прибыль (P&L)'
                             }
                         }
                     }
                 }
-            }
-        });
-        
-        new Chart(document.getElementById('scenarioChart'), {
-            type: 'line',
-            data: {
-                labels: ['Q1', 'Q2', 'Q3', 'Q4', 'Q1+1', 'Q2+1'],
-                datasets: [{
-                    label: 'Оптимистичный сценарий',
-                    data: [5.0, 5.5, 6.2, 7.0, 7.5, 8.2],
-                    borderColor: colors.green,
-                    backgroundColor: 'rgba(34, 197, 94, 0.1)',
-                    fill: true,
-                    tension: 0.4
-                }, {
-                    label: 'Базовый сценарий',
-                    data: [5.0, 5.2, 5.5, 5.8, 6.1, 6.4],
-                    borderColor: colors.base,
-                    backgroundColor: 'rgba(107, 114, 128, 0.1)',
-                    fill: true,
-                    tension: 0.4
-                }, {
-                    label: 'Пессимистичный сценарий',
-                    data: [5.0, 4.8, 4.5, 4.2, 4.0, 3.8],
-                    borderColor: colors.red,
-                    backgroundColor: 'rgba(255, 99, 97, 0.1)',
-                    fill: true,
-                    tension: 0.4
-                }]
-            },
-            options: {
-                ...commonChartOptions,
-                scales: {
-                     y: {
-                        beginAtZero: false,
-                        ticks: {
-                            callback: function(value) {
-                                return '$' + value + 'M';
-                            }
-                        },
-                        title: {
-                            display: true,
-                            text: 'Прогнозируемая Прибыль (P&L)'
-                        }
+            });
+            
+            new Chart(document.getElementById('impactChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Рост Прибыли', 'Снижение Затрат', 'Улучшение Сервиса'],
+                    datasets: [{
+                        label: 'Области влияния IBP',
+                        data: [40, 35, 25],
+                        backgroundColor: [colors.purple, colors.magenta, colors.orange],
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    ...commonChartOptions,
+                    plugins: {
+                         ...commonChartOptions.plugins,
+                         legend: {
+                             position: 'bottom'
+                         }
                     }
                 }
-            }
-        });
-        
-        new Chart(document.getElementById('impactChart'), {
-            type: 'doughnut',
-            data: {
-                labels: ['Рост Прибыли', 'Снижение Затрат', 'Улучшение Сервиса'],
-                datasets: [{
-                    label: 'Области влияния IBP',
-                    data: [40, 35, 25],
-                    backgroundColor: [colors.purple, colors.magenta, colors.orange],
-                    hoverOffset: 4
-                }]
-            },
-            options: {
-                ...commonChartOptions,
-                plugins: {
-                     ...commonChartOptions.plugins,
-                     legend: {
-                         position: 'bottom'
-                     }
-                }
-            }
-        });
+            });
+        };
     </script>
 </body>
 </html>
