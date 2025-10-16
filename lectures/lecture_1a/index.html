@@ -45,20 +45,23 @@
         .header-bg {
             background: linear-gradient(135deg, #6ac1e3, #5FA6C7);
         }
-        /* Стиль заглушки для картинок */
-        .placeholder {
+        /* Стиль для картинок, чтобы они выглядели как карточки */
+        .image-container {
             min-height: 200px;
-            background-color: #e0f7fa;
-            border: 2px dashed #00bcd4;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1rem;
-            color: #00838f;
             border-radius: 0.5rem;
-            text-align: center;
-            padding: 1rem;
+            overflow: hidden;
+            border: 1px solid #e2e8f0; /* Добавим легкую рамку */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Легкая тень */
         }
+        .image-container img {
+            width: 100%;
+            height: auto;
+            object-fit: contain; /* Обеспечивает, что изображение впишется, сохраняя пропорции */
+        }
+        
         /* Стили для новой схемы Roll-Up */
         .rollup-step {
             display: flex;
@@ -113,24 +116,28 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
                     <h3 class="text-2xl font-semibold mb-4 text-[#ff6361]">Excel: Плоский лист</h3>
-                    <div class="placeholder">
-                        <p>ЗАГЛУШКА: Изображение листа Excel с длинным списком транзакций (факт-таблица)</p>
+                    <div class="image-container">
+                        <!-- ЗАМЕНА ЗАГЛУШКИ: Изображение листа Excel с длинным списком транзакций (факт-таблица) -->
+                        <img src="assets/xls_example.jpg" alt="Изображение листа Excel с длинным списком транзакций (факт-таблица)">
                     </div>
                     <ul class="space-y-3 mt-4 text-gray-600">
-                        <li>&#9679; **Структура:** Двумерная таблица (строки/столбцы).</li>
-                        <li>&#9679; **Скорость:** Медленный пересчет при большом объеме данных.</li>
-                        <li>&#9679; **Анализ:** Сложно увидеть взаимосвязи.</li>
+                        <!-- ИСПРАВЛЕНИЕ ФОРМАТИРОВАНИЯ: заменили &#9679; на обычное выделение жирным шрифтом -->
+                        <li>**Структура:** Двумерная таблица (строки/столбцы).</li>
+                        <li>**Скорость:** Медленный пересчет при большом объеме данных.</li>
+                        <li>**Анализ:** Сложно увидеть взаимосвязи.</li>
                     </ul>
                 </div>
                 <div>
                     <h3 class="text-2xl font-semibold mb-4 text-[#58508d]">OLAP: 3D-модель данных</h3>
-                    <div class="placeholder">
-                        <p>ЗАГЛУШКА: Изображение 3D-куба с осями "Продукт", "География", "Время"</p>
+                    <div class="image-container">
+                        <!-- ЗАМЕНА ЗАГЛУШКИ: Изображение 3D-куба с осями "Продукт", "География", "Время" -->
+                        <img src="assets/olap-3d-cube.png" alt="Изображение 3D-куба с осями 'Продукт', 'География', 'Время'">
                     </div>
                      <ul class="space-y-3 mt-4 text-gray-600">
-                        <li>&#9679; **Структура:** Многомерный куб (Cube).</li>
-                        <li>&#9679; **Скорость:** Мгновенная благодаря агрегациям.</li>
-                        <li>&#9679; **Анализ:** Легко "повернуть" данные и получить контекст.</li>
+                        <!-- ИСПРАВЛЕНИЕ ФОРМАТИРОВАНИЯ: заменили &#9679; на обычное выделение жирным шрифтом -->
+                        <li>**Структура:** Многомерный куб (Cube).</li>
+                        <li>**Скорость:** Мгновенная благодаря агрегациям.</li>
+                        <li>**Анализ:** Легко "повернуть" данные и получить контекст.</li>
                     </ul>
                 </div>
             </div>
@@ -162,8 +169,9 @@
             <h2 class="text-3xl font-bold text-center mb-6 text-[#003f5c]">Измерения и Справочники: Единый язык компании</h2>
             <p class="text-center mb-8 max-w-3xl mx-auto">Каждое Измерение опирается на Справочник (master data). Справочники гарантируют, что "Клапан" в продажах, производстве и финансах — это один и тот же Клапан. Это основа доверия к данным.</p>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                <div class="placeholder">
-                    <p>ЗАГЛУШКА: Скриншот Casplan со Справочником "Организационная структура" или "Номенклатура" (Роль: задает структуру данных)</p>
+                <div class="image-container">
+                    <!-- ЗАМЕНА ЗАГЛУШКИ: Скриншот Casplan со Справочником "Организационная структура" или "Номенклатура" -->
+                    <img src="assets/Olap_dict.jpg" alt="Скриншот Casplan со Справочником 'Организационная структура' или 'Номенклатура'">
                 </div>
                 <div>
                     <h3 class="text-2xl font-semibold mb-4 text-[#58508d]">Примеры Измерений</h3>
@@ -188,8 +196,9 @@
                     <h3 class="text-xl font-bold text-[#ffa600]">Roll-Up (Свертывание)</h3>
                     <p class="text-sm text-gray-600">Агрегация данных на уровень выше. <br> **Пример:** Суммируем продажи всех филиалов, чтобы увидеть итог по стране.</p>
                 </div>
-                <div class="placeholder">
-                    <p>ЗАГЛУШКА: Схема Roll-Up/Drill-Down или скриншот Casplan с иерархией продукта (например, "Запорная арматура" &rarr; "Клапан" &rarr; "SKU")</p>
+                <div class="image-container">
+                    <!-- ЗАМЕНА ЗАГЛУШКИ: Схема Roll-Up/Drill-Down или скриншот Casplan с иерархией продукта -->
+                    <img src="assets/drill-down-olap-operation.png" alt="Схема Roll-Up/Drill-Down или скриншот Casplan с иерархией продукта">
                 </div>
                 <div class="text-center">
                     <div class="text-5xl mb-3 text-[#bc5090]">&#8681;</div>
@@ -240,8 +249,9 @@
         <section id="multicube" class="card">
             <h2 class="text-3xl font-bold text-center mb-6 text-[#003f5c]">Мультикуб: Связывание бизнес-процессов</h2>
             <p class="text-center mb-8 max-w-3xl mx-auto">Мультикуб (или связанная система кубов) — это то, что позволяет реализовать IBP. Разные функциональные области (Продажи, Производство, Финансы) имеют свои Кубы, но они связаны общими Измерениями (например, "Время" и "Продукт").</p>
-             <div class="placeholder">
-                <p>ЗАГЛУШКА: Блок-схема или схема Мультикуба Casplan, где Куб P&L связан с Кубом Продаж, Кубом Затрат и Кубом Cash Flow.</p>
+             <div class="image-container">
+                <!-- ЗАМЕНА ЗАГЛУШКИ: Блок-схема или схема Мультикуба Casplan -->
+                <img src="assets/Casplan_MC.jpg" alt="Блок-схема или схема Мультикуба Casplan">
             </div>
             <h3 class="text-2xl font-semibold mt-6 mb-4 text-[#58508d]">Бизнес-Эффект (P&L как Мультикуб)</h3>
             <p class="text-gray-700">Модель P&L (Отчет о прибылях и убытках) становится не отдельным документом, а **результатом** расчетов из других кубов. Casplan берет данные о Выручке из Куба Продаж и данные о Себестоимости из Куба Производства, чтобы посчитать Прибыль.</p>
