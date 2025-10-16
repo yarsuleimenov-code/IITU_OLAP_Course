@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Инфографика: Интегрированное Бизнес-Планирование (IBP)</title>
+    <title>Интегрированное Бизнес-Планирование (IBP)</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -14,73 +13,46 @@
             font-family: 'Inter', sans-serif;
             background-color: #f0f4f8;
         }
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 300px;
-            max-height: 400px;
-        }
-        @media (min-width: 768px) {
-            .chart-container {
-                height: 350px;
-            }
-        }
         .card {
             background-color: white;
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            padding: 1.5rem;
-            margin-bottom: 2rem;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
-        /* градиентный стиль шапки */
-        .header-bg-gradient {
-             background: linear-gradient(135deg, #4da6ff, #47a0b3); /* Голубой градиент, близкий к образцу */
-             min-height: 200px; 
-             display: flex;
-             align-items: center;
-             justify-content: center;
-             text-align: center;
-             border-radius: 0.75rem;
+        .icon-bg {
+            background-color: #e0f2fe;
+            color: #0c4a6e;
+        }
+        .header-bg {
+            background: linear-gradient(135deg, #6ac1e3, #5FA6C7);
         }
     </style>
 </head>
 <body class="text-gray-800">
 
-    <div class="container mx-auto max-w-5xl">
-
-        <!-- КНОПКА НАЗАД (за пределами градиентного блока) -->
-        <div class="pt-4 px-4 md:px-8">
-            <a href="#" class="inline-flex items-center text-gray-500 hover:text-gray-700 font-medium transition duration-300">
-                <span class="mr-2">←</span> Назад к списку лекций
+    <div class="container mx-auto p-4 md:p-8">
+        <!-- Back to Main Page Button -->
+        <div class="mb-4">
+            <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/" class="inline-flex items-center text-sky-700 hover:text-sky-900 transition-colors font-semibold">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                <span>Назад к списку лекций</span>
             </a>
         </div>
         
-        <!-- СТИЛИЗОВАННАЯ ШАПКА В ЕДИНОМ СТИЛЕ -->
-        <header class="shadow-lg mx-4 md:mx-8 mb-12 mt-4">
-            <div class="header-bg-gradient text-white p-8">
-                
-                <!-- Логотип CasPlan (используем иконку) -->
-                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                    <div class="text-white text-opacity-80 text-center">
-                        <div class="text-5xl font-extrabold mb-1">C<span class="text-green-300">as</span>Plan</div>
-                        <h1 class="text-4xl md:text-5xl font-bold mb-3">IBP: Интеграция и Стратегия</h1>
-                        <p class="text-lg font-light max-w-2xl mx-auto">Двигатель интегрированного бизнес-планирования, который соединяет стратегию компании с ежедневными действиями.</p>
-                    </div>
-                </div>
-                
-                <!-- Пустой контент для центрирования текста в градиентном блоке -->
-                <div class="flex flex-col justify-center items-center w-full h-full">
-                    <!-- Заголовки центрированы с помощью CSS -->
-                </div>
-            </div>
+        <!-- Header -->
+        <header class="text-center mb-12 p-8 rounded-2xl header-bg text-white">
+            <img src="/IITU_OLAP_Course/assets/Logo-white.png"
+                 alt="Casplan Logo"
+                 class="mx-auto mb-6 h-16">
+            <h1 class="text-4xl md:text-5xl font-bold mb-2">OLAP-модели: От данных к управленческим решениям</h1>
+            <p class="text-lg md:text-xl text-sky-200">Как перестать тонуть в Excel и начать видеть бизнес в объеме</p>
         </header>
         <!-- КОНЕЦ ШАПКИ -->
 
