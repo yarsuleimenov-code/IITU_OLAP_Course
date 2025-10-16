@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Интегрированное Бизнес-Планирование (IBP)</title>
+    <title>Инфографика: Интегрированное Бизнес-Планирование (IBP)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -54,138 +54,134 @@
             <h1 class="text-4xl md:text-5xl font-bold mb-2">От бюрократического хаоса к единой стратегии</h1>
             <p class="text-lg md:text-xl text-sky-200">Что такое Интегрированное Бизнес-Планирование (IBP) и почему это стандарт для лидеров рынка.</p>
         </header>
-        <!-- КОНЕЦ ШАПКИ -->
 
-        <div class="p-4 md:p-8">
-            <!-- Начальный заголовок, который был ранее, теперь удален, так как он находится в шапке -->
+        <section id="problem" class="card">
+            <h2 class="text-3xl font-bold text-center mb-6 text-[#003f5c]">Проблема: "Война отделов" в классическом планировании</h2>
+            <p class="text-center mb-8 max-w-3xl mx-auto">Без единого плана каждый отдел работает на свои цели, что ведет к конфликтам и убыткам. Продажи обещают больше, чем производство может сделать, а финансы видят несоответствия слишком поздно.</p>
+            <div class="flex flex-col md:flex-row justify-around items-center space-y-8 md:space-y-0 md:space-x-4">
+                <div class="text-center p-4 border-2 border-dashed border-red-300 rounded-lg">
+                    <h3 class="text-xl font-semibold text-[#ff6361]">📈 Отдел Продаж</h3>
+                    <p class="mt-2">Цель: Максимум продаж<br>Результат: Завышенные обещания</p>
+                </div>
+                <div class="text-4xl font-bold text-gray-300 hidden md:block">&rarr;</div>
+                 <div class="text-4xl font-bold text-gray-300 md:hidden">&darr;</div>
+                <div class="text-center p-4 border-2 border-dashed border-yellow-300 rounded-lg">
+                    <h3 class="text-xl font-semibold text-[#ffa600]">🏭 Производство</h3>
+                    <p class="mt-2">Цель: Эффективность и экономия<br>Результат: Нехватка нужного товара</p>
+                </div>
+                 <div class="text-4xl font-bold text-gray-300 hidden md:block">&rarr;</div>
+                 <div class="text-4xl font-bold text-gray-300 md:hidden">&darr;</div>
+                <div class="text-center p-4 border-2 border-dashed border-purple-300 rounded-lg">
+                    <h3 class="text-xl font-semibold text-[#bc5090]">💰 Финансы</h3>
+                    <p class="mt-2">Цель: Контроль бюджета<br>Результат: Упущенная прибыль и лишние запасы</p>
+                </div>
+            </div>
+        </section>
 
-            <section id="problem" class="card">
-                <h2 class="text-3xl font-bold text-center mb-6 text-[#003f5c]">Проблема: "Война отделов" в классическом планировании</h2>
-                <p class="text-center mb-8 max-w-3xl mx-auto">Без единого плана каждый отдел работает на свои цели, что ведет к конфликтам и убыткам. Продажи обещают больше, чем производство может сделать, а финансы видят несоответствия слишком поздно.</p>
-                <div class="flex flex-col md:flex-row justify-around items-center space-y-8 md:space-y-0 md:space-x-4">
-                    <div class="text-center p-4 border-2 border-dashed border-red-300 rounded-lg">
-                        <h3 class="text-xl font-semibold text-[#ff6361]">📈 Отдел Продаж</h3>
-                        <p class="mt-2">Цель: Максимум продаж<br>Результат: Завышенные обещания</p>
+        <section id="comparison" class="card">
+            <h2 class="text-3xl font-bold text-center mb-8 text-[#003f5c]">Старый подход vs. Новый стандарт</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="p-6 border border-gray-200 rounded-lg">
+                    <h3 class="text-2xl font-semibold text-center mb-4 text-[#ff6361]">Классическое бюджетирование</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start"><span class="text-red-500 mr-2">&#10007;</span> <strong>Фокус:</strong> Финансовый контроль</li>
+                        <li class="flex items-start"><span class="text-red-500 mr-2">&#10007;</span> <strong>Горизонт:</strong> Статичный, 1 год</li>
+                        <li class="flex items-start"><span class="text-red-500 mr-2">&#10007;</span> <strong>Реакция на изменения:</strong> Медленная, раз в год</li>
+                        <li class="flex items-start"><span class="text-red-500 mr-2">&#10007;</span> <strong>Результат:</strong> План быстро устаревает</li>
+                    </ul>
+                </div>
+                <div class="p-6 border-2 border-[#58508d] rounded-lg bg-indigo-50">
+                    <h3 class="text-2xl font-semibold text-center mb-4 text-[#58508d]">Интегрированное планирование (IBP)</h3>
+                     <ul class="space-y-3">
+                        <li class="flex items-start"><span class="text-green-500 mr-2">&#10003;</span> <strong>Фокус:</strong> Оптимизация прибыли</li>
+                        <li class="flex items-start"><span class="text-green-500 mr-2">&#10003;</span> <strong>Горизонт:</strong> Скользящий, 18-36 месяцев</li>
+                        <li class="flex items-start"><span class="text-green-500 mr-2">&#10003;</span> <strong>Реакция на изменения:</strong> Быстрая, ежемесячный цикл</li>
+                        <li class="flex items-start"><span class="text-green-500 mr-2">&#10003;</span> <strong>Результат:</strong> Актуальный и гибкий план</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="cycle" class="card">
+            <h2 class="text-3xl font-bold text-center mb-8 text-[#003f5c]">Сердце IBP: 5-шаговый цикл согласования</h2>
+            <p class="text-center mb-10 max-w-3xl mx-auto">Каждый месяц компания проходит через этот структурированный процесс, чтобы гарантировать, что все отделы работают синхронно и движутся к единой стратегической цели.</p>
+            <div class="relative w-full">
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-4 text-center">
+                    <div class="p-4 rounded-lg bg-gray-100">
+                        <div class="text-3xl mb-2">📦</div>
+                        <h3 class="font-bold text-[#003f5c]">1. Обзор Продукта</h3>
+                        <p class="text-sm text-gray-600 mt-1">Что мы будем продавать?</p>
                     </div>
-                    <div class="text-4xl font-bold text-gray-300 hidden md:block">&rarr;</div>
-                     <div class="text-4xl font-bold text-gray-300 md:hidden">&darr;</div>
-                    <div class="text-center p-4 border-2 border-dashed border-yellow-300 rounded-lg">
-                        <h3 class="text-xl font-semibold text-[#ffa600]">🏭 Производство</h3>
-                        <p class="mt-2">Цель: Эффективность и экономия<br>Результат: Нехватка нужного товара</p>
+                     <div class="p-4 rounded-lg bg-gray-100">
+                        <div class="text-3xl mb-2">📊</div>
+                        <h3 class="font-bold text-[#58508d]">2. Обзор Спроса</h3>
+                        <p class="text-sm text-gray-600 mt-1">Сколько мы можем продать?</p>
                     </div>
-                     <div class="text-4xl font-bold text-gray-300 hidden md:block">&rarr;</div>
-                     <div class="text-4xl font-bold text-gray-300 md:hidden">&darr;</div>
-                    <div class="text-center p-4 border-2 border-dashed border-purple-300 rounded-lg">
-                        <h3 class="text-xl font-semibold text-[#bc5090]">💰 Финансы</h3>
-                        <p class="mt-2">Цель: Контроль бюджета<br>Результат: Упущенная прибыль и лишние запасы</p>
+                     <div class="p-4 rounded-lg bg-gray-100">
+                        <div class="text-3xl mb-2">🏭</div>
+                        <h3 class="font-bold text-[#bc5090]">3. Обзор Предложения</h3>
+                        <p class="text-sm text-gray-600 mt-1">Сколько мы можем произвести?</p>
+                    </div>
+                     <div class="p-4 rounded-lg bg-gray-100">
+                        <div class="text-3xl mb-2">💰</div>
+                        <h3 class="font-bold text-[#ff6361]">4. Финансовый Обзор</h3>
+                        <p class="text-sm text-gray-600 mt-1">Насколько это прибыльно?</p>
+                    </div>
+                     <div class="p-4 rounded-lg bg-gray-100">
+                        <div class="text-3xl mb-2">🤝</div>
+                        <h3 class="font-bold text-[#ffa600]">5. Собрание Руководства</h3>
+                        <p class="text-sm text-gray-600 mt-1">Принятие единого решения</p>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <section id="comparison" class="card">
-                <h2 class="text-3xl font-bold text-center mb-8 text-[#003f5c]">Старый подход vs. Новый стандарт</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="p-6 border border-gray-200 rounded-lg">
-                        <h3 class="text-2xl font-semibold text-center mb-4 text-[#ff6361]">Классическое бюджетирование</h3>
-                        <ul class="space-y-3">
-                            <li class="flex items-start"><span class="text-red-500 mr-2">&#10007;</span> <strong>Фокус:</strong> Финансовый контроль</li>
-                            <li class="flex items-start"><span class="text-red-500 mr-2">&#10007;</span> <strong>Горизонт:</strong> Статичный, 1 год</li>
-                            <li class="flex items-start"><span class="text-red-500 mr-2">&#10007;</span> <strong>Реакция на изменения:</strong> Медленная, раз в год</li>
-                            <li class="flex items-start"><span class="text-red-500 mr-2">&#10007;</span> <strong>Результат:</strong> План быстро устаревает</li>
-                        </ul>
-                    </div>
-                    <div class="p-6 border-2 border-[#58508d] rounded-lg bg-indigo-50">
-                        <h3 class="text-2xl font-semibold text-center mb-4 text-[#58508d]">Интегрированное планирование (IBP)</h3>
-                         <ul class="space-y-3">
-                            <li class="flex items-start"><span class="text-green-500 mr-2">&#10003;</span> <strong>Фокус:</strong> Оптимизация прибыли</li>
-                            <li class="flex items-start"><span class="text-green-500 mr-2">&#10003;</span> <strong>Горизонт:</strong> Скользящий, 18-36 месяцев</li>
-                            <li class="flex items-start"><span class="text-green-500 mr-2">&#10003;</span> <strong>Реакция на изменения:</strong> Быстрая, ежемесячный цикл</li>
-                            <li class="flex items-start"><span class="text-green-500 mr-2">&#10003;</span> <strong>Результат:</strong> Актуальный и гибкий план</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
+        <section id="cascade" class="card">
+             <h2 class="text-3xl font-bold text-center mb-2 text-[#003f5c]">Сила интеграции: От прогноза до прибыли</h2>
+             <p class="text-center mb-8 max-w-3xl mx-auto">IBP-системы автоматически связывают планы разных отделов. Прогноз продаж мгновенно превращается в план производства, который, в свою очередь, оценивается с финансовой точки зрения. Это устраняет ручную работу и ошибки.</p>
+             <div class="chart-container">
+                <canvas id="cascadeChart"></canvas>
+            </div>
+        </section>
 
-            <section id="cycle" class="card">
-                <h2 class="text-3xl font-bold text-center mb-8 text-[#003f5c]">Сердце IBP: 5-шаговый цикл согласования</h2>
-                <p class="text-center mb-10 max-w-3xl mx-auto">Каждый месяц компания проходит через этот структурированный процесс, чтобы гарантировать, что все отделы работают синхронно и движутся к единой стратегической цели.</p>
-                <div class="relative w-full">
-                    <div class="grid grid-cols-1 md:grid-cols-5 gap-4 text-center">
-                        <div class="p-4 rounded-lg bg-gray-100">
-                            <div class="text-3xl mb-2">📦</div>
-                            <h3 class="font-bold text-[#003f5c]">1. Обзор Продукта</h3>
-                            <p class="text-sm text-gray-600 mt-1">Что мы будем продавать?</p>
+        <section id="scenarios" class="card">
+            <h2 class="text-3xl font-bold text-center mb-2 text-[#003f5c]">Заглянуть в будущее: "Что, если...?"</h2>
+            <p class="text-center mb-8 max-w-3xl mx-auto">Вместо одного жесткого плана, IBP позволяет моделировать несколько версий будущего. Это помогает компании подготовиться к любым рискам и возможностям, будь то падение спроса или резкий рост курса валют.</p>
+            <div class="chart-container">
+                <canvas id="scenarioChart"></canvas>
+            </div>
+        </section>
+
+        <section id="impact" class="card">
+            <h2 class="text-3xl font-bold text-center mb-8 text-[#003f5c]">Бизнес-эффект: Измеримые результаты</h2>
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <p class="mb-6">Внедрение IBP приводит к значительному улучшению ключевых показателей эффективности. Компании получают возможность принимать более быстрые и обоснованные решения, что напрямую влияет на их конкурентоспособность и прибыльность.</p>
+                    <div class="space-y-4">
+                        <div class="p-4 bg-green-100 rounded-lg">
+                            <p class="text-3xl font-bold text-green-700">+15%</p>
+                            <p class="text-green-800">Точность прогнозирования</p>
                         </div>
-                         <div class="p-4 rounded-lg bg-gray-100">
-                            <div class="text-3xl mb-2">📊</div>
-                            <h3 class="font-bold text-[#58508d]">2. Обзор Спроса</h3>
-                            <p class="text-sm text-gray-600 mt-1">Сколько мы можем продать?</p>
+                         <div class="p-4 bg-red-100 rounded-lg">
+                            <p class="text-3xl font-bold text-red-700">-25%</p>
+                            <p class="text-red-800">Избыточные запасы на складе</p>
                         </div>
-                         <div class="p-4 rounded-lg bg-gray-100">
-                            <div class="text-3xl mb-2">🏭</div>
-                            <h3 class="font-bold text-[#bc5090]">3. Обзор Предложения</h3>
-                            <p class="text-sm text-gray-600 mt-1">Сколько мы можем произвести?</p>
-                        </div>
-                         <div class="p-4 rounded-lg bg-gray-100">
-                            <div class="text-3xl mb-2">💰</div>
-                            <h3 class="font-bold text-[#ff6361]">4. Финансовый Обзор</h3>
-                            <p class="text-sm text-gray-600 mt-1">Насколько это прибыльно?</p>
-                        </div>
-                         <div class="p-4 rounded-lg bg-gray-100">
-                            <div class="text-3xl mb-2">🤝</div>
-                            <h3 class="font-bold text-[#ffa600]">5. Собрание Руководства</h3>
-                            <p class="text-sm text-gray-600 mt-1">Принятие единого решения</p>
+                         <div class="p-4 bg-blue-100 rounded-lg">
+                            <p class="text-3xl font-bold text-blue-700">+10%</p>
+                            <p class="text-blue-800">Уровень клиентского сервиса</p>
                         </div>
                     </div>
                 </div>
-            </section>
-
-            <section id="cascade" class="card">
-                 <h2 class="text-3xl font-bold text-center mb-2 text-[#003f5c]">Сила интеграции: От прогноза до прибыли</h2>
-                 <p class="text-center mb-8 max-w-3xl mx-auto">IBP-системы автоматически связывают планы разных отделов. Прогноз продаж мгновенно превращается в план производства, который, в свою очередь, оценивается с финансовой точки зрения. Это устраняет ручную работу и ошибки.</p>
-                 <div class="chart-container">
-                    <canvas id="cascadeChart"></canvas>
+                <div class="chart-container h-64 md:h-80">
+                    <canvas id="impactChart"></canvas>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <section id="scenarios" class="card">
-                <h2 class="text-3xl font-bold text-center mb-2 text-[#003f5c]">Заглянуть в будущее: "Что, если...?"</h2>
-                <p class="text-center mb-8 max-w-3xl mx-auto">Вместо одного жесткого плана, IBP позволяет моделировать несколько версий будущего. Это помогает компании подготовиться к любым рискам и возможностям, будь то падение спроса или резкий рост курса валют.</p>
-                <div class="chart-container">
-                    <canvas id="scenarioChart"></canvas>
-                </div>
-            </section>
+        <footer class="text-center mt-12 py-6 border-t">
+            <p class="text-gray-600">IBP — это не просто инструмент, а операционная система для современного, гибкого и стратегически ориентированного бизнеса.</p>
+        </footer>
 
-            <section id="impact" class="card">
-                <h2 class="text-3xl font-bold text-center mb-8 text-[#003f5c]">Бизнес-эффект: Измеримые результаты</h2>
-                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                    <div>
-                        <p class="mb-6">Внедрение IBP приводит к значительному улучшению ключевых показателей эффективности. Компании получают возможность принимать более быстрые и обоснованные решения, что напрямую влияет на их конкурентоспособность и прибыльность.</p>
-                        <div class="space-y-4">
-                            <div class="p-4 bg-green-100 rounded-lg">
-                                <p class="text-3xl font-bold text-green-700">+15%</p>
-                                <p class="text-green-800">Точность прогнозирования</p>
-                            </div>
-                             <div class="p-4 bg-red-100 rounded-lg">
-                                <p class="text-3xl font-bold text-red-700">-25%</p>
-                                <p class="text-red-800">Избыточные запасы на складе</p>
-                            </div>
-                             <div class="p-4 bg-blue-100 rounded-lg">
-                                <p class="text-3xl font-bold text-blue-700">+10%</p>
-                                <p class="text-blue-800">Уровень клиентского сервиса</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="chart-container h-64 md:h-80">
-                        <canvas id="impactChart"></canvas>
-                    </div>
-                </div>
-            </section>
-
-            <footer class="text-center mt-12 py-6 border-t">
-                <p class="text-gray-600">IBP — это не просто инструмент, а операционная система для современного, гибкого и стратегически ориентированного бизнеса.</p>
-            </footer>
-        </div>
     </div>
 
     <script>
@@ -217,7 +213,7 @@
             }
             return label;
         };
-
+        
         const commonChartOptions = {
             maintainAspectRatio: false,
             responsive: true,
@@ -271,7 +267,7 @@
                 }
             }
         });
-
+        
         new Chart(document.getElementById('scenarioChart'), {
             type: 'line',
             data: {
@@ -317,7 +313,7 @@
                 }
             }
         });
-
+        
         new Chart(document.getElementById('impactChart'), {
             type: 'doughnut',
             data: {
