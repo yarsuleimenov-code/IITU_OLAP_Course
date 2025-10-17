@@ -13,9 +13,6 @@
             font-family: 'Inter', sans-serif;
             background-color: #f0f4f8;
         }
-        .header-bg {
-            background-color: #0d1117; /* GitHub Dark Color */
-        }
         .card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
@@ -25,13 +22,23 @@
             transform: translateY(-5px);
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
+        /* Стиль для кнопки Инфографика (GitHub Green) */
         .btn-lecture {
-            background-color: #238636; /* GitHub Green */
+            background-color: #238636;
             color: white;
             transition: background-color 0.3s ease;
         }
         .btn-lecture:hover {
             background-color: #2ea043;
+        }
+        /* Стиль для кнопки Презентация (Deep Indigo/Blue) */
+        .btn-presentation {
+            background-color: #1e3a8a;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        .btn-presentation:hover {
+            background-color: #3753b2;
         }
     </style>
 </head>
@@ -39,14 +46,14 @@
 
     <div class="container mx-auto p-4 md:p-8 max-w-6xl">
 
-        <!-- Header with Business Card -->
+        <!-- HEADER -->
         <header class="mb-12">
             <div class="card bg-white rounded-2xl shadow-lg overflow-hidden">
                 <img src="assets/business-card.jpg" alt="Визитка Ярослава Сулейменова" class="w-full">
             </div>
         </header>
 
-        <!-- Lectures Section -->
+        <!-- LECTURES SECTION -->
         <main>
             <h1 class="text-3xl md:text-4xl font-bold text-center mb-10 text-gray-700">Материалы курса по OLAP-системам</h1>
 
@@ -58,10 +65,16 @@
                         <h2 class="text-xl font-bold text-sky-800 mb-2">Лекция 0: 🚀 Введение</h2>
                         <p class="text-gray-600 text-sm">Введение в OLAP и роль в современном бизнесе. От Excel к многомерному анализу.</p>
                     </div>
-                    <div class="p-6 bg-gray-50 rounded-b-2xl mt-auto">
+                    <!-- Кнопки: Инфографика и Презентация -->
+                    <div class="p-6 bg-gray-50 rounded-b-2xl mt-auto flex justify-between space-x-4">
                         <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/lectures/lecture1/" 
-                           class="block w-full text-center py-3 px-4 rounded-lg font-semibold btn-lecture">
-                           Смотреть инфографику
+                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold btn-lecture">
+                           Инфографика
+                        </a>
+                        <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/docs/lecture0_intro.pdf" 
+                           target="_blank"
+                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold btn-presentation">
+                           Презентация
                         </a>
                     </div>
                 </div>
@@ -72,10 +85,15 @@
                         <h2 class="text-xl font-bold text-sky-800 mb-2">Лекция 1: 🏗️ Архитектура</h2>
                         <p class="text-gray-500 text-sm">Архитектура OLAP-моделей: кубы, измерения, иерархии.</p>
                     </div>
-                    <div class="p-6 bg-gray-50 rounded-b-2xl mt-auto">
+                    <div class="p-6 bg-gray-50 rounded-b-2xl mt-auto flex justify-between space-x-4">
                         <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/lectures/lecture_1a/" 
-                           class="block w-full text-center py-3 px-4 rounded-lg font-semibold btn-lecture">
-                           Смотреть инфографику
+                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold btn-lecture">
+                           Инфографика
+                        </a>
+                         <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/docs/lecture1_intro.pdf" 
+                           target="_blank"
+                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold btn-presentation">
+                           Презентация
                         </a>
                     </div>
                 </div>
@@ -86,11 +104,15 @@
                         <h2 class="text-xl font-bold text-sky-800 mb-2">Лекция 2: 🔗 IBP</h2>
                         <p class="text-gray-500 text-sm">IBP: Интегрированное бизнес-планирование как единая система.</p>
                     </div>
-                    <!-- Активная кнопка -->
-                      <div class="p-6 bg-gray-50 rounded-b-2xl">
+                    <div class="p-6 bg-gray-50 rounded-b-2xl flex justify-between space-x-4">
                         <a href="/IITU_OLAP_Course/lectures/lecture2/"
-                           class="block w-full text-center py-3 px-4 rounded-lg font-semibold btn-lecture">
-                          Смотреть инфографику
+                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold btn-lecture">
+                          Инфографика
+                        </a>
+                        <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/docs/lecture2_intro.pdf" 
+                           target="_blank"
+                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold btn-presentation">
+                           Презентация
                         </a>
                       </div>
                     </div>
@@ -101,11 +123,15 @@
                         <h2 class="text-xl font-bold text-sky-800 mb-2">Лекция 3: 📈 S&OP</h2>
                         <p class="text-gray-500 text-sm">S&OP: Планирование продаж и операций для баланса спроса и предложения.</p>
                     </div>
-                     <!-- Активная кнопка -->
-                      <div class="p-6 bg-gray-50 rounded-b-2xl">
+                      <div class="p-6 bg-gray-50 rounded-b-2xl flex justify-between space-x-4">
                         <a href="/IITU_OLAP_Course/lectures/lecture3/"
-                           class="block w-full text-center py-3 px-4 rounded-lg font-semibold btn-lecture">
-                          Смотреть инфографику
+                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold btn-lecture">
+                          Инфографика
+                        </a>
+                        <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/docs/lecture3_intro.pdf" 
+                           target="_blank"
+                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold btn-presentation">
+                           Презентация
                         </a>
                       </div>
                     </div>
@@ -116,70 +142,76 @@
                         <h2 class="text-xl font-bold text-gray-500 mb-2">Лекция 4: 🚚 Логистика</h2>
                         <p class="text-gray-500 text-sm">Планирование логистики и цепочек поставок.</p>
                     </div>
-                    <div class="p-6 bg-gray-50 rounded-b-2xl mt-auto">
-                        <button disabled class="block w-full text-center py-3 px-4 rounded-lg font-semibold bg-gray-300 text-gray-500 cursor-not-allowed">В разработке</button>
+                    <div class="p-6 bg-gray-50 rounded-b-2xl mt-auto flex justify-between space-x-4">
+                        <button disabled class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold bg-gray-300 text-gray-500 cursor-not-allowed">Инфографика</button>
+                        <button disabled class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold bg-gray-300 text-gray-500 cursor-not-allowed">Презентация</button>
                     </div>
                 </div>
 
-                <!-- Lecture 5 (was 6) Placeholder -->
+                <!-- Lecture 5 Placeholder -->
                 <div class="card bg-white rounded-2xl shadow-lg">
                     <div class="p-6 flex-grow">
                         <h2 class="text-xl font-bold text-gray-500 mb-2">Лекция 5: 💰 Бюджетирование</h2>
                         <p class="text-gray-500 text-sm">Бюджетирование и план-факт анализ: контроль финансов.</p>
                     </div>
-                    <div class="p-6 bg-gray-50 rounded-b-2xl mt-auto">
-                        <button disabled class="block w-full text-center py-3 px-4 rounded-lg font-semibold bg-gray-300 text-gray-500 cursor-not-allowed">В разработке</button>
+                    <div class="p-6 bg-gray-50 rounded-b-2xl mt-auto flex justify-between space-x-4">
+                        <button disabled class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold bg-gray-300 text-gray-500 cursor-not-allowed">Инфографика</button>
+                        <button disabled class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold bg-gray-300 text-gray-500 cursor-not-allowed">Презентация</button>
                     </div>
                 </div>
 
-                <!-- Lecture 6 (was 7) Placeholder -->
+                <!-- Lecture 6 Placeholder -->
                 <div class="card bg-white rounded-2xl shadow-lg">
                     <div class="p-6 flex-grow">
                         <h2 class="text-xl font-bold text-gray-500 mb-2">Лекция 6: 🎭 Сценарии</h2>
                         <p class="text-gray-500 text-sm">Версии и сценарное моделирование: "что, если?".</p>
                     </div>
-                    <div class="p-6 bg-gray-50 rounded-b-2xl mt-auto">
-                        <button disabled class="block w-full text-center py-3 px-4 rounded-lg font-semibold bg-gray-300 text-gray-500 cursor-not-allowed">В разработке</button>
+                    <div class="p-6 bg-gray-50 rounded-b-2xl mt-auto flex justify-between space-x-4">
+                        <button disabled class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold bg-gray-300 text-gray-500 cursor-not-allowed">Инфографика</button>
+                        <button disabled class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold bg-gray-300 text-gray-500 cursor-not-allowed">Презентация</button>
                     </div>
                 </div>
 
-                <!-- Lecture 7 (was 8) Placeholder -->
+                <!-- Lecture 7 Placeholder -->
                 <div class="card bg-white rounded-2xl shadow-lg">
                     <div class="p-6 flex-grow">
                         <h2 class="text-xl font-bold text-gray-500 mb-2">Лекция 7: 🎯 KPI</h2>
                         <p class="text-gray-500 text-sm">KPI и управленческие метрики для оценки эффективности.</p>
                     </div>
-                    <div class="p-6 bg-gray-50 rounded-b-2xl mt-auto">
-                        <button disabled class="block w-full text-center py-3 px-4 rounded-lg font-semibold bg-gray-300 text-gray-500 cursor-not-allowed">В разработке</button>
+                    <div class="p-6 bg-gray-50 rounded-b-2xl mt-auto flex justify-between space-x-4">
+                        <button disabled class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold bg-gray-300 text-gray-500 cursor-not-allowed">Инфографика</button>
+                        <button disabled class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold bg-gray-300 text-gray-500 cursor-not-allowed">Презентация</button>
                     </div>
                 </div>
 
-                <!-- Lecture 8 (was 9) Placeholder -->
+                <!-- Lecture 8 Placeholder -->
                 <div class="card bg-white rounded-2xl shadow-lg">
                     <div class="p-6 flex-grow">
                         <h2 class="text-xl font-bold text-gray-500 mb-2">Лекция 8: 🛡️ Безопасность</h2>
                         <p class="text-gray-500 text-sm">Информационная безопасность и управление данными.</p>
                     </div>
-                    <div class="p-6 bg-gray-50 rounded-b-2xl mt-auto">
-                        <button disabled class="block w-full text-center py-3 px-4 rounded-lg font-semibold bg-gray-300 text-gray-500 cursor-not-allowed">В разработке</button>
+                    <div class="p-6 bg-gray-50 rounded-b-2xl mt-auto flex justify-between space-x-4">
+                        <button disabled class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold bg-gray-300 text-gray-500 cursor-not-allowed">Инфографика</button>
+                        <button disabled class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold bg-gray-300 text-gray-500 cursor-not-allowed">Презентация</button>
                     </div>
                 </div>
                 
-                 <!-- Lecture 9 (was 10) Placeholder -->
+                 <!-- Lecture 9 Placeholder -->
                 <div class="card bg-white rounded-2xl shadow-lg">
                     <div class="p-6 flex-grow">
                         <h2 class="text-xl font-bold text-gray-500 mb-2">Лекция 9: 🌐 Будущее</h2>
                         <p class="text-gray-500 text-sm">OLAP в разных сферах и будущее интегрированного планирования.</p>
                     </div>
-                    <div class="p-6 bg-gray-50 rounded-b-2xl mt-auto">
-                        <button disabled class="block w-full text-center py-3 px-4 rounded-lg font-semibold bg-gray-300 text-gray-500 cursor-not-allowed">В разработке</button>
+                    <div class="p-6 bg-gray-50 rounded-b-2xl mt-auto flex justify-between space-x-4">
+                        <button disabled class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold bg-gray-300 text-gray-500 cursor-not-allowed">Инфографика</button>
+                        <button disabled class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold bg-gray-300 text-gray-500 cursor-not-allowed">Презентация</button>
                     </div>
                 </div>
 
             </div>
         </main>
 
-        <!-- Footer -->
+        <!-- FOOTER -->
         <footer class="text-center mt-16 pt-8 border-t border-gray-300">
             <p class="text-sm text-gray-500">&copy; 2025 Ярослав Сулейменов. </p>
         </footer>
@@ -188,10 +220,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
