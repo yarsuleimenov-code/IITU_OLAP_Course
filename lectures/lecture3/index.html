@@ -12,11 +12,9 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            /* Изменен фоновый цвет, чтобы соответствовать стилю index (2).html */
             background-color: #f0f4f8; 
-            color: #1f2937; /* Более темный основной текст */
+            color: #1f2937;
         }
-        /* Стили для карточек, чтобы соответствовать стилю index (2).html */
         .card-style { 
             background-color: white;
             border-radius: 1rem;
@@ -28,12 +26,10 @@
             transform: translateY(-5px);
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
-        /* Стили для шапки из index (2).html */
         .header-bg {
             background: linear-gradient(135deg, #6ac1e3, #5FA6C7);
         }
         
-        /* Стили для графиков */
         .chart-container {
             position: relative;
             width: 100%;
@@ -48,7 +44,6 @@
                 height: 400px;
             }
         }
-        /* Стили для шагов процесса S&OP */
         .flow-step {
             border-left-width: 4px;
             transition: all 0.3s ease-in-out;
@@ -82,7 +77,7 @@
 <body class="text-gray-800">
 
     <div class="container mx-auto p-4 md:p-8">
-        <!-- Блок "Назад к списку лекций" из index (2).html -->
+        <!-- Кнопка "Назад к списку лекций" -->
         <div class="mb-4">
             <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/" class="inline-flex items-center text-sky-700 hover:text-sky-900 transition-colors font-semibold">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -92,25 +87,22 @@
             </a>
         </div>
         
-        <!-- Header (единый стиль с лого) из index (2).html -->
         <header class="text-center mb-12 p-8 rounded-2xl header-bg text-white">
-            <!-- Логотип из assets -->
+            <!-- Логотип -->
             <img src="/IITU_OLAP_Course/assets/Logo-white.png"
                  alt="Casplan Logo"
                  class="mx-auto mb-6 h-16">
-            <!-- Заголовок и подзаголовок из sop_info.html -->
             <h1 class="text-4xl md:text-5xl font-bold mb-2">S&OP: Планирование продаж и операций</h1>
             <p class="text-lg md:text-xl text-sky-200">Двигатель интегрированного бизнес-планирования, который соединяет стратегию компании с ежедневными действиями.</p>
         </header>
 
-        <main class="container mx-auto p-4 md:p-8 pt-0"> <!-- Удален лишний padding-top -->
+        <main class="container mx-auto p-4 md:p-8 pt-0">
 
             <section id="balance" class="my-12">
                 <div class="text-center max-w-3xl mx-auto">
                     <h2 class="text-3xl font-bold mb-2 text-gray-700">Ключевая задача: Баланс Спроса и Предложения</h2>
                     <p class="text-slate-600 mb-8">S&OP помогает компаниям избежать двух дорогостоящих ошибок, находя идеальное равновесие между рыночными возможностями и производственными реалиями.</p>
                 </div>
-                <!-- Добавлен класс card-style для единого стиля карточек -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
                     <div class="card-style p-8 border border-red-200">
                         <div class="flex items-center">
@@ -188,11 +180,12 @@
                             <li class="flex items-start"><span class="text-violet-500 font-bold mr-3">✓</span> <strong>Финансы:</strong> Обеспечить максимальную прибыльность (EBITDA) и управляемость денежного потока.</li>
                         </ul>
                     </div>
-                    <!-- Добавлен класс card-style для единого стиля карточек -->
+                    <!-- График заменен на статическое изображение "Карта расходов" -->
                     <div class="card-style p-6">
-                        <div class="chart-container">
-                            <canvas id="playersChart"></canvas>
-                        </div>
+                        <h3 class="text-xl font-bold text-center mb-4 text-gray-700">Карта расходов: Куда уходят деньги компании</h3>
+                        <img src="assets/cost_price.jpg" 
+                             alt="График целей кросс-функциональной команды" 
+                             class="w-full h-auto rounded-lg shadow-md">
                     </div>
                 </div>
             </section>
@@ -203,16 +196,14 @@
                     <p class="text-slate-600 mb-12">Процесс S&OP сталкивает идеальный план продаж с суровой реальностью производственных ограничений, чтобы сформировать выполнимый план.</p>
                 </div>
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                     <!-- Добавлен класс card-style для единого стиля карточек -->
                     <div class="card-style p-6">
-                        <h3 class="text-xl font-bold text-center mb-4 text-gray-700">Шаг 1: Неограниченный прогноз спроса</h3>
+                        <h3 class="text-xl font-bold text-center mb-4 text-gray-700">Шаг 2: Неограниченный прогноз спроса</h3>
                         <div class="chart-container">
                             <canvas id="demandChart"></canvas>
                         </div>
                     </div>
-                     <!-- Добавлен класс card-style для единого стиля карточек -->
                      <div class="card-style p-6">
-                        <h3 class="text-xl font-bold text-center mb-4 text-gray-700">Шаг 2: Поиск узкого места (Bottleneck)</h3>
+                        <h3 class="text-xl font-bold text-center mb-4 text-gray-700">Шаг 3: Поиск узкого места (Bottleneck)</h3>
                          <div class="chart-container">
                             <canvas id="supplyChart"></canvas>
                         </div>
@@ -225,10 +216,9 @@
                     <h2 class="text-3xl font-bold mb-2 text-gray-700">Сила OLAP: "Что-если" сценарии для принятия решений</h2>
                     <p class="text-slate-600 mb-12">Главное преимущество OLAP-систем в S&OP – возможность мгновенно моделировать разные сценарии и видеть их финансовый результат, выбирая наиболее прибыльный компромисс.</p>
                 </div>
-                 <!-- Добавлен класс card-style для единого стиля карточек -->
                 <div class="card-style p-6">
-                    <h3 class="text-xl font-bold text-center mb-1 text-gray-700">Анализ компромиссов (Trade-offs)</h3>
-                    <p class="text-center text-slate-500 mb-6">Сравнение финансового результата трех возможных решений для устранения "узкого места".</p>
+                    <h3 class="text-xl font-bold text-center mb-1 text-gray-700">Какой план принесет больше прибыли?</h3>
+                    <p class="text-center text-slate-500 mb-6">Сравнение чистой прибыли (EBITDA) для трех возможных решений, устраняющих "узкое место".</p>
                     <div class="chart-container">
                         <canvas id="scenariosChart"></canvas>
                     </div>
@@ -237,14 +227,12 @@
         </main>
     </div>
     
-    <!-- Footer из index (2).html (обновлен для соответствия контенту S&OP) -->
     <footer class="text-center mt-12 pt-8 border-t border-gray-300">
         <p class="text-gray-600">S&OP это культура принятия решений на основе данных.</p>
-        <p class="text-sm text-gray-500">Инфографика на основе лекции для платформы Casplan.</p>
     </footer>
 
 <script>
-    // Весь JS-код остался без изменений, так как он отвечает только за графики Chart.js
+    // Utility function to wrap long labels in Chart.js
     function wrapLabels(label) {
         if (typeof label === 'string' && label.length > 16) {
             const words = label.split(' ');
@@ -263,9 +251,11 @@
         return label;
     }
 
+    // Callback to display full label in tooltip title
     const tooltipTitleCallback = function(tooltipItems) {
         const item = tooltipItems[0];
         let label = item.chart.data.labels[item.dataIndex];
+        // If label was wrapped (array), join it back to a string
         if (Array.isArray(label)) {
             return label.join(' ');
         } else {
@@ -273,6 +263,7 @@
         }
     };
 
+    // Shared options for all standard charts (Line, Bar)
     const sharedChartOptions = {
         responsive: true,
         maintainAspectRatio: false,
@@ -293,18 +284,6 @@
             }
         },
         scales: {
-             r: {
-                angleLines: {
-                    display: false
-                },
-                suggestedMin: 0,
-                suggestedMax: 100,
-                pointLabels: {
-                    font: {
-                        size: 14
-                    }
-                }
-            },
             x: {
                 grid: {
                     display: false
@@ -329,41 +308,7 @@
         }
     };
 
-    const playersChartCtx = document.getElementById('playersChart');
-    if (playersChartCtx) {
-        new Chart(playersChartCtx, {
-            type: 'radar',
-            data: {
-                labels: ['Выручка', 'Прибыль (EBITDA)', 'Низкая себестоимость', 'Стабильность плана', 'Доля рынка'],
-                datasets: [{
-                    label: 'Коммерция',
-                    data: [95, 70, 20, 30, 90],
-                    fill: true,
-                    backgroundColor: 'rgba(59, 130, 246, 0.2)',
-                    borderColor: 'rgb(59, 130, 246)',
-                    pointBackgroundColor: 'rgb(59, 130, 246)',
-                }, {
-                    label: 'Производство',
-                    data: [40, 60, 95, 90, 30],
-                    fill: true,
-                    backgroundColor: 'rgba(245, 158, 11, 0.2)',
-                    borderColor: 'rgb(245, 158, 11)',
-                    pointBackgroundColor: 'rgb(245, 158, 11)',
-                },
-                {
-                    label: 'Финансы',
-                    data: [80, 95, 80, 70, 75],
-                    fill: true,
-                    backgroundColor: 'rgba(139, 92, 246, 0.2)',
-                    borderColor: 'rgb(139, 92, 246)',
-                    pointBackgroundColor: 'rgb(139, 92, 246)',
-                }
-                ]
-            },
-            options: sharedChartOptions
-        });
-    }
-
+    // --- demandChart (Шаг 2: Неограниченный прогноз спроса) ---
     const demandChartCtx = document.getElementById('demandChart');
     if (demandChartCtx) {
         new Chart(demandChartCtx, {
@@ -392,6 +337,7 @@
         });
     }
 
+    // --- supplyChart (Шаг 3: Поиск узкого места) ---
     const supplyChartCtx = document.getElementById('supplyChart');
     if (supplyChartCtx) {
         new Chart(supplyChartCtx, {
@@ -414,10 +360,18 @@
                     pointHoverRadius: 7
                 }]
             },
-            options: { ...sharedChartOptions, scales: { ...sharedChartOptions.scales, x: { ...sharedChartOptions.scales.x, stacked: true }, y: { ...sharedChartOptions.scales.y, stacked: true } } }
+            options: { 
+                ...sharedChartOptions, 
+                scales: { 
+                    ...sharedChartOptions.scales, 
+                    x: { ...sharedChartOptions.scales.x, stacked: false },
+                    y: { ...sharedChartOptions.scales.y, stacked: false } 
+                } 
+            }
         });
     }
     
+    // --- scenariosChart (Сравнение прибыли) ---
     const scenariosChartCtx = document.getElementById('scenariosChart');
     if (scenariosChartCtx) {
         new Chart(scenariosChartCtx, {
@@ -426,33 +380,44 @@
                 labels: ['План A: Снизить продажи', 'План B: Сверхурочная работа', 'План C: Аутсорсинг'].map(wrapLabels),
                 datasets: [
                     {
-                        label: 'Выручка',
-                        data: [700, 1000, 1000],
-                        backgroundColor: '#3b82f6',
-                    },
-                    {
-                        label: 'Себестоимость',
-                        data: [-400, -700, -800],
-                        backgroundColor: '#f59e0b',
-                    },
-                     {
                         label: 'Прибыль (EBITDA)',
-                        data: [300, 300, 200],
-                        backgroundColor: '#10b981',
+                        data: [250, 300, 200], 
+                        backgroundColor: ['#3b82f6', '#10b981', '#f59e0b'], 
                     }
                 ]
             },
             options: {
                 ...sharedChartOptions,
-                indexAxis: 'y',
+                indexAxis: 'x', 
                 scales: {
                     x: {
-                        stacked: true,
-                        grid: { color: '#e2e8f0' }
+                        stacked: false, 
                     },
                     y: {
-                        stacked: true,
-                         grid: { display: false }
+                        stacked: false,
+                        title: {
+                            display: true,
+                            text: 'Прибыль (млн. $)'
+                        },
+                        ticks: {
+                             callback: function(value) {
+                                return value + 'M $';
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    ...sharedChartOptions.plugins,
+                    legend: {
+                        display: false // Hide legend
+                    },
+                    tooltip: {
+                         callbacks: {
+                            title: tooltipTitleCallback,
+                            label: (context) => {
+                                return `${context.dataset.label}: ${context.formattedValue} M $`;
+                            }
+                        }
                     }
                 }
             }
