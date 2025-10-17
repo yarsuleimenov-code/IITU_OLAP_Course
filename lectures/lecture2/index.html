@@ -270,11 +270,11 @@
             new Chart(document.getElementById('cascadeChart'), {
                 type: 'bar',
                 data: {
-                    labels: ['Прогноз Отдела Продаж', 'Ограничения Производства', 'Согласованный План', 'Финансовый Результат (P&L)'].map(wrapLabel),
+                    labels: ['Прогноз Отдела Продаж', 'Ограничения Производства', 'Согласованный План'].map(wrapLabel),
                     datasets: [{
-                        label: 'Объем (в единицах и млн. $)',
-                        data: [1000, 700, 700, 3.5],
-                        backgroundColor: [colors.blue, colors.red, colors.purple, colors.green],
+                        label: 'Объем (в единицах)',
+                        data: [1000, 700, 700],
+                        backgroundColor: [colors.blue, colors.red, colors.purple],
                         borderColor: '#ffffff',
                         borderWidth: 2
                     }]
