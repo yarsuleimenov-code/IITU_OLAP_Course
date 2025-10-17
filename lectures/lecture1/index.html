@@ -31,6 +31,11 @@
         .header-bg {
             background: linear-gradient(135deg, #6ac1e3, #5FA6C7);
         }
+        /* Улучшенное выравнивание знаков + и - по центру шрифта */
+        .icon-alignment {
+            display: flex;
+            align-items: center;
+        }
     </style>
 </head>
 <body class="text-gray-800">
@@ -64,10 +69,10 @@
                   <h3 class="text-2xl font-semibold mb-3 text-sky-700">1. Excel</h3>
                   <p class="mb-4">Первый шаг в аналитике. Гибкий, но ограниченный.</p>
                   <div class="text-left space-y-2">
-                    <p class="flex items-start"><span class="text-green-500 mr-2 font-bold text-xl">＋</span> Доступность и простота</p>
-                    <p class="flex items-start"><span class="text-red-500 mr-2 font-bold text-xl">−</span> Ошибки ручного ввода</p>
-                    <p class="flex items-start"><span class="text-red-500 mr-2 font-bold text-xl">−</span> Не справляется с Big Data</p>
-                    <p class="flex items-start"><span class="text-red-500 mr-2 font-bold text-xl">−</span> Проблемы совместной работы</p>
+                    <div class="icon-alignment"><span class="text-green-500 mr-2 font-bold text-xl">＋</span> Доступность и простота</div>
+                    <div class="icon-alignment"><span class="text-red-500 mr-2 font-bold text-xl">−</span> Ошибки ручного ввода</div>
+                    <div class="icon-alignment"><span class="text-red-500 mr-2 font-bold text-xl">−</span> Не справляется с Big Data</div>
+                    <div class="icon-alignment"><span class="text-red-500 mr-2 font-bold text-xl">−</span> Проблемы совместной работы</div>
                   </div>
                 </div>
                 
@@ -76,10 +81,10 @@
                   <h3 class="text-2xl font-semibold mb-3 text-sky-700">2. ERP-системы</h3>
                   <p class="mb-4">Централизованный учет и контроль операций.</p>
                   <div class="text-left space-y-2">
-                    <p class="flex items-start"><span class="text-green-500 mr-2 font-bold text-xl">＋</span> Автоматизация и дисциплина</p>
-                    <p class="flex items-start"><span class="text-red-500 mr-2 font-bold text-xl">−</span> Фокус на фиксации фактов</p>
-                    <p class="flex items-start"><span class="text-red-500 mr-2 font-bold text-xl">−</span> Сложность глубокой аналитики</p>
-                    <p class="flex items-start"><span class="text-green-500 mr-2 font-bold text-xl">＋</span> Единая база данных</p>
+                    <div class="icon-alignment"><span class="text-green-500 mr-2 font-bold text-xl">＋</span> Автоматизация и дисциплина</div>
+                    <div class="icon-alignment"><span class="text-red-500 mr-2 font-bold text-xl">−</span> Фокус на фиксации фактов</div>
+                    <div class="icon-alignment"><span class="text-red-500 mr-2 font-bold text-xl">−</span> Сложность глубокой аналитики</div>
+                    <div class="icon-alignment"><span class="text-green-500 mr-2 font-bold text-xl">＋</span> Единая база данных</div>
                   </div>
                 </div>
                 
@@ -88,10 +93,10 @@
                   <h3 class="text-2xl font-semibold mb-3 text-sky-700">3. OLAP-системы</h3>
                   <p class="mb-4">"Мозг" для анализа, а не просто база данных.</p>
                   <div class="text-left space-y-2">
-                    <p class="flex items-start"><span class="text-green-500 mr-2 font-bold text-xl">＋</span> Многомерный анализ</p>
-                    <p class="flex items-start"><span class="text-green-500 mr-2 font-bold text-xl">＋</span> Мгновенная скорость</p>
-                    <p class="flex items-start"><span class="text-green-500 mr-2 font-bold text-xl">＋</span> Поддержка стратегических решений</p>
-                    <p class="flex items-start"><span class="text-green-500 mr-2 font-bold text-xl">＋</span> Сценарии "что, если?"</p>
+                    <div class="icon-alignment"><span class="text-green-500 mr-2 font-bold text-xl">＋</span> Многомерный анализ</div>
+                    <div class="icon-alignment"><span class="text-green-500 mr-2 font-bold text-xl">＋</span> Мгновенная скорость</div>
+                    <div class="icon-alignment"><span class="text-green-500 mr-2 font-bold text-xl">＋</span> Поддержка стратегических решений</div>
+                    <div class="icon-alignment"><span class="text-green-500 mr-2 font-bold text-xl">＋</span> Сценарии "что, если?"</div>
                   </div>
                 </div>
             </div>
@@ -158,14 +163,8 @@
         <!-- Footer -->
         <footer class="text-center mt-12 pt-8 border-t border-gray-300">
             <p class="text-gray-600">Инфографика создана на основе лекционных материалов Casplan.</p>
-            <p class="text-sm text-gray-500">Casplan — Инновационная технология планирования для роста вашего бизнеса.</p>
         </footer>
     </div>
 
 </body>
 </html>
-
-
-
-
-
