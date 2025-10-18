@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Инфографика: OLAP в Планировании Логистики и Supply Chain</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; 
+            color: #1f2937;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .card-style { 
+            background-color: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-style:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .header-bg {
+            background: linear-gradient(135deg, #6ac1e3, #5FA6C7); 
+        }
+        .flow-arrow {
+            font-size: 2rem;
+            color: #58508d; 
+        }
+    </style>
+</head>
+<body class="text-gray-800 p-4 sm:p-8">
+
+    <div class="container mx-auto max-w-5xl">
+
+        <!-- Кнопка Назад (Начало) -->
+        <div class="mb-4">
+            <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/" class="inline-flex items-center text-sky-700 hover:text-sky-900 transition-colors font-semibold">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                <span>Назад к списку лекций</span>
+            </a>
+        </div>
+        <!-- Кнопка Назад (Конец) -->
+
+        <header class="text-center mb-12 p-8 rounded-2xl header-bg text-white shadow-xl">
+            <!-- Логотип (Начало) -->
+            <img src="/IITU_OLAP_Course/assets/Logo-white.png"
+                 alt="Casplan Logo"
+                 class="mx-auto mb-6 h-16">
+            <!-- Логотип (Конец) -->
+
+            <h1 class="text-3xl md:text-5xl font-bold mb-2">Планирование логистики и цепочек поставок</h1>
+            <p class="text-lg md:text-xl mt-2 text-sky-200">Двигатель интегрированного бизнес-планирования, который соединяет стратегию компании с ежедневными действиями.</p>
+        </header>
+
+        <main class="space-y-8">
+            <section id="pains">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 text-[#003f5c]">I. Две Главные "Боли" Логистики</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="card-style flex flex-col items-center text-center p-6 border-l-4 border-[#ff6361]">
+                        <span class="text-6xl mb-4 text-[#ff6361]">❌</span>
+                        <h3 class="text-2xl font-semibold mb-2 text-[#ff6361]">Дефицит (Stock-Out)</h3>
+                        <p class="text-gray-600">Недостоверный прогноз и сбои поставок приводят к пустым полкам.</p>
+                        <div class="mt-4 text-2xl font-bold text-[#ff6361]">-15% Годовой Выручки</div>
+                        <p class="text-sm text-gray-500">(Потерянные продажи и штрафы)</p>
+                    </div>
+                    <div class="card-style flex flex-col items-center text-center p-6 border-l-4 border-[#ffa600]">
+                        <span class="text-6xl mb-4 text-[#ffa600]">📦</span>
+                        <h3 class="text-2xl font-semibold mb-2 text-[#ffa600]">Излишки (Overstock)</h3>
+                        <p class="text-gray-600">"Перестраховка" и неверный расчет запасов замораживают деньги.</p>
+                        <div class="mt-4 text-2xl font-bold text-[#ffa600]">+25% Затрат на Хранение</div>
+                        <p class="text-sm text-gray-500">(Аренда, персонал, устаревание)</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="olap-solution" class="text-center my-12">
+                 <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 text-[#003f5c]">II. Как OLAP Решает Эти Проблемы</h2>
+                 <p class="max-w-3xl mx-auto text-gray-600 mb-8">OLAP-система, такая как CasPlan, выступает "мозгом" операции, который переводит абстрактный план продаж в конкретные, исполнимые и финансово-оптимальные логистические задачи.</p>
+                 <div class="flex flex-col md:flex-row items-center justify-center gap-4">
+                    <div class="card-style p-4 w-full md:w-1/4">
+                        <h3 class="font-bold text-lg text-[#003f5c]">План Продаж</h3>
+                        <p class="text-sm text-gray-500">100,000 шт. товара</p>
+                    </div>
+                    <div class="flow-arrow font-bold transform md:rotate-0 rotate-90">→</div>
+                     <div class="card-style p-4 w-full md:w-1/3 border-2 border-[#58508d] bg-indigo-50">
+                        <h3 class="font-bold text-lg text-[#58508d]">OLAP-Ядро CasPlan</h3>
+                        <p class="text-sm text-gray-500">3D-Анализ (SKU x Время x Локация)</p>
+                    </div>
+                    <div class="flow-arrow font-bold transform md:rotate-0 rotate-90">→</div>
+                    <div class="card-style p-4 w-full md:w-1/4">
+                        <h3 class="font-bold text-lg text-[#003f5c]">Логистический План</h3>
+                        <p class="text-sm text-gray-500">Вместимость фуры 5 700 ед. = потребность в заказе 18 фур (итоговая поставка 102 600 ед)  </p>
+                    </div>
+                 </div>
+            </section>
+
+            <section id="deep-dive" class="my-12">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 text-[#003f5c]">III. Ключевые Задачи Планирования в OLAP</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- 1. Прогнозирование Запасов -->
+                    <div class="card-style p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-[#58508d]">1. Прогнозирование Запасов</h3>
+                        <p class="text-gray-600 mb-4">Ключевая задача — определить динамику необходимого Страхового Запаса (Safety Stock) на горизонте планирования. OLAP-система ежемесячно пересчитывает Safety Stock, учитывая сезонность и прогнозируемую неточность спроса и поставки.</p>
+                        <div class="chart-container"><canvas id="safetyStockChart"></canvas></div>
+                    </div>
+                    <!-- 2. Планирование Транспорта -->
+                    <div class="card-style p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-[#003f5c]">2. Планирование Транспорта</h3>
+                        <p class="text-gray-600 mb-4">OLAP переводит план продаж в конкретное количество транспортных единиц. Это позволяет заранее видеть пиковые нагрузки и оптимизировать затраты, например, выбирая тип транспорта или консолидируя грузы.</p>
+                        <div class="chart-container"><canvas id="transportChart"></canvas></div>
+                    </div>
+                    <!-- 3. Утилизация Складов (Интерактивный) -->
+                    <div class="card-style p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-[#ffa600]">3. Утилизация Складов</h3>
+                        <p class="text-gray-600 mb-4">Выберите склад, чтобы увидеть, где плановая загрузка превышает максимальную вместимость (узкое место). Дефицит мощности = внеплановые расходы на аренду.</p>
+                        
+                        <!-- Селектор склада -->
+                        <select id="warehouseSelector" class="w-full mb-4 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#ffa600] focus:border-transparent">
+                            <option value="Sklad_A">Склад А (Алматы)</option>
+                            <option value="Sklad_B">Склад Б (Астана)</option>
+                            <option value="Sklad_C">Склад C (Атырау)</option>
+                        </select>
+                        
+                        <div class="chart-container"><canvas id="storageChart"></canvas></div>
+                    </div>
+                    <!-- 4. Планирование Закупок и Снабжения -->
+                    <div class="card-style p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-[#bc5090]">4. Планирование Закупок</h3>
+                        <p class="text-gray-600 mb-4">Оценка потребности в сырье и материалах (Raw Materials) на основе Плана производства, что критично для поддержания непрерывности цепи поставок. **График показывает потенциальный дефицит по ключевому сырью.**</p>
+                        <div class="chart-container"><canvas id="procurementChart"></canvas></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="ibp" class="my-12">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 text-[#003f5c]">IV. Интеграция Логистики и Финансов (IBP)</h2>
+                <p class="max-w-3xl mx-auto text-center text-gray-600 mb-8">В IBP-системе логистический план — это драйвер для финансового плана. Каждое логистическое решение автоматически и мгновенно отражается на итоговой прибыли компании.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                    <div class="card-style p-6">
+                        <h3 class="text-lg font-semibold text-[#58508d]">Логистические Драйверы</h3>
+                        <ul class="text-left mt-4 space-y-2 list-disc list-inside text-gray-600">
+                            <li>Стоимость перевозки</li>
+                            <li>Затраты на хранение</li>
+                            <li>Объем страхового запаса</li>
+                        </ul>
+                    </div>
+                    <div class="flex items-center justify-center flow-arrow font-bold transform md:rotate-0 rotate-90">→</div>
+                    <div class="card-style p-6">
+                         <h3 class="text-lg font-semibold text-[#ff6361]">Финансовый Эффект (P&L)</h3>
+                        <ul class="text-left mt-4 space-y-2 list-disc list-inside text-gray-600">
+                            <li class="text-[#ff6361]">Рост COGS (Себестоимость)</li>
+                            <li class="text-[#ffa600]">Рост OpEx (Опер. расходы)</li>
+                            <li class="text-[#003f5c]">Изменение Оборотного капитала</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="scenarios" class="my-12">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 text-[#003f5c]">V. Сценарное Моделирование: Выбор Оптимального Решения</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="card-style p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-[#58508d]">Кейс: Сравнение Перевозчиков</h3>
+                        <p class="text-gray-600">Стоит выбор между надежным, но дорогим перевозчиком "А" и дешевым, но рискованным "Б". OLAP-анализ показывает, что низкие транспортные затраты у "Б" компенсируются гораздо более высокими затратами на хранение увеличенного страхового запаса, делая "А" более выгодным решением по итоговой прибыли. <strong>Сравнение показывает, что План А, несмотря на более дорогие перевозки, обеспечивает более высокую итоговую прибыль (EBITDA).</strong></p>
+                    </div>
+                    <div class="card-style p-6">
+                        <h3 class="text-lg font-semibold mb-4 text-center text-[#003f5c]">Сравнение общей стоимости двух планов (в тыс. $)</h3>
+                        <div class="chart-container"><canvas id="scenarioChart"></canvas></div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+        
+        <!-- Футер с кнопкой "Назад к списку лекций" (Начало) -->
+        <footer class="text-center mt-12 py-6 border-t border-gray-300">
+            <p class="text-gray-600">OLAP в логистике - операционная система для современного, гибкого и стратегически ориентированного бизнеса.</p>
+            
+            <div class="mt-6">
+                <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/"
+                   class="inline-flex items-center px-6 py-3 bg-sky-600 text-white rounded-lg shadow hover:bg-sky-700 transition duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                    Назад к списку лекций
+                </a>
+            </div>
+        </footer>
+        <!-- Футер с кнопкой "Назад к списку лекций" (Конец) -->
+
+    </div>
+
+    <script>
+        const chartColors = {
+            darkBlue: '#003f5c',
+            purple: '#58508d',
+            magenta: '#bc5090',
+            red: '#ff6361',
+            orange: '#ffa600',
+            skyBlue: '#6ac1e3',
+            textColor: 'rgba(0, 0, 0, 0.8)',
+            gridColor: 'rgba(0, 0, 0, 0.1)'
+        };
+
+        const wrapLabel = (label) => {
+            const maxLength = 16;
+            if (typeof label !== 'string' || label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).trim().length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            }
+            if (currentLine) {
+                lines.push(currentLine.trim());
+            }
+            return lines;
+        };
+        
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+
+        const defaultChartOptions = {
+            maintainAspectRatio: false,
+            responsive: true,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: chartColors.textColor
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: { color: chartColors.textColor },
+                    grid: { color: chartColors.gridColor }
+                },
+                x: {
+                    ticks: { color: chartColors.textColor },
+                    grid: { color: chartColors.gridColor }
+                }
+            }
+        };
+
+        // --- Data for interactive storage chart (Task 3) ---
+        const warehouseData = {
+            Sklad_A: {
+                capacity: 3500,
+                load: [3000, 3200, 3500, 3800, 3600, 3400],
+                labels: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн']
+            },
+            Sklad_B: {
+                capacity: 5000,
+                load: [4000, 4200, 4500, 4800, 5200, 5500],
+                labels: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн']
+            },
+            Sklad_C: {
+                capacity: 2000,
+                load: [1500, 1800, 2100, 2300, 1900, 1700],
+                labels: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн']
+            }
+        };
+        
+        let storageChartInstance = null;
+        
+        function updateStorageChart(warehouseId) {
+            const data = warehouseData[warehouseId];
+            if (!data) return;
+            
+            const maxCapacity = data.capacity;
+            const loadData = data.load;
+            
+            const datasets = [
+                {
+                    label: 'Плановая Загрузка (паллетомест)',
+                    data: loadData,
+                    backgroundColor: loadData.map(d => d > maxCapacity ? chartColors.red : chartColors.orange),
+                    type: 'bar',
+                    order: 2,
+                },
+                {
+                    label: 'Макс. Возможность',
+                    data: Array(loadData.length).fill(maxCapacity),
+                    borderColor: chartColors.darkBlue,
+                    backgroundColor: 'transparent',
+                    borderWidth: 2,
+                    borderDash: [5, 5],
+                    type: 'line',
+                    pointRadius: 0,
+                    pointHoverRadius: 0,
+                    order: 1,
+                }
+            ];
+            
+            if (storageChartInstance) {
+                storageChartInstance.data.labels = data.labels;
+                storageChartInstance.data.datasets = datasets;
+                storageChartInstance.options.scales.y.suggestedMax = maxCapacity * 1.2;
+                storageChartInstance.update();
+            } else {
+                const ctx = document.getElementById('storageChart').getContext('2d');
+                storageChartInstance = new Chart(ctx, {
+                    data: {
+                        labels: data.labels.map(wrapLabel),
+                        datasets: datasets
+                    },
+                    options: {
+                        ...defaultChartOptions,
+                        scales: {
+                            ...defaultChartOptions.scales,
+                            y: {
+                                ...defaultChartOptions.scales.y,
+                                suggestedMax: maxCapacity * 1.2,
+                                title: { display: true, text: 'Объем (паллетомест)' }
+                            },
+                            x: {
+                                ...defaultChartOptions.scales.x,
+                                stacked: false
+                            }
+                        },
+                         plugins: {
+                            ...defaultChartOptions.plugins,
+                            tooltip: {
+                                callbacks: {
+                                    ...defaultChartOptions.plugins.tooltip.callbacks,
+                                    label: (context) => {
+                                        let label = context.dataset.label || '';
+                                        if (context.parsed.y !== null) {
+                                            label += `: ${context.parsed.y}`;
+                                        }
+                                        if (context.dataset.type === 'bar' && context.parsed.y > maxCapacity) {
+                                            label += ` (ДЕФИЦИТ!)`;
+                                        }
+                                        return label;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const selector = document.getElementById('warehouseSelector');
+            if (selector) {
+                selector.addEventListener('change', (e) => updateStorageChart(e.target.value));
+                // Initial load
+                updateStorageChart(selector.value);
+            }
+        });
+        
+        // --- End of dynamic storage chart implementation ---
+
+        // 1. Прогнозирование Запасов - Обновлено: Ось X - Месяцы, добавлена линия Прогноза Спроса
+        new Chart(document.getElementById('safetyStockChart'), {
+            type: 'line',
+            data: {
+                labels: ['Янв 25', 'Фев 25', 'Мар 25', 'Апр 25', 'Май 25', 'Июн 25'].map(wrapLabel),
+                datasets: [{
+                    label: 'Плановый объем SS (ед.)',
+                    data: [1500, 1450, 1600, 1800, 1750, 1950],
+                    borderColor: chartColors.purple,
+                    backgroundColor: 'rgba(88, 80, 141, 0.2)',
+                    fill: true,
+                    tension: 0.4
+                },
+                {
+                    label: 'Прогноз Спроса (ед.)',
+                    data: [1440, 1360, 1600, 2000, 1760, 2240], 
+                    borderColor: chartColors.red,
+                    backgroundColor: chartColors.red,
+                    fill: false,
+                    tension: 0.4,
+                    pointRadius: 4,
+                    pointHoverRadius: 6
+                }]
+            },
+            options: defaultChartOptions
+        });
+
+        // 2. Планирование Транспорта - Обновлено
+        new Chart(document.getElementById('transportChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Янв', 'Фев', 'Март', 'Апр', 'Май', 'Июнь'].map(wrapLabel),
+                datasets: [
+                    {
+                        label: 'Продукт А',
+                        data: [12, 19, 10, 15, 8, 14],
+                        backgroundColor: chartColors.darkBlue,
+                    },
+                    {
+                        label: 'Продукт Б',
+                        data: [8, 12, 15, 11, 18, 22],
+                        backgroundColor: chartColors.magenta,
+                    },
+                    {
+                        label: 'Продукт В',
+                        data: [5, 6, 8, 10, 7, 9],
+                        backgroundColor: chartColors.orange, 
+                    },
+                    {
+                        label: 'Продукт Г',
+                        data: [3, 4, 5, 6, 8, 5],
+                        backgroundColor: chartColors.red, 
+                    }
+                ]
+            },
+            options: { ...defaultChartOptions, scales: { x: { stacked: true }, y: { stacked: true, ...defaultChartOptions.scales.y } } }
+        });
+
+        
+        // V. Сценарное Моделирование: Упрощенный Stacked Bar
+        new Chart(document.getElementById('scenarioChart'), {
+            type: 'bar',
+            data: {
+                labels: ['План А (Надежный)', 'План Б (Рискованный)'].map(wrapLabel),
+                datasets: [
+                    {
+                        label: 'Транспортные Затраты (COGS)',
+                        data: [120, 80], // 120 тыс. vs 80 тыс.
+                        backgroundColor: chartColors.darkBlue,
+                    },
+                    {
+                        label: 'Затраты на Хранение (OpEx)',
+                        data: [30, 85], // 30 тыс. vs 85 тыс.
+                        backgroundColor: chartColors.orange,
+                    }
+                ]
+            },
+            options: {
+                ...defaultChartOptions,
+                scales: {
+                    x: {
+                        stacked: true,
+                        title: { display: true, text: 'Итоговая Общая Стоимость (тыс. $)'}
+                    },
+                    y: {
+                        stacked: true,
+                        ticks: {
+                            callback: function(value) {
+                                return value + 'K $';
+                            }
+                        }
+                    }
+                },
+                 plugins: {
+                    ...defaultChartOptions.plugins,
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback,
+                             // Показываем общую стоимость + детализацию
+                            footer: (tooltipItems) => {
+                                const totalCost = tooltipItems.reduce((sum, item) => sum + item.parsed.y, 0);
+                                return `Общая Стоимость: ${totalCost}K $`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        
+        // 4. Планирование Закупок: Упрощенный Горизонтальный Bar Chart
+        new Chart(document.getElementById('procurementChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Сырье A', 'Сырье B', 'Упаковка C', 'Комплектующие D'].map(wrapLabel),
+                datasets: [
+                    {
+                        label: 'Плановая Потребность',
+                        data: [85, 70, 95, 60], 
+                        backgroundColor: chartColors.magenta,
+                    },
+                    {
+                        label: 'Текущий Заказ',
+                        data: [75, 80, 80, 70], 
+                        backgroundColor: chartColors.darkBlue,
+                    }
+                ]
+            },
+            options: {
+                ...defaultChartOptions,
+                indexAxis: 'y', // Горизонтальные столбцы
+                scales: {
+                    x: {
+                        stacked: false,
+                        suggestedMin: 0,
+                        suggestedMax: 100,
+                        title: { display: true, text: 'Объем (единиц)' }
+                    },
+                    y: {
+                        stacked: false,
+                        grid: { display: false }
+                    }
+                },
+                plugins: {
+                    ...defaultChartOptions.plugins,
+                    legend: {
+                        position: 'top'
+                    }
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
