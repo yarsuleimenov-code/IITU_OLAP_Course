@@ -150,35 +150,36 @@
                     <p class="text-slate-600 mb-12">S&OP – это не хаотичные совещания, а структурированный ежемесячный цикл, где каждый этап готовит данные для следующего.</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-                    <div class="flow-step-container flex justify-center">
+                    <!-- Все flow-step-container теперь не имеют justify-center, что позволяет flow-step занимать всю ширину -->
+                    <div class="flow-step-container">
                         <div class="flow-step bg-white p-6 rounded-lg shadow-md border-teal-500 w-full">
                             <h4 class="font-bold text-lg text-teal-600">1. Обзор Продукта</h4>
                             <p class="text-sm text-slate-600 mt-2">Анализ портфеля: какие продукты выводим на рынок, а какие снимаем с производства (делистинг).</p>
                         </div>
                         <div class="flow-connector hidden lg:block">→</div>
                     </div>
-                     <div class="flow-step-container flex justify-center">
+                     <div class="flow-step-container">
                         <div class="flow-step bg-white p-6 rounded-lg shadow-md border-sky-500 w-full">
                             <h4 class="font-bold text-lg text-sky-600">2. Обзор Спроса</h4>
                             <p class="text-sm text-slate-600 mt-2">Формирование "неограниченного" прогноза продаж на основе статистики, планов маркетинга и данных от отдела продаж.</p>
                         </div>
                         <div class="flow-connector hidden lg:block">→</div>
                     </div>
-                     <div class="flow-step-container flex justify-center">
+                     <div class="flow-step-container">
                         <div class="flow-step bg-white p-6 rounded-lg shadow-md border-amber-500 w-full">
                             <h4 class="font-bold text-lg text-amber-600">3. Обзор Предложения</h4>
                             <p class="text-sm text-slate-600 mt-2">Оценка производственных мощностей и выявление "узких мест" (bottlenecks), которые не позволяют выполнить неограниченный спрос.</p>
                         </div>
                         <div class="flow-connector hidden lg:block">→</div>
                     </div>
-                     <div class="flow-step-container flex justify-center">
+                     <div class="flow-step-container">
                         <div class="flow-step bg-white p-6 rounded-lg shadow-md border-violet-500 w-full">
                             <h4 class="font-bold text-lg text-violet-600">4. Финансовый Обзор</h4>
                             <p class="text-sm text-slate-600 mt-2">Трансформация согласованного операционного плана (в штуках) в финансовые показатели (P&L, Cash Flow).</p>
                         </div>
                         <div class="flow-connector hidden lg:block">→</div>
                     </div>
-                     <div class="flow-step-container flex justify-center">
+                     <div class="flow-step-container">
                          <div class="flow-step bg-white p-6 rounded-lg shadow-md border-rose-500 w-full">
                             <h4 class="font-bold text-lg text-rose-600">5. Собрание Руководства</h4>
                             <p class="text-sm text-slate-600 mt-2">Принятие финальных решений по компромиссам (trade-offs) и утверждение единого плана для всей компании.</p>
