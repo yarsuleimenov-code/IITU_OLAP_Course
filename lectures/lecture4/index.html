@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Инфографика: OLAP в Планировании Логистики и Supply Chain</title>
+    <title>Инфографика: OLAP в Планировании Логистики и СЦП</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,6 +47,19 @@
             font-size: 2rem;
             color: #58508d; 
         }
+        /* Styles for IBP Indicator */
+        .ibp-step {
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: all 0.3s;
+        }
+        .ibp-active-logistics {
+            background-color: #58508d; /* Пурпурный/Индиго для Предложения/Логистики */
+            color: white;
+            box-shadow: 0 4px 6px rgba(88, 80, 141, 0.4);
+        }
     </style>
 </head>
 <body class="text-gray-800 p-4 sm:p-8">
@@ -74,6 +87,21 @@
             <h1 class="text-3xl md:text-5xl font-bold mb-2">Планирование логистики и цепочек поставок</h1>
             <p class="text-lg md:text-xl mt-2 text-sky-200">Двигатель интегрированного бизнес-планирования, который соединяет стратегию компании с ежедневными действиями.</p>
         </header>
+        
+        <!-- IBP Cycle Indicator (Начало) -->
+        <div class="mb-10 p-4 bg-white rounded-lg shadow-md border-b-2 border-gray-100 overflow-x-auto">
+            <h3 class="text-sm font-bold text-gray-700 mb-2">Наш Путь в IBP</h3>
+            <div class="flex space-x-4 items-center justify-between min-w-max">
+                 <span class="ibp-step bg-gray-200 text-gray-600">S&OP (Спрос)</span>
+                <span class="text-gray-400">→</span>
+                <span class="ibp-step ibp-active-logistics">Логистика (Предложение)</span>
+                <span class="text-gray-400">→</span>
+                <span class="ibp-step bg-gray-200 text-gray-600">Бюджетирование</span>
+                <span class="text-gray-400">→</span>
+                <span class="ibp-step bg-gray-200 text-gray-600">Финансовый Анализ</span>
+            </div>
+        </div>
+        <!-- IBP Cycle Indicator (Конец) -->
 
         <main class="space-y-8">
             <section id="pains">
@@ -112,7 +140,7 @@
                     <div class="flow-arrow font-bold transform md:rotate-0 rotate-90">→</div>
                     <div class="card-style p-4 w-full md:w-1/4">
                         <h3 class="font-bold text-lg text-[#003f5c]">Логистический План</h3>
-                        <p class="text-sm text-gray-500">Вместимость фуры 5 700 ед. = потребность в заказе 18 фур (итоговая поставка 102 600 ед)  </p>
+                        <p class="text-sm text-gray-500">18 фур, 1500 шт. запаса</p>
                     </div>
                  </div>
             </section>
@@ -123,7 +151,7 @@
                     <!-- 1. Прогнозирование Запасов -->
                     <div class="card-style p-6">
                         <h3 class="text-xl font-semibold mb-2 text-[#58508d]">1. Прогнозирование Запасов</h3>
-                        <p class="text-gray-600 mb-4">Ключевая задача — определить динамику необходимого Страхового Запаса (Safety Stock) на горизонте планирования. OLAP-система ежемесячно пересчитывает Safety Stock, учитывая сезонность и прогнозируемую неточность спроса и поставки.</p>
+                        <p class="text-gray-600 mb-4">Ключевая задача — определить динамику необходимого Страхового Запаса (SS) на горизонте планирования. OLAP-система ежемесячно пересчитывает SS, учитывая сезонность и прогнозируемую неточность спроса и поставки.</p>
                         <div class="chart-container"><canvas id="safetyStockChart"></canvas></div>
                     </div>
                     <!-- 2. Планирование Транспорта -->
@@ -139,8 +167,8 @@
                         
                         <!-- Селектор склада -->
                         <select id="warehouseSelector" class="w-full mb-4 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#ffa600] focus:border-transparent">
-                            <option value="Sklad_A">Склад А (Алматы)</option>
-                            <option value="Sklad_B">Склад Б (Астана)</option>
+                            <option value="Sklad_A">Склад А (Астана)</option>
+                            <option value="Sklad_B">Склад Б (Алматы)</option>
                             <option value="Sklad_C">Склад C (Атырау)</option>
                         </select>
                         
@@ -149,7 +177,7 @@
                     <!-- 4. Планирование Закупок и Снабжения -->
                     <div class="card-style p-6">
                         <h3 class="text-xl font-semibold mb-2 text-[#bc5090]">4. Планирование Закупок</h3>
-                        <p class="text-gray-600 mb-4">Оценка потребности в сырье и материалах (Raw Materials) на основе Плана производства, что критично для поддержания непрерывности цепи поставок. <strong>График показывает потенциальный дефицит по ключевому сырью.</strong></p>
+                        <p class="text-gray-600 mb-4">Оценка потребности в сырье и материалах (Raw Materials) на основе Плана производства, что критично для поддержания непрерывности цепи поставок. **График показывает потенциальный дефицит по ключевому сырью.**</p>
                         <div class="chart-container"><canvas id="procurementChart"></canvas></div>
                     </div>
                 </div>
@@ -157,7 +185,7 @@
 
             <section id="ibp" class="my-12">
                 <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 text-[#003f5c]">IV. Интеграция Логистики и Финансов (IBP)</h2>
-                <p class="max-w-3xl mx-auto text-center text-gray-600 mb-8">В IBP-системе логистический план - драйвер для финансового плана. Каждое логистическое решение автоматически и онлайн отражается на итоговой прибыли компании.</p>
+                <p class="max-w-3xl mx-auto text-center text-gray-600 mb-8">В IBP-системе логистический план — это драйвер для финансового плана. Каждое логистическое решение автоматически и мгновенно отражается на итоговой прибыли компании.</p>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
                     <div class="card-style p-6">
                         <h3 class="text-lg font-semibold text-[#58508d]">Логистические Драйверы</h3>
@@ -409,7 +437,7 @@
                 },
                 {
                     label: 'Прогноз Спроса (ед.)',
-                    data: [1440, 1360, 1600, 2000, 1760, 2240], 
+                    data: [1440, 1360, 1600, 2000, 1760, 2267], 
                     borderColor: chartColors.red,
                     backgroundColor: chartColors.red,
                     fill: false,
@@ -511,12 +539,12 @@
                 datasets: [
                     {
                         label: 'Плановая Потребность',
-                        data: [85, 20, 95, 60], 
+                        data: [85, 70, 95, 60], 
                         backgroundColor: chartColors.magenta,
                     },
                     {
                         label: 'Текущий Заказ',
-                        data: [75, 80, 50, 70], 
+                        data: [75, 80, 80, 70], 
                         backgroundColor: chartColors.darkBlue,
                     }
                 ]
