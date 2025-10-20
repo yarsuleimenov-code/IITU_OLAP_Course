@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Инфографика: Финансовый Анализ и Прогнозирование</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; 
+            color: #1f2937;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .card {
+            background-color: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .header-bg {
+            background: linear-gradient(135deg, #6ac1e3, #5FA6C7); 
+        }
+        
+        .ibp-step {
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: all 0.3s;
+            font-size: 0.875rem;
+        }
+        .ibp-active-analysis {
+            background-color: #bc5090; /* Цвет для Финансового Анализа */
+            color: white;
+            box-shadow: 0 4px 6px rgba(188, 80, 144, 0.4);
+        }
+        .pro-list > li {
+            position: relative;
+            padding-left: 1.5rem;
+            color: #10b981;
+        }
+        .pro-list > li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+        }
+        .con-list > li {
+            position: relative;
+            padding-left: 1.5rem;
+            color: #ff6361;
+        }
+        .con-list > li::before {
+            content: '✗';
+            position: absolute;
+            left: 0;
+            color: #ff6361;
+            font-weight: bold;
+        }
+        .scenario-card {
+            min-height: 120px;
+        }
+        .comparison-table th {
+            text-align: left;
+            padding: 0.5rem;
+            border-bottom: 2px solid #e5e7eb;
+            font-size: 0.875rem;
+            color: #003f5c;
+        }
+        .comparison-table td {
+            padding: 0.5rem;
+            border-bottom: 1px dashed #e5e7eb;
+            font-size: 0.875rem;
+        }
+        .comparison-table .feature {
+            font-weight: 600;
+            width: 30%;
+        }
+        .comparison-table .pro {
+            color: #10b981;
+        }
+        .comparison-table .con {
+            color: #ff6361;
+        }
+    </style>
+</head>
+<body class="text-gray-800 p-4 sm:p-8">
+
+    <div class="container mx-auto max-w-5xl">
+
+        <!-- Кнопка Назад -->
+        <div class="mb-4">
+            <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/" class="inline-flex items-center text-sky-700 hover:text-sky-900 transition-colors font-semibold">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                <span>Назад к списку лекций</span>
+            </a>
+        </div>
+        
+        <header class="text-center mb-12 p-8 rounded-2xl header-bg text-white shadow-xl">
+            <img src="/IITU_OLAP_Course/assets/Logo-white.png"
+                 alt="Casplan Logo"
+                 class="mx-auto mb-6 h-16">
+            <h1 class="text-3xl md:text-5xl font-bold mb-2">Финансовый Анализ и Прогнозирование</h1>
+            <p class="text-lg md:text-xl mt-2 text-sky-200">От бюджета к управленческим решениям: адаптация к изменениям в реальном времени.</p>
+        </header>
+
+        <!-- IBP Cycle Indicator: Активен "Финансовый Анализ" -->
+        <div class="mb-10 p-4 bg-white rounded-lg shadow-md border-b-2 border-gray-100 overflow-x-auto">
+            <h3 class="text-sm font-bold text-gray-700 mb-2">Наш Путь в IBP</h3>
+            <div class="flex space-x-4 items-center justify-between min-w-max">
+                 <span class="ibp-step bg-gray-200 text-gray-600">S&OP (Спрос)</span>
+                <span class="text-gray-400">→</span>
+                <span class="ibp-step bg-gray-200 text-gray-600">Логистика (Предложение)</span>
+                <span class="text-gray-400">→</span>
+                <span class="ibp-step bg-gray-200 text-gray-600">Бюджетирование</span>
+                <span class="text-gray-400">→</span>
+                <span class="ibp-step ibp-active-analysis">Финансовый Анализ</span>
+            </div>
+        </div>
+
+        <main class="space-y-10">
+            
+            <!-- СЕКЦИЯ I: Методологии бюджетирования: Top-Down vs. Bottom-Up -->
+            <section id="budgeting-methods">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 text-[#003f5c]">I. Методологии бюджетирования: Top-Down vs. Bottom-Up</h2>
+                <p class="max-w-3xl mx-auto text-center text-gray-600 mb-8">Выбор методологии определяет скорость, точность и реалистичность финансового плана.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Top-Down -->
+                    <div class="card p-6 border-l-4 border-[#58508d] bg-indigo-50">
+                        <h3 class="text-2xl font-bold mb-3 text-[#58508d]">Сверху-вниз (Top-Down)</h3>
+                        <p class="text-gray-600 mb-4">Основные параметры задаются руководством, а детали определяются для достижения этих целей.</p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <h4 class="font-semibold text-lg text-[#10b981] mb-2">Преимущества (Pros)</h4>
+                                <ul class="list-disc ml-4 text-sm pro-list space-y-1">
+                                    <li>Минимальные согласования</li>
+                                    <li>Максимальная централизация</li>
+                                    <li>Быстрая подготовка</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-lg text-[#ff6361] mb-2">Недостатки (Cons)</h4>
+                                <ul class="list-disc ml-4 text-sm con-list space-y-1">
+                                    <li>Риск нереалистичности</li>
+                                    <li>Низкая вовлеченность сотрудников</li>
+                                    <li>Слабая оптимизация</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom-Up -->
+                    <div class="card p-6 border-l-4 border-[#ffa600] bg-yellow-50">
+                        <h3 class="text-2xl font-bold mb-3 text-[#ffa600]">Снизу-вверх (Bottom-Up)</h3>
+                        <p class="text-gray-600 mb-4">Бюджеты готовятся специалистами на местах, а затем консолидируются.</p>
+                         <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <h4 class="font-semibold text-lg text-[#10b981] mb-2">Преимущества (Pros)</h4>
+                                <ul class="list-disc ml-4 text-sm pro-list space-y-1">
+                                    <li>Высокая точность и реалистичность</li>
+                                    <li>Высокая мотивация сотрудников</li>
+                                    <li>Гибкость и адаптированность</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-lg text-[#ff6361] mb-2">Недостатки (Cons)</h4>
+                                <ul class="list-disc ml-4 text-sm con-list space-y-1">
+                                    <li>Длительность процесса</li>
+                                    <li>Риск "раздувания" бюджетов</li>
+                                    <li>Сложность согласования</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- СЕКЦИЯ II: Основы прогнозирования: Версии, Прогнозы, Сценарии -->
+            <section id="forecasting-basics">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 text-[#bc5090]">II. Версии, Прогнозы и Сценарии: Язык Будущего</h2>
+                <p class="max-w-3xl mx-auto text-center text-gray-600 mb-8">OLAP-системы позволяют оперировать измерением "Версия", что критически важно для динамичного планирования и анализа "что, если".</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Версия -->
+                    <div class="card scenario-card p-6 border-t-4 border-[#58508d] bg-indigo-50">
+                        <h3 class="font-bold text-xl mb-2 text-[#58508d]">Версия (Version)</h3>
+                        <p class="text-sm text-gray-700">Зафиксированный набор данных (План, Факт, Прогноз) на определенный момент времени. Служит контрольной точкой.</p>
+                        <p class="text-xs text-gray-500 mt-2">Пример: 'План 2025', 'Факт Q1', 'Прогноз Q3'.</p>
+                    </div>
+                    <!-- Прогноз -->
+                    <div class="card scenario-card p-6 border-t-4 border-[#ff6361] bg-red-50">
+                        <h3 class="font-bold text-xl mb-2 text-[#ff6361]">Прогноз (Forecast)</h3>
+                        <p class="text-sm text-gray-700">Обновленная оценка будущих показателей, основанная на текущих данных и трендах. Пересматривается регулярно.</p>
+                        <p class="text-xs text-gray-500 mt-2">Отличается от Бюджета своей актуальностью.</p>
+                    </div>
+                    <!-- Сценарий -->
+                    <div class="card scenario-card p-6 border-t-4 border-[#ffa600] bg-yellow-50">
+                        <h3 class="font-bold text-xl mb-2 text-[#ffa600]">Сценарий (Scenario)</h3>
+                        <p class="text-sm text-gray-700">Альтернативный вариант развития событий (оптимистичный, пессимистичный) для оценки диапазона возможных исходов.</p>
+                        <p class="text-xs text-gray-500 mt-2">Пример: 'Падение спроса на 20%', 'Рост цен на сырье'.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- СЕКЦИЯ III: Rolling Forecast -->
+            <section id="rolling-forecast">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 text-[#003f5c]">III. Динамическое планирование: Rolling Forecast</h2>
+                <p class="max-w-3xl mx-auto text-center text-gray-600 mb-8">Скользящее планирование — это непрерывный процесс, где прогноз постоянно обновляется, сдвигаясь вперед с фиксированным горизонтом. Это ключ к адаптации.</p>
+
+                <div class="card p-6 border-t-4 border-[#10b981] bg-white">
+                    <h3 class="text-xl font-semibold mb-4 text-[#10b981]">Сравнение: Бюджет vs. Скользящее планирование</h3>
+                    <div class="chart-container"><canvas id="rollingForecastChart"></canvas></div>
+                    
+                    <!-- Добавлено табличное сравнение -->
+                    <div class="mt-8 overflow-x-auto">
+                        <table class="comparison-table w-full">
+                            <thead>
+                                <tr>
+                                    <th>Характеристика</th>
+                                    <th class="text-center">Классический Бюджет</th>
+                                    <th class="text-center">Rolling Forecast</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="feature">Актуальность</td>
+                                    <td>Фиксируется один раз в год, быстро устаревает.</td>
+                                    <td><span class="pro"><strong>Постоянно обновляется, всегда актуален.</strong></span></td>
+                                </tr>
+                                <tr>
+                                    <td class="feature">Гибкость</td>
+                                    <td>Жёсткие рамки, плохо адаптируется к изменениям.</td>
+                                    <td><span class="pro"><strong>Гибкий и динамичный, отражает изменения среды.</strong></span></td>
+                                </tr>
+                                <tr>
+                                    <td class="feature">Сложность</td>
+                                    <td><span class="con">Проще в структуре, требует меньше ресурсов.</span></td>
+                                    <td><span class="con"><strong>Высокие затраты времени и ресурсов на обновление.</strong></span></td>
+                                </tr>
+                                <tr>
+                                    <td class="feature">Фокус</td>
+                                    <td>Контроль исполнения плана.</td>
+                                    <td><span class="pro"><strong>Адаптация и прогнозирование реальной траектории.</strong></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Конец табличного сравнения -->
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6 text-center">
+                    <div class="p-4 bg-green-50 rounded-lg">
+                        <h4 class="font-semibold text-lg text-green-700">Высокая актуальность</h4>
+                        <p class="text-sm text-gray-600">Постоянная адаптация к новым данным, предотвращение кассовых разрывов.</p>
+                    </div>
+                    <div class="p-4 bg-yellow-50 rounded-lg">
+                        <h4 class="font-semibold text-lg text-yellow-700">Непрерывное выравнивание</h4>
+                        <p class="text-sm text-gray-600">Стратегия постоянно сверяется с реальностью, без ожидания конца года.</p>
+                    </div>
+                    <div class="p-4 bg-red-50 rounded-lg">
+                        <h4 class="font-semibold text-lg text-red-700">Требует ресурсов</h4>
+                        <p class="text-sm text-gray-600">Непрерывный процесс требует автоматизации (OLAP) для снижения трудозатрат.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- СЕКЦИЯ IV: Применение сценарного анализа -->
+             <section id="scenario-cases">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 text-[#003f5c]">IV. Сценарный Анализ: Управление Рисками ("Что, если?")</h2>
+                 <p class="max-w-3xl mx-auto text-center text-gray-600 mb-8">Просчет альтернативных вариантов позволяет оценить диапазон возможных исходов и заранее подготовить план действий для смягчения рисков.</p>
+                 
+                <!-- Добавлены типы сценариев -->
+                <div class="grid grid-cols-3 gap-4 mb-8 max-w-3xl mx-auto text-center">
+                    <div class="p-3 bg-white border border-gray-200 rounded-lg shadow-sm">
+                        <h4 class="font-bold text-sm text-green-600">Оптимистичный</h4>
+                        <p class="text-xs text-gray-600">Лучший возможный исход.</p>
+                    </div>
+                    <div class="p-3 bg-white border border-gray-200 rounded-lg shadow-sm">
+                        <h4 class="font-bold text-sm text-gray-700">Базовый</h4>
+                        <p class="text-xs text-gray-600">Наиболее вероятный вариант.</p>
+                    </div>
+                    <div class="p-3 bg-white border border-gray-200 rounded-lg shadow-sm">
+                        <h4 class="font-bold text-sm text-red-600">Пессимистичный</h4>
+                        <p class="text-xs text-gray-600">Учет рисков и ограничений.</p>
+                    </div>
+                </div>
+                <!-- Конец типов сценариев -->
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <!-- Кейс 1: Продажи -->
+                    <div class="card scenario-card p-4 bg-sky-50 border-b-4 border-sky-400">
+                        <h3 class="font-bold text-sm text-sky-700 mb-1">Продажи / Спрос</h3>
+                        <p class="text-sm text-gray-600">Если рост продаж составит <strong>+20%</strong>? → Хватит ли производственных мощностей и складских запасов?</p>
+                    </div>
+                    <!-- Кейс 2: Валюта -->
+                    <div class="card scenario-card p-4 bg-fuchsia-50 border-b-4 border-fuchsia-400">
+                        <h3 class="font-bold text-sm text-fuchsia-700 mb-1">Валюта / Импорт</h3>
+                        <p class="text-sm text-gray-600">Если курс <strong>USD вырастет на +10%</strong>? → Импортные затраты ↑ на 12%, прибыль ↓ на 8%.</p>
+                    </div>
+                    <!-- Кейс 3: Затраты -->
+                    <div class="card scenario-card p-4 bg-amber-50 border-b-4 border-amber-400">
+                        <h3 class="font-bold text-sm text-amber-700 mb-1">Себестоимость / Сырье</h3>
+                        <p class="text-sm text-gray-600">Если стоимость сырья <strong>вырастет на +15%</strong>? → Себестоимость ↑ на 8%, маржа падает.</p>
+                    </div>
+                    <!-- Кейс 4: Ликвидность -->
+                    <div class="card scenario-card p-4 bg-teal-50 border-b-4 border-teal-400">
+                        <h3 class="font-bold text-sm text-teal-700 mb-1">Ликвидность / Разрывы</h3>
+                        <p class="text-sm text-gray-600">Если расходы растут <strong>быстрее поступлений</strong>? → Возникнет кассовый разрыв, нужны корректировки БДДС.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- СЕКЦИЯ V: Заключение -->
+            <section id="conclusion" class="mt-12">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 text-[#003f5c]">V. Вывод: Роль OLAP в принятии решений</h2>
+                <div class="card p-8 bg-[#58508d] text-white text-center">
+                    <span class="text-6xl mb-4 block">💡</span>
+                    <h3 class="text-2xl font-bold mb-3">Главный Вывод</h3>
+                    <p class="text-lg mb-6">Управленческое решение лежит в <strong>сравнении версий и сценариев</strong>. OLAP-системы (CasPlan) обеспечивают скорость, прозрачность и единую версию данных, что превращает анализ в проактивный инструмент управления, а не констатацию фактов.</p>
+                    
+                    <div class="flex justify-around items-center mt-6">
+                        <div class="w-1/3">
+                            <p class="text-4xl font-extrabold text-[#ffa600]">Мгновенно</p>
+                            <p class="text-sm font-semibold mt-1">Пересчет сценариев</p>
+                        </div>
+                        <div class="w-1/3">
+                            <p class="text-4xl font-extrabold text-[#ff6361]">KPI</p>
+                            <p class="text-sm font-semibold mt-1">Язык бизнеса</p>
+                        </div>
+                        <div class="w-1/3">
+                            <p class="text-4xl font-extrabold text-[#6ac1e3]">1</p>
+                            <p class="text-sm font-semibold mt-1">Единая версия правды</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+        
+        <!-- Футер -->
+        <footer class="text-center mt-12 py-6 border-t border-gray-300">
+            <p class="text-gray-600">Бюджет — это стратегия, а анализ — инструмент управления ею. OLAP делает это управление прозрачным и точным.</p>
+            
+            <div class="mt-6">
+                <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/"
+                   class="inline-flex items-center px-6 py-3 bg-sky-600 text-white rounded-lg shadow hover:bg-sky-700 transition duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                    Назад к списку лекций
+                </a>
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        const chartColors = {
+            darkBlue: '#003f5c', // Факт (Прошлое)
+            purple: '#58508d', // Базовый Бюджет
+            green: '#10b981', // Rolling Forecast
+            textColor: 'rgba(0, 0, 0, 0.8)',
+            gridColor: 'rgba(0, 0, 0, 0.1)'
+        };
+
+        /**
+         * Функция для переноса длинных подписей на графиках.
+         * @param {string} label - Подпись графика.
+         * @returns {string|string[]} - Подпись или массив строк для переноса.
+         */
+        const wrapLabel = (label) => {
+            const maxLength = 16;
+            if (typeof label !== 'string' || label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).trim().length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            }
+            if (currentLine) {
+                lines.push(currentLine.trim());
+            }
+            return lines;
+        };
+        
+        /**
+         * Callback для форматирования заголовка подсказки Chart.js.
+         * @param {object[]} tooltipItems - Элементы подсказки.
+         * @returns {string} - Отформатированный заголовок.
+         */
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+
+        // Стандартные настройки для Chart.js
+        const defaultChartOptions = {
+            maintainAspectRatio: false,
+            responsive: true,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: chartColors.textColor
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: { color: chartColors.textColor },
+                    grid: { color: chartColors.gridColor }
+                },
+                x: {
+                    ticks: { color: chartColors.textColor },
+                    grid: { color: chartColors.gridColor }
+                }
+            }
+        };
+
+        // Инициализация графика Rolling Forecast
+        const ctxRollingForecast = document.getElementById('rollingForecastChart');
+        if (ctxRollingForecast) {
+            new Chart(ctxRollingForecast, {
+                type: 'line',
+                data: {
+                    labels: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'].map(wrapLabel),
+                    datasets: [
+                        {
+                            label: 'Факт (Прошлое)',
+                            data: [100, 110, 105, 120, 130, 115, null, null, null, null, null, null],
+                            borderColor: chartColors.darkBlue,
+                            backgroundColor: chartColors.darkBlue,
+                            fill: false,
+                            tension: 0.2
+                        },
+                        {
+                            label: 'Базовый Бюджет',
+                            data: [105, 115, 110, 125, 135, 120, 140, 150, 145, 155, 160, 165],
+                            borderColor: chartColors.purple,
+                            backgroundColor: chartColors.purple,
+                            borderDash: [5, 5],
+                            fill: false,
+                            tension: 0.2
+                        },
+                        {
+                            label: 'Rolling Forecast (Текущий Прогноз)',
+                            data: [null, null, null, null, null, null, 150, 160, 155, 170, 180, 190],
+                            borderColor: chartColors.green,
+                            backgroundColor: chartColors.green,
+                            fill: false,
+                            tension: 0.2
+                        }
+                    ]
+                },
+                options: {
+                    ...defaultChartOptions,
+                    scales: {
+                        y: {
+                            ...defaultChartOptions.scales.y,
+                            title: { display: true, text: 'Прибыль (тыс. $)' }
+                        }
+                    },
+                     plugins: {
+                        ...defaultChartOptions.plugins,
+                        legend: {
+                            position: 'bottom' 
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
