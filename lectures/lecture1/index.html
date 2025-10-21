@@ -12,6 +12,7 @@
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f0f4f8;
+            color: #1f2937;
         }
         .card {
             background-color: white;
@@ -24,24 +25,35 @@
             transform: translateY(-5px);
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
-        .icon-bg {
-            background-color: #e0f2fe;
-            color: #0c4a6e;
-        }
+        /* Gradient for the header */
         .header-bg {
             background: linear-gradient(135deg, #6ac1e3, #5FA6C7);
         }
-        /* Улучшенное выравнивание знаков + и - по центру шрифта */
-        .icon-alignment {
-            display: flex;
-            align-items: center;
+        /* Color scheme for visual accents */
+        .color-purple { color: #58508d; }
+        .color-red { color: #ff6361; }
+        .color-orange { color: #ffa600; }
+        .color-green { color: #10b981; }
+        .border-purple { border-color: #58508d; }
+        .border-red { border-color: #ff6361; }
+        .border-orange { border-color: #ffa600; }
+        .border-green { border-color: #10b981; }
+        
+        /* Pro/Con icon styles */
+        .pro-icon { color: #10b981; }
+        .con-icon { color: #ff6361; }
+
+        /* Icon background for architecture section */
+        .architect-icon-bg {
+            background-color: #e0f2fe;
+            color: #0c4a6e;
         }
     </style>
 </head>
-<body class="text-gray-800">
+<body class="text-gray-800 p-4 sm:p-8">
 
-    <div class="container mx-auto p-4 md:p-8">
-        <!-- Back to Main Page Button -->
+    <div class="container mx-auto max-w-5xl">
+        <!-- Кнопка Назад -->
         <div class="mb-4">
             <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/" class="inline-flex items-center text-sky-700 hover:text-sky-900 transition-colors font-semibold">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -52,130 +64,153 @@
         </div>
         
         <!-- Header -->
-        <header class="text-center mb-12 p-8 rounded-2xl header-bg text-white">
-            <img src="/IITU_OLAP_Course/assets/Logo-white.png"
+        <header class="text-center mb-12 p-8 rounded-2xl header-bg text-white shadow-xl">
+             <img src="/IITU_OLAP_Course/assets/Logo-white.png"
                  alt="Casplan Logo"
                  class="mx-auto mb-6 h-16">
-            <h1 class="text-4xl md:text-5xl font-bold mb-2">OLAP-модели: От данных к управленческим решениям</h1>
+            <h1 class="text-3xl md:text-5xl font-bold mb-2">OLAP-модели: От данных к управленческим решениям</h1>
             <p class="text-lg md:text-xl text-sky-200">Как перестать тонуть в Excel и начать видеть бизнес в объеме</p>
         </header>
 
-        <!-- Section 1: Evolution -->
+        <!-- OLAP: Простыми словами (Для новичков) -->
         <section class="mb-16">
-            <h2 class="text-3xl font-bold text-center mb-8 text-gray-700">Эволюция инструментов бизнес-аналитики</h2>
-            <div class="grid md:grid-cols-3 gap-8 items-center text-center">
+            <div class="card p-8 bg-sky-50 border-l-4 border-sky-600">
+                <h2 class="text-2xl font-bold text-sky-800 mb-3 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0h12a2 2 0 002-2v-6a2 2 0 00-2-2h-2a2 2 0 00-2 2v6a2 2 0 002 2zM9 10V5a2 2 0 00-2-2H7a2 2 0 00-2 2v5h4zm12 0V5a2 2 0 00-2-2h-2a2 2 0 00-2 2v5h4z" />
+                    </svg>
+                    OLAP: Простыми словами
+                </h2>
+                <div class="grid md:grid-cols-3 gap-6 text-gray-700">
+                    <div>
+                        <h4 class="font-bold text-lg color-purple mb-1">1. Что это?</h4>
+                        <p class="text-sm">OLAP (Online Analytical Processing) — технология, которая позволяет быстро анализировать данные с разных сторон. В отличие от ERP, которое просто хранит факты, OLAP <strong>рассчитывает и сравнивает</strong> показатели.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg color-red mb-1">2. Главная Аналогия</h4>
+                        <p class="text-sm">Представьте, что <strong>Excel — это плоская карта</strong>, а <strong>OLAP-Куб — это 3D-модель</strong>. Вы можете мгновенно "повернуть" куб и увидеть, как продажи распределяются по продуктам, регионам и времени одновременно.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg color-green mb-1">3. Зачем нужен?</h4>
+                        <p class="text-sm">Для <strong>Скорости</strong> и <strong>Качества Решений</strong>. Он позволяет мгновенно выполнять сложный финансовый анализ, план-факт сравнение и сценарное моделирование ("что, если?") — операции, которые занимают часы или дни в Excel.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- I. Эволюция инструментов бизнес-аналитики -->
+        <section class="mb-16">
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 text-[#003f5c]">I. Эволюция инструментов бизнес-аналитики</h2>
+            <div class="grid md:grid-cols-3 gap-8 items-stretch">
                 <!-- Excel -->
-                <div class="card p-6">
-                  <h3 class="text-2xl font-semibold mb-3 text-sky-700">1. Excel</h3>
-                  <p class="mb-4">Первый шаг в аналитике. Гибкий, но ограниченный.</p>
+                <div class="card p-6 border-t-4 border-purple">
+                  <h3 class="text-2xl font-semibold mb-3 color-purple">1. Excel</h3>
+                  <p class="mb-4 text-gray-600">Первый шаг в аналитике. Гибкий, но ограниченный.</p>
                   <div class="text-left space-y-2">
-                    <div class="icon-alignment"><span class="text-green-500 mr-2 font-bold text-xl">＋</span> Доступность и простота</div>
-                    <div class="icon-alignment"><span class="text-red-500 mr-2 font-bold text-xl">−</span> Ошибки ручного ввода</div>
-                    <div class="icon-alignment"><span class="text-red-500 mr-2 font-bold text-xl">−</span> Не справляется с Big Data</div>
-                    <div class="icon-alignment"><span class="text-red-500 mr-2 font-bold text-xl">−</span> Проблемы совместной работы</div>
+                    <div class="flex items-center font-semibold text-gray-700"><span class="pro-icon mr-2 text-xl">＋</span> Доступность и простота</div>
+                    <div class="flex items-center font-semibold text-gray-700"><span class="con-icon mr-2 text-xl">−</span> Ошибки ручного ввода</div>
+                    <div class="flex items-center font-semibold text-gray-700"><span class="con-icon mr-2 text-xl">−</span> Не справляется с Big Data</div>
+                    <div class="flex items-center font-semibold text-gray-700"><span class="con-icon mr-2 text-xl">−</span> Проблемы совместной работы</div>
                   </div>
                 </div>
                 
                 <!-- ERP -->
-                <div class="card p-6">
-                  <h3 class="text-2xl font-semibold mb-3 text-sky-700">2. ERP-системы</h3>
-                  <p class="mb-4">Централизованный учет и контроль операций.</p>
+                <div class="card p-6 border-t-4 border-red">
+                  <h3 class="text-2xl font-semibold mb-3 color-red">2. ERP-системы</h3>
+                  <p class="mb-4 text-gray-600">Централизованный учет и контроль операций.</p>
                   <div class="text-left space-y-2">
-                    <div class="icon-alignment"><span class="text-green-500 mr-2 font-bold text-xl">＋</span> Автоматизация и дисциплина</div>
-                    <div class="icon-alignment"><span class="text-red-500 mr-2 font-bold text-xl">−</span> Фокус на фиксации фактов</div>
-                    <div class="icon-alignment"><span class="text-red-500 mr-2 font-bold text-xl">−</span> Сложность глубокой аналитики</div>
-                    <div class="icon-alignment"><span class="text-green-500 mr-2 font-bold text-xl">＋</span> Единая база данных</div>
+                    <div class="flex items-center font-semibold text-gray-700"><span class="pro-icon mr-2 text-xl">＋</span> Автоматизация и дисциплина</div>
+                    <div class="flex items-center font-semibold text-gray-700"><span class="pro-icon mr-2 text-xl">＋</span> Единая база данных</div>
+                    <div class="flex items-center font-semibold text-gray-700"><span class="con-icon mr-2 text-xl">−</span> Фокус на фиксации фактов</div>
+                    <div class="flex items-center font-semibold text-gray-700"><span class="con-icon mr-2 text-xl">−</span> Сложность глубокой аналитики</div>
                   </div>
                 </div>
                 
                 <!-- OLAP -->
-                <div class="card p-6 border-4 border-sky-500">
-                  <h3 class="text-2xl font-semibold mb-3 text-sky-700">3. OLAP-системы</h3>
-                  <p class="mb-4">"Мозг" для анализа, а не просто база данных.</p>
+                <div class="card p-6 border-t-4 border-green">
+                  <h3 class="text-2xl font-semibold mb-3 color-green">3. OLAP-системы</h3>
+                  <p class="mb-4 text-gray-600">"Мозг" для анализа, а не просто база данных.</p>
                   <div class="text-left space-y-2">
-                    <div class="icon-alignment"><span class="text-green-500 mr-2 font-bold text-xl">＋</span> Многомерный анализ</div>
-                    <div class="icon-alignment"><span class="text-green-500 mr-2 font-bold text-xl">＋</span> Мгновенная скорость</div>
-                    <div class="icon-alignment"><span class="text-green-500 mr-2 font-bold text-xl">＋</span> Поддержка стратегических решений</div>
-                    <div class="icon-alignment"><span class="text-green-500 mr-2 font-bold text-xl">＋</span> Сценарии "что, если?"</div>
+                    <div class="flex items-center font-semibold text-gray-700"><span class="pro-icon mr-2 text-xl">＋</span> Многомерный анализ</div>
+                    <div class="flex items-center font-semibold text-gray-700"><span class="pro-icon mr-2 text-xl">＋</span> Мгновенная скорость</div>
+                    <div class="flex items-center font-semibold text-gray-700"><span class="pro-icon mr-2 text-xl">＋</span> Поддержка стратегических решений</div>
+                    <div class="flex items-center font-semibold text-gray-700"><span class="pro-icon mr-2 text-xl">＋</span> Сценарии "что, если?"</div>
                   </div>
                 </div>
             </div>
         </section>
 
-        <!-- Section 2: OLAP Architecture -->
-        <section class="bg-white p-8 rounded-2xl shadow-lg mb-16">
-            <h2 class="text-3xl font-bold text-center mb-10 text-gray-700">Архитектура OLAP: Как устроен OLAP-Куб</h2>
+        <!-- II. Архитектура OLAP: Как устроен Куб -->
+        <section class="card p-8 mb-16">
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-10 text-[#58508d]">II. Архитектура OLAP: Как устроен Куб</h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 
-                <!-- Cube -->
-                <div class="flex flex-col items-center text-center p-4">
-                    <div class="w-20 h-20 mb-4 rounded-full icon-bg flex items-center justify-center">
-                         <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-14L4 7v10l8 4m0-14L4 7m16 0l-8 4m-8-4h16"/></svg>
+                <!-- Куб -->
+                <div class="flex flex-col items-center text-center p-4 rounded-lg border border-gray-100 shadow-sm hover:shadow-md">
+                    <div class="w-20 h-20 mb-4 rounded-full architect-icon-bg flex items-center justify-center">
+                         <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 color-purple" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-14L4 7v10l8 4m0-14L4 7m16 0l-8 4m-8-4h16"/></svg>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">Куб (Cube)</h3>
-                    <p class="text-gray-600">Место, где хранится или рассчитывается один бизнес-показатель: выручка, себестоимость, маржа, плановый выпуск. Формула задаётся один раз и автоматически применяется ко всем элементам измерений. Это снимает риск «разъезда формул» как в файлах. Основа OLAP.</p>
+                    <h3 class="text-xl font-semibold mb-2 color-purple">Куб (Metrics)</h3>
+                    <p class="text-sm text-gray-600">Место, где хранится или рассчитывается один бизнес-показатель: выручка, себестоимость, маржа, плановый выпуск. Формула задаётся один раз и автоматически применяется ко всем элементам измерений.</p>
                 </div>
 
-                <!-- Dimensions -->
-                <div class="flex flex-col items-center text-center p-4">
-                    <div class="w-20 h-20 mb-4 rounded-full icon-bg flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2zm0 0l9 5 9-5"/></svg>
+                <!-- Измерения -->
+                <div class="flex flex-col items-center text-center p-4 rounded-lg border border-gray-100 shadow-sm hover:shadow-md">
+                    <div class="w-20 h-20 mb-4 rounded-full architect-icon-bg flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 color-red" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2zm0 0l9 5 9-5"/></svg>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">Измерения и Справочники</h3>
-                    <p class="text-gray-600">Оси анализа ("линзы"), через которые мы смотрим на данные: Продукт, Клиент, Время, Регион. Требуют единых и чистых справочников (Master Data).</p>
+                    <h3 class="text-xl font-semibold mb-2 color-red">Измерения (Dimensions)</h3>
+                    <p class="text-sm text-gray-600">Оси анализа ("линзы"), через которые мы смотрим на данные: Продукт, Клиент, Время, Регион. Требуют единых и чистых справочников (Master Data).</p>
                 </div>
 
-                <!-- Hierarchies -->
-                <div class="flex flex-col items-center text-center p-4">
-                    <div class="w-20 h-20 mb-4 rounded-full icon-bg flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                <!-- Иерархии -->
+                <div class="flex flex-col items-center text-center p-4 rounded-lg border border-gray-100 shadow-sm hover:shadow-md">
+                    <div class="w-20 h-20 mb-4 rounded-full architect-icon-bg flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 color-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">Иерархии (Drill-Down / Roll-Up)</h3>
-                    <p class="text-gray-600">Вложенная структура внутри измерений (Год → Квартал → Месяц). Позволяет "проваливаться" к деталям (Drill-Down) и сворачивать данные к итогам (Roll-Up).</p>
+                    <h3 class="text-xl font-semibold mb-2 color-orange">Иерархии (Drill-Down / Roll-Up)</h3>
+                    <p class="text-sm text-gray-600">Вложенная структура внутри измерений (Год → Квартал → Месяц). Позволяет "проваливаться" к деталям (Drill-Down) и сворачивать данные к итогам (Roll-Up).</p>
                 </div>
 
-                <!-- Aggregations -->
-                <div class="flex flex-col items-center text-center p-4">
-                    <div class="w-20 h-20 mb-4 rounded-full icon-bg flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                <!-- Агрегации -->
+                <div class="flex flex-col items-center text-center p-4 rounded-lg border border-gray-100 shadow-sm hover:shadow-md">
+                    <div class="w-20 h-20 mb-4 rounded-full architect-icon-bg flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 color-green" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">Агрегации</h3>
-                    <p class="text-gray-600">Секрет высокой скорости OLAP. Предварительный расчет итоговых значений, который обеспечивает мгновенный отклик на запросы вместо долгого пересчета.</p>
+                    <h3 class="text-xl font-semibold mb-2 color-green">Агрегации</h3>
+                    <p class="text-sm text-gray-600">Секрет высокой скорости OLAP. Предварительный расчет итоговых значений, который обеспечивает мгновенный отклик на запросы вместо долгого пересчета.</p>
                 </div>
 
             </div>
         </section>
 
-        <!-- Section 3: OLAP in Action -->
+        <!-- III. OLAP в действии: Интерактивная аналитика -->
          <section class="mb-16">
-            <h2 class="text-3xl font-bold text-center mb-8 text-gray-700">OLAP в действии: Интерактивная аналитика продаж</h2>
-            <div class="card text-center">
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 text-[#003f5c]">III. OLAP в действии: Интерактивная аналитика</h2>
+            <div class="card p-8 text-center bg-sky-50 border-t-4 border-sky-400">
                 <h3 class="text-2xl font-semibold text-sky-700 mb-4">От плоских таблиц к интерактивному дашборду</h3>
-                <p class="text-gray-600 mb-6 max-w-4xl mx-auto">
+                <p class="text-gray-700 mb-6 max-w-4xl mx-auto">
                     Вместо десятков разрозненных Excel-отчетов, OLAP-системы, такие как Casplan, позволяют визуализировать данные в едином интерактивном дашборде. Пользователь может мгновенно фильтровать, детализировать (Drill-Down) и агрегировать (Roll-Up) информацию по любым измерениям, получая ответы на сложные бизнес-вопросы за секунды.
                 </p>
                 <img src="/IITU_OLAP_Course/assets/dashboard.jpg"
                      alt="Дашборд аналитики продаж в Casplan"
-                     class="rounded-lg shadow-lg border border-gray-200 max-w-5xl mx-auto">
+                     class="rounded-lg shadow-xl border border-gray-300 max-w-full mx-auto">
             </div>
         </section>
         
         <!-- Footer -->
-        <footer class="text-center mt-12 pt-8 border-t border-gray-300">
-            <p class="text-sm mt-4 text-center">Узнайте больше на <a href="https://casplan.tech" class="text-sky-700 hover:text-sky-900">casplan.tech</a></p>
-
-              <!-- Кнопка "Назад к списку лекций" -->
-              <div class="mt-4">
+        <footer class="text-center mt-12 py-6 border-t border-gray-300">
+            <p class="text-gray-600">OLAP — это не просто хранение данных, а инструмент для мгновенного получения инсайтов и проактивного управления.</p>
+            
+            <div class="mt-6">
                 <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/"
                    class="inline-flex items-center px-6 py-3 bg-sky-600 text-white rounded-lg shadow hover:bg-sky-700 transition duration-300">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                  </svg>
-                  Назад к списку лекций
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                    Назад к списку лекций
                 </a>
-              </div>
+            </div>
         </footer>
  </body>
 </html>
-
-
