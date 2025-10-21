@@ -22,8 +22,8 @@
             transform: translateY(-5px);
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
-        /* Стиль для кнопки Инфографика (GitHub Green) */
-        .btn-lecture {
+        /* Стили для кнопок действий */
+        .btn-lecture { /* Инфографика (GitHub Green) */
             background-color: #238636;
             color: white;
             transition: background-color 0.3s ease;
@@ -31,8 +31,7 @@
         .btn-lecture:hover {
             background-color: #2ea043;
         }
-        /* Стиль для кнопки Презентация (Deep Indigo/Blue) */
-        .btn-presentation {
+        .btn-presentation { /* Презентация (Deep Indigo/Blue) */
             background-color: #1e3a8a;
             color: white;
             transition: background-color 0.3s ease;
@@ -40,13 +39,41 @@
         .btn-presentation:hover {
             background-color: #3753b2;
         }
+        .btn-casplan { /* Кнопка CASPLAN (Prominent Blue) */
+            background-color: #1d4ed8; /* blue-700 */
+            color: white;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .btn-casplan:hover {
+            background-color: #1e40af; /* blue-800 */
+            transform: scale(1.03);
+        }
     </style>
 </head>
 <body class="text-gray-800">
 
     <div class="container mx-auto p-4 md:p-8 max-w-6xl">
 
+        <!-- Навигационный блок: языки и ссылка на CASPLAN.KZ -->
+        <nav class="flex justify-between items-center mb-8 pt-2">
+            
+            <!-- Языковой переключатель: RU активен, EN неактивен -->
+            <div class="flex space-x-2">
+                <span class="py-1 px-3 rounded-lg font-semibold bg-sky-600 text-white text-sm shadow-md">RU</span>
+                <!-- Неактивная кнопка для англоязычной версии -->
+                <span title="Англоязычная версия неактивна" class="py-1 px-3 rounded-lg font-semibold bg-gray-300 text-gray-600 text-sm cursor-not-allowed opacity-70">EN</span>
+            </div>
+            
+            <!-- Активная кнопка перехода на сайт CASPLAN.KZ -->
+            <a href="https://casplan.kz/" 
+               target="_blank" 
+               class="py-2 px-4 rounded-lg font-bold text-sm md:text-base btn-casplan shadow-lg">
+                Узнайте больше на casplan.kz
+            </a>
+        </nav>
+
         <header class="mb-12">
+            <!-- Визитка -->
             <div class="card bg-white rounded-2xl shadow-lg overflow-hidden">
                 <img src="assets/business-card.jpg" alt="Визитка Ярослава Сулейменова" class="w-full">
             </div>
@@ -57,19 +84,17 @@
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-                <!-- Lecture 0 Card -->
+                <!-- Лекция 0 -->
                 <div class="card bg-white rounded-2xl shadow-lg">
                     <div class="p-6 flex-grow">
                         <h2 class="text-xl font-bold text-sky-800 mb-2">Лекция 0: 🚀 Введение</h2>
                         <p class="text-gray-600 text-sm">Введение в OLAP и роль в бизнесе. От Excel к многомерному анализу.</p>
                     </div>
-                    <!-- Кнопки: Инфографика и Презентация -->
                     <div class="p-6 bg-gray-50 rounded-b-2xl mt-auto flex justify-between space-x-4">
                         <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/lectures/lecture1/" 
                            class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold btn-lecture">
                            Инфографика
                         </a>
-                        <!-- путь к просмотрщику презентации -->
                         <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/lectures/lecture1/lecture0_presentation.html"  
                            class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold btn-presentation">
                            Презентация
@@ -77,7 +102,7 @@
                     </div>
                 </div>
 
-                <!-- Lecture 1 -->
+                <!-- Лекция 1 -->
                 <div class="card bg-white rounded-2xl shadow-lg">
                     <div class="p-6 flex-grow">
                         <h2 class="text-xl font-bold text-sky-800 mb-2">Лекция 1: 🏗️ Архитектура</h2>
@@ -96,13 +121,13 @@
                     </div>
                 </div>
                 
-                <!-- Lecture 2 -->
+                <!-- Лекция 2 -->
                 <div class="card bg-white rounded-2xl shadow-lg">
                     <div class="p-6 flex-grow">
                         <h2 class="text-xl font-bold text-sky-800 mb-2">Лекция 2: 🔗 IBP</h2>
                         <p class="text-gray-500 text-sm">IBP: Интегрированное бизнес-планирование как единая система.</p>
                     </div>
-                    <div class="p-6 bg-gray-50 rounded-b-2xl flex justify-between space-x-4">
+                    <div class="p-6 bg-gray-50 rounded-b-2xl mt-auto flex justify-between space-x-4">
                         <a href="/IITU_OLAP_Course/lectures/lecture2/"
                            class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold btn-lecture">
                           Инфографика
@@ -115,13 +140,13 @@
                       </div>
                     </div>
 
-                <!-- Lecture 3 -->
+                <!-- Лекция 3 -->
                 <div class="card bg-white rounded-2xl shadow-lg">
                     <div class="p-6 flex-grow">
                         <h2 class="text-xl font-bold text-sky-800 mb-2">Лекция 3: 📈 S&OP</h2>
                         <p class="text-gray-500 text-sm">S&OP: Планирование продаж и операций для баланса спроса и предложения.</p>
                     </div>
-                      <div class="p-6 bg-gray-50 rounded-b-2xl flex justify-between space-x-4">
+                      <div class="p-6 bg-gray-50 rounded-b-2xl mt-auto flex justify-between space-x-4">
                         <a href="/IITU_OLAP_Course/lectures/lecture3/"
                            class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold btn-lecture">
                           Инфографика
@@ -134,7 +159,7 @@
                       </div>
                     </div>
 
-                <!-- Lecture 4  -->
+                <!-- Лекция 4 -->
                 <div class="card bg-white rounded-2xl shadow-lg">
                     <div class="p-6 flex-grow">
                         <h2 class="text-xl font-bold text-sky-800 mb-2">Лекция 4: 🚚 Логистика</h2>
@@ -153,7 +178,7 @@
                     </div>
                 </div>
 
-                <!-- Lecture 5  -->
+                <!-- Лекция 5 -->
                 <div class="card bg-white rounded-2xl shadow-lg">
                     <div class="p-6 flex-grow">
                         <h2 class="text-xl font-bold text-sky-800 mb-2">Лекция 5: 💰 Бюджетирование</h2>
@@ -172,10 +197,10 @@
                     </div>
                 </div>
 
-                <!-- Lecture 6  -->
+                <!-- Лекция 6 -->
                 <div class="card bg-white rounded-2xl shadow-lg">
                     <div class="p-6 flex-grow">
-                        <h2 class="text-xl font-bold text-gray-500 mb-2">Лекция 6: 🔬 Финансовый анализ</h2>
+                        <h2 class="text-xl font-bold text-sky-800 mb-2">Лекция 6: 🔬 Финансовый анализ</h2>
                         <p class="text-gray-500 text-sm">Управление финансами: методы бюджетирования, "что, если?".</p>
                     </div>
                     <div class="p-6 bg-gray-50 rounded-b-2xl mt-auto flex justify-between space-x-4">
@@ -191,7 +216,7 @@
                     </div>
                 </div>
 
-                <!-- Lecture 7 Placeholder -->
+                <!-- Лекция 7 (Заглушка) -->
                 <div class="card bg-white rounded-2xl shadow-lg">
                     <div class="p-6 flex-grow">
                         <h2 class="text-xl font-bold text-gray-500 mb-2">Лекция 7: 🎯 KPI</h2>
@@ -203,7 +228,7 @@
                     </div>
                 </div>
 
-                <!-- Lecture 8 Placeholder -->
+                <!-- Лекция 8 (Заглушка) -->
                 <div class="card bg-white rounded-2xl shadow-lg">
                     <div class="p-6 flex-grow">
                         <h2 class="text-xl font-bold text-gray-500 mb-2">Лекция 8: 🛡️ Безопасность</h2>
@@ -215,7 +240,7 @@
                     </div>
                 </div>
                 
-                 <!-- Lecture 9 Placeholder -->
+                 <!-- Лекция 9 (Заглушка) -->
                 <div class="card bg-white rounded-2xl shadow-lg">
                     <div class="p-6 flex-grow">
                         <h2 class="text-xl font-bold text-gray-500 mb-2">Лекция 9: 🌐 Будущее</h2>
@@ -238,11 +263,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
