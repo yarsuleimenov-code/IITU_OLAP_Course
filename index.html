@@ -70,22 +70,44 @@
             transform: scale(0.98);
             box-shadow: none;
         }
+
+        /* Стиль для кнопки "Записи лекций" */
+        .btn-drive {
+            background-color: #4f46e5; /* Indigo */
+            color: white;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .btn-drive:hover {
+            background-color: #4338ca;
+            transform: scale(1.02);
+        }
+        .btn-drive:active {
+            transform: scale(0.98);
+        }
     </style>
 </head>
 <body class="text-gray-800">
 
     <div class="container mx-auto p-4 md:p-8 max-w-6xl">
 
-        <!-- Навигация и кнопка CasPlan -->
-        <nav class="flex justify-between items-center mb-8 pt-2">
+        <!-- Навигация, включая переключатель языка, кнопку Записей и CasPlan -->
+        <nav class="flex justify-between items-center mb-8 pt-2 space-x-2 sm:space-x-4">
             
-            <!-- Языковой переключатель -->
+            <!-- 1. Языковой переключатель -->
             <div class="flex space-x-2">
                 <span class="py-1 px-3 rounded-lg font-semibold bg-sky-600 text-white text-sm shadow-md">RU</span>
                 <span title="Англоязычная версия неактивна" class="py-1 px-3 rounded-lg font-semibold bg-gray-300 text-gray-600 text-sm cursor-not-allowed opacity-70">EN</span>
             </div>
+
+            <!-- 2. Кнопка Записи лекций (Google Drive) - Сделана шире (px-6) и больше (sm:text-base) -->
+            <a href="https://drive.google.com/drive/folders/1pEcORTD_SaEOKPKJGgjG8Q14X6YjSyCb?dmr=1&ec=wgc-drive-globalnav-goto"
+               target="_blank"
+               title="Перейти на записи лекций в Google Drive"
+               class="py-2 px-6 rounded-lg font-bold text-sm sm:text-base btn-drive shadow-lg hidden sm:inline-block">
+                ▶ Записи лекций
+            </a>
             
-            <!-- Кнопка перехода на CASPLAN.KZ -->
+            <!-- 3. Кнопка перехода на CASPLAN.KZ -->
             <a href="https://casplan.kz/" 
                target="_blank" 
                class="py-2 px-4 rounded-lg font-bold text-sm md:text-base btn-casplan shadow-lg">
@@ -114,14 +136,14 @@
                         <h2 class="text-xl font-bold text-sky-900 mb-3">Лекция 0: 🚀 Введение</h2>
                         <p class="text-gray-700 text-sm">Введение в OLAP и роль в бизнесе. От Excel к многомерному анализу.</p>
                     </div>
-                    <!-- Кнопки: Инфографика (lec0_intro) и Презентация -->
+                    <!-- Кнопки: Инфографика (lec0_intro) и Презентация (PDF) -->
                     <div class="p-6 bg-gray-50 rounded-b-2xl mt-auto flex justify-between space-x-4">
                         <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/lectures/lec0_intro/" 
                            class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold btn-lecture">
                            Инфографика
                         </a>
-                         <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/docs/lecture0_intro.pdf"
-                             target="_blank"
+                        <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/docs/lecture0_intro.pdf"  
+                           target="_blank"
                            class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold btn-presentation">
                            Презентация
                         </a>
@@ -301,8 +323,3 @@
 
 </body>
 </html>
-
-
-
-
-
