@@ -92,28 +92,32 @@
     <div class="container mx-auto p-4 md:p-8 max-w-6xl">
 
         <!-- Навигация: Языки, Записи лекций, CasPlan -->
-        <nav class="flex justify-between items-center mb-8 pt-2 space-x-2 sm:space-x-4">
+        <nav class="flex justify-between items-center mb-8 pt-2">
             
-            <!-- Языковой переключатель -->
+            <!-- 1. Языковой переключатель (Слева) -->
             <div class="flex space-x-2">
                 <span class="py-1 px-3 rounded-lg font-semibold bg-sky-600 text-white text-sm shadow-md">RU</span>
                 <span title="Англоязычная версия неактивна" class="py-1 px-3 rounded-lg font-semibold bg-gray-300 text-gray-600 text-sm cursor-not-allowed opacity-70">EN</span>
             </div>
             
-            <!-- Кнопка Записи лекций (Google Drive) -->
-            <a href="https://drive.google.com/drive/folders/1pEcORTD_SaEOKPKJGgjG8Q14X6YjSyCb?dmr=1&ec=wgc-drive-globalnav-goto"
-               target="_blank"
-               title="Перейти на записи лекций в Google Drive"
-               class="py-2 px-4 md:px-6 rounded-lg font-bold text-sm sm:text-base btn-drive shadow-md">
-                ▶ Записи лекций
-            </a>
-            
-            <!-- Кнопка перехода на CASPLAN.KZ -->
-            <a href="https://casplan.kz/" 
-               target="_blank" 
-               class="py-2 px-4 rounded-lg font-bold text-sm md:text-base btn-casplan shadow-lg">
-                Узнайте больше на CasPlan.kz
-            </a>
+            <!-- 2. Группа кнопок Записи/CasPlan (Справа) -->
+            <div class="flex space-x-2 sm:space-x-4">
+                
+                <!-- Кнопка Записи лекций (Google Drive) -->
+                <a href="https://drive.google.com/drive/folders/1pEcORTD_SaEOKPKJGgjG8Q14X6YjSyCb?dmr=1&ec=wgc-drive-globalnav-goto"
+                   target="_blank"
+                   title="Перейти на записи лекций в Google Drive"
+                   class="py-2 px-3 sm:px-4 rounded-lg font-bold text-xs sm:text-sm md:text-base btn-drive shadow-md">
+                    ▶ Записи лекций
+                </a>
+                
+                <!-- Кнопка перехода на CASPLAN.KZ -->
+                <a href="https://casplan.kz/" 
+                   target="_blank" 
+                   class="py-2 px-3 sm:px-4 rounded-lg font-bold text-xs sm:text-sm md:text-base btn-casplan shadow-lg">
+                    CasPlan.kz
+                </a>
+            </div>
         </nav>
         
         <header class="mb-12">
