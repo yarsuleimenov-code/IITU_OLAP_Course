@@ -1,1 +1,354 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Инфографика: KPI и Управленческие Метрики</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; 
+            color: #1f2937;
+        }
+        .card {
+            background-color: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .header-bg {
+            background: linear-gradient(135deg, #6ac1e3, #5FA6C7); 
+        }
+        .bp-callout {
+            background-color: #f0f9ff;
+            border-left: 6px solid #0d9488;
+            padding: 1.5rem;
+        }
+        .sync-card {
+            border-radius: 0.75rem;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+        }
+        .sync-card.prod { background-color: #e0f2f1; color: #0f766e; }
+        .sync-card.log { background-color: #fffbeb; color: #b45309; }
+        .sync-card.sales { background-color: #eff6ff; color: #2563eb; }
+        .sync-card.fin { background-color: #f3e8ff; color: #9333ea; }
+        .final-conclusion {
+            background: linear-gradient(135deg, #4f46e5, #9333ea);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 1rem;
+            text-align: center;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+        }
+        .conflict-pair {
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+        .conflict-pair:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+        .conflict-vs {
+            font-weight: 700;
+            margin: 0 0.5rem;
+            color: #ef4444; 
+        }
+        .mistake-card {
+            background-color: #fee2e2; 
+            border: 1px solid #f87171;
+            padding: 1rem;
+        }
+    </style>
+</head>
+<body class="text-gray-800 p-4 sm:p-8">
+
+    <div class="container mx-auto max-w-5xl">
+
+        <!-- Кнопка Назад -->
+        <div class="mb-4">
+            <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/" class="inline-flex items-center text-sky-700 hover:text-sky-900 transition-colors font-semibold">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                <span>Назад к списку лекций</span>
+            </a>
+        </div>
+        
+        <header class="text-center mb-12 p-8 rounded-2xl header-bg text-white shadow-xl">
+            <!-- Логотип -->
+            <img src="/IITU_OLAP_Course/assets/Logo-white.png"
+                 alt="Casplan Logo"
+                 class="mx-auto mb-6 h-16">
+            <h1 class="text-3xl md:text-5xl font-bold mb-2">KPI и Управленческие Метрики</h1>
+            <p class="text-lg md:text-xl mt-2 text-sky-200">Язык бизнеса: как превратить данные OLAP в измеримые цели и связать стратегию с операциями.</p>
+        </header>
+
+        <main class="space-y-10">
+
+            <section id="definitions">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 text-[#003f5c]">I. Показатель ≠ Метрика ≠ KPI</h2>
+                <p class="max-w-3xl mx-auto text-center text-gray-600 mb-8">Для построения эффективной системы управления необходимо четко разделять, что мы измеряем (показатель), как мы это оцениваем (метрика), и зачем мы это делаем (KPI).</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="card p-6 border-t-4 border-[#ff6361] text-center">
+                        <span class="text-4xl mb-3 block">🔢</span>
+                        <h3 class="text-xl font-semibold mb-2 text-[#ff6361]">Показатель (Indicator)</h3>
+                        <p class="text-gray-600 text-sm">Конкретная, зафиксированная числовая величина. <strong>Факт.</strong></p>
+                        <p class="text-sm mt-2 font-mono bg-gray-100 p-1 rounded">Выручка за Июль = $120 млн</p>
+                    </div>
+                    <div class="card p-6 border-t-4 border-[#ffa600] text-center">
+                        <span class="text-4xl mb-3 block">📏</span>
+                        <h3 class="text-xl font-semibold mb-2 text-[#ffa600]">Метрика (Metric)</h3>
+                        <p class="text-gray-600 text-sm">Формализованная логика оценки. <strong>Смысл.</strong></p>
+                        <p class="text-sm mt-2 font-mono bg-gray-100 p-1 rounded">Средний Чек (AOV) = Выручка / Кол-во продаж</p>
+                    </div>
+                    <div class="card p-6 border-t-4 border-[#0d9488] text-center">
+                        <span class="text-4xl mb-3 block">🎯</span>
+                        <h3 class="text-xl font-semibold mb-2 text-[#0d9488]">KPI (Key Performance Indicator)</h3>
+                        <p class="text-gray-600 text-sm">Ключевой показатель, измеряющий достижение <strong>Цели</strong>.</p>
+                        <p class="text-sm mt-2 font-mono bg-gray-100 p-1 rounded">KPI: Рост Среднего Чека на 5%</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="cross-functional">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 text-[#003f5c]">II. Конфликты KPI и сквозная интеграция</h2>
+                <p class="max-w-3xl mx-auto text-center text-gray-600 mb-8">Локальная оптимизация KPI ведет к "войне отделов" и глобальному саботажу. OLAP решает эту проблему через <strong>Сквозные KPI</strong>, интегрированные в одну модель.</p>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- Расширенный и визуально приятный блок конфликтов -->
+                    <div class="card p-6 border-l-4 border-red-500 bg-red-50">
+                        <h3 class="text-xl font-semibold mb-4 text-red-700 text-center">Типичные Конфликты KPI</h3>
+                        
+                        <div class="conflict-pair">
+                            <div class="flex justify-between items-center text-base">
+                                <span class="font-bold text-red-800">Продажи (Объем)</span> 
+                                <span class="conflict-vs">VS</span> 
+                                <span class="font-bold text-red-800">Финансы (Маржа)</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-2">Продажи дают скидку для выполнения своего объема &rarr; Финансы не могут выйти на плановую Маржу.</p>
+                        </div>
+                        
+                        <div class="conflict-pair">
+                            <div class="flex justify-between items-center text-base">
+                                <span class="font-bold text-red-800">Закупки (Цена)</span> 
+                                <span class="conflict-vs">VS</span> 
+                                <span class="font-bold text-red-800">Производство (Качество)</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-2">Закупки выбирают самого дешевого поставщика &rarr; Производство получает некачественное сырье и растет Брак.</p>
+                        </div>
+                        
+                        <div class="conflict-pair">
+                            <div class="flex justify-between items-center text-base">
+                                <span class="font-bold text-red-800">Маркетинг (Акция)</span> 
+                                <span class="conflict-vs">VS</span> 
+                                <span class="font-bold text-red-800">Логистика (Сроки)</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-2">Маркетинг запускает акцию &rarr; Логистика не успевает отгрузить товар &rarr; Страдает OTD.</p>
+                        </div>
+
+                        <div class="conflict-pair">
+                            <div class="flex justify-between items-center text-base">
+                                <span class="font-bold text-red-800">HR (Скорость найма)</span> 
+                                <span class="conflict-vs">VS</span> 
+                                <span class="font-bold text-red-800">Руководители (Квалификация)</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-2">HR закрывает вакансии быстро &rarr; Руководители получают неподходящих кандидатов.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Новый блок Сквозные KPI: синхронизация -->
+                    <div class="card p-6 border-l-4 border-teal-500 bg-teal-50 flex flex-col justify-between">
+                        <h3 class="text-xl font-semibold mb-4 text-teal-700 text-center">Сквозные KPI: Эффект Синхронизации</h3>
+                        <p class="text-center text-gray-600 mb-6 text-sm">Сквозные KPI объединяют цели отделов и позволяют видеть всю цепочку влияния.</p>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="sync-card prod">
+                                <p class="font-bold text-base">Производство</p>
+                                <p class="text-xs">Выпуск вовремя</p>
+                            </div>
+                            <div class="sync-card log">
+                                <p class="font-bold text-base">Логистика</p>
+                                <p class="text-xs">Доставка без задержек</p>
+                            </div>
+                            <div class="sync-card sales">
+                                <p class="font-bold text-base">Продажи</p>
+                                <p class="text-xs">Выполнение заказов</p>
+                            </div>
+                            <div class="sync-card fin">
+                                <p class="font-bold text-base">Финансы</p>
+                                <p class="text-xs">Рост прибыли</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 p-3 bg-white rounded-lg border border-teal-200">
+                             <p class="text-sm font-semibold text-gray-700">Best practice:</p>
+                             <p class="text-xs text-gray-600 mt-1">Автоматическая выгрузка KPI из OLAP-кубов в общую панель Casplan.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="kpi-examples">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 text-[#003f5c]">III. Примеры KPI по Сферам (Бизнес-анализ)</h2>
+                <p class="max-w-3xl mx-auto text-center text-gray-600 mb-8">Ключевые метрики в разных областях, которые строятся на базе OLAP-кубов (P&L, Logi-Plan, Mkt-Plan) и используются для принятия решений.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="card p-6 border-t-4 border-[#ff6361]">
+                        <h3 class="text-xl font-semibold mb-2 text-[#ff6361]">Финансы</h3>
+                        <ul class="text-sm space-y-1">
+                            <li><strong>EBITDA/EBIT:</strong> Операционная эффективность.</li>
+                            <li><strong>ROI/ROA/ROE:</strong> Окупаемость инвестиций/активов.</li>
+                            <li><strong>Cash Flow:</strong> Движение денег (важнее прибыли).</li>
+                        </ul>
+                    </div>
+                    <div class="card p-6 border-t-4 border-[#ffa600]">
+                        <h3 class="text-xl font-semibold mb-2 text-[#ffa600]">Маркетинг/Продажи</h3>
+                        <ul class="text-sm space-y-1">
+                            <li><strong>LTV:</strong> Пожизненная стоимость клиента.</li>
+                            <li><strong>CAC:</strong> Стоимость привлечения клиента.</li>
+                            <li><strong>AOV:</strong> Средняя стоимость заказа.</li>
+                        </ul>
+                    </div>
+                    <div class="card p-6 border-t-4 border-[#58508d]">
+                        <h3 class="text-xl font-semibold mb-2 text-[#58508d]">Логистика/Производство</h3>
+                        <ul class="text-sm space-y-1">
+                            <li><strong>OTIF:</strong> Доставлено Вовремя и Полностью.</li>
+                            <li><strong>OEE:</strong> Общая эффективность оборудования.</li>
+                            <li><strong>Inventory Turnover:</strong> Оборачиваемость запасов.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="olap-role">
+                 <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 text-[#003f5c]">IV. OLAP: Технологическая основа KPI</h2>
+                <p class="max-w-3xl mx-auto text-center text-gray-600 mb-8">KPI не появляются сами по себе. OLAP-система CasPlan обеспечивает скорость и многомерность для их расчета и анализа.</p>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
+                    <div class="card p-6">
+                        <h3 class="text-xl font-semibold mb-4 text-[#003f5c]">Сквозные KPI: Связь Отделов</h3>
+                        <p class="text-sm text-gray-700 mb-4">В OLAP любая метрика может быть рассчитана по любому измерению. Это позволяет создать KPI, связывающий Маркетинг и Финансы, который мотивирует оба отдела работать на общую прибыль.</p>
+                        <div class="mt-4 p-4 bg-gray-100 rounded-lg">
+                            <p class="font-bold text-sm text-gray-800 mb-2">Пример Сквозного KPI:</p>
+                            <p class="text-xs text-gray-600"><strong><span class="text-[#ff6361]">Скорректированный LTV</span></strong> (Жизненная ценность клиента, за вычетом затрат на его обслуживание и логистику)</p>
+                            <p class="text-xs mt-2"><strong>Роль IT:</strong> Аналитики проектируют кубы, которые могут объединять данные из CRM (лиды), ERP (затраты) и Logi-Plan (доставка).</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card p-6 bg-gray-50 flex flex-col justify-center">
+                        <h3 class="text-xl font-semibold mb-4 text-[#003f5c] text-center">Исполнение Сквозных KPI</h3>
+                        <img src="https://placehold.co/600x300/f0f4f8/003f5c?text=Заглушка%20для%20визуализации%20OLAP%20KPI" 
+                             alt="Заглушка для визуализации OLAP KPI" 
+                             class="w-full h-auto rounded-lg">
+                        <p class="text-center text-sm text-gray-500 mt-2">Место для визуализации выполнения KPI по кварталам.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- V. BEST PRACTICE IBP -->
+            <section id="best-practices" class="bp-callout rounded-xl">
+                 <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 text-[#003f5c]">V. BEST PRACTICE IBP: 3 Принципа для Аналитика</h2>
+                <p class="max-w-3xl mx-auto text-center text-gray-700 mb-8 font-semibold">KPI - это не просто формулы, а <strong>инструменты стратегического управления</strong>, встроенные в архитектуру данных. Эти принципы критически важны для проектирования KPI-систем на базе OLAP.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <div class="bg-white p-4 rounded-lg shadow-md border-t-4 border-[#003f5c]">
+                        <h4 class="font-bold text-lg mb-2 text-[#003f5c]">1. Каскадирование (Top-Down)</h4>
+                        <p class="text-sm text-gray-600">KPI выстроены по иерархии: от <strong>Стратегии</strong> (ROI, EBITDA) до <strong>Операций</strong> (OTD). OLAP (Roll-Up) обеспечивает мгновенную агрегацию оперативных данных до стратегического уровня.</p>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-lg shadow-md border-t-4 border-[#58508d]">
+                        <h4 class="font-bold text-lg mb-2 text-[#58508d]">2. Сквозные KPI (TCO)</h4>
+                        <p class="text-sm text-gray-600">Решают "войну отделов", мотивируя на общую прибыль. Используйте <strong>TCO</strong> (Общая стоимость владения) или <strong>Скорректированный LTV</strong>, связывая несколько функциональных блоков в одной метрике.</p>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-lg shadow-md border-t-4 border-[#ffa600]">
+                        <h4 class="font-bold text-lg mb-2 text-[#ffa600]">3. Гибкость (Rolling Forecast)</h4>
+                        <p class="text-sm text-gray-600">Система KPI должна поддерживать <strong>Скользящий Прогноз</strong> (Rolling Forecast) и <strong>Сценарный Анализ</strong> (Worst/Best Case). KPI измеряются не только по Факту, но и по актуальному Плану.</p>
+                    </div>
+
+                </div>
+            </section>
+            <!-- КОНЕЦ V. BEST PRACTICE IBP -->
+
+            <!-- V.5. Типичные Ошибки (Common Mistakes) -->
+            <section id="common-mistakes" class="mt-10">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 text-red-600">VI. Типичные Ошибки (Common Mistakes)</h2>
+                <p class="max-w-3xl mx-auto text-center text-gray-600 mb-8">Распространенные проблемы, которые снижают эффективность системы KPI и ведут к ложным выводам.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <div class="mistake-card rounded-lg shadow-md">
+                        <div class="flex items-center mb-2">
+                            <span class="text-2xl mr-2 text-red-600">❌</span>
+                            <h4 class="font-bold text-lg text-red-800">Избыточность KPI</h4>
+                        </div>
+                        <p class="text-sm text-gray-700">Когда KPI слишком много (более 7-10 на отдел/человека), они теряют фокус. Измеряется всё, но не контролируется ничего.</p>
+                    </div>
+
+                    <div class="mistake-card rounded-lg shadow-md">
+                        <div class="flex items-center mb-2">
+                            <span class="text-2xl mr-2 text-red-600">💥</span>
+                            <h4 class="font-bold text-lg text-red-800">"Слепой" KPI</h4>
+                        </div>
+                        <p class="text-sm text-gray-700">KPI не связан с действием. Например, "Курс Доллара" – вы его измеряете, но не можете изменить своим решением. Не является KPI.</p>
+                    </div>
+
+                    <div class="mistake-card rounded-lg shadow-md">
+                        <div class="flex items-center mb-2">
+                            <span class="text-2xl mr-2 text-red-600">💣</span>
+                            <h4 class="font-bold text-lg text-red-800">Локальный Конфликт</h4>
+                        </div>
+                        <p class="text-sm text-gray-700">KPI отдела А выполнен (например, объем продаж), но это ухудшило глобальный KPI отдела Б (например, маржа). Решается сквозными метриками.</p>
+                    </div>
+
+                </div>
+            </section>
+            <!-- КОНЕЦ V.5. Типичные Ошибки -->
+            
+            <!-- ГЛАВНЫЙ ВЫВОД -->
+            <section class="final-conclusion">
+                <div class="flex items-center justify-center mb-4">
+                    <span class="text-4xl mr-3">💡</span>
+                    <h2 class="text-3xl font-bold">Главный вывод</h2>
+                </div>
+                <p class="text-lg font-medium">KPI - это язык бизнеса. OLAP делает этот язык единым для всех отделов и превращает данные в управленческие решения.</p>
+                <p class="text-sm mt-3 opacity-80">Best practice: пересмотр KPI минимум раз в квартал, с анализом взаимного влияния показателей.</p>
+            </section>
+
+        </main>
+        
+        <!-- Футер с кнопкой "Назад к списку лекций" (Начало) -->
+        <footer class="text-center mt-12 py-6 border-t border-gray-300">
+            <p class="text-gray-600">KPI - это стратегия, выраженная в числах. OLAP превращает эти числа в прозрачную и управляемую систему.</p>
+            
+            <div class="mt-6">
+                <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/"
+                   class="inline-flex items-center px-6 py-3 bg-sky-600 text-white rounded-lg shadow hover:bg-sky-700 transition duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                    Назад к списку лекций
+                </a>
+            </div>
+        </footer>
+        <!-- Футер с кнопкой "Назад к списку лекций" (Конец) -->
+
+    </div>
+</body>
+</html>
 
