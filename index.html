@@ -14,7 +14,7 @@
             background-color: #f0f4f8;
         }
         
-        /* Общие стили для активной карточки */
+        /* Общие стили для карточек */
         .card {
             transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
             display: flex;
@@ -29,14 +29,14 @@
             border-color: #147850; 
         }
 
-        /* Стиль для неактивных карточек (заглушек) */
+        /* Стиль для неактивных карточек */
         .card-inactive {
             border-top: 5px solid #d1d5db;
             cursor: not-allowed;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
         
-        /* Стили для кнопки Инфографика (GitHub Green) */
+        /* Стиль для кнопки Инфографика (Green) */
         .btn-lecture {
             background-color: #238636;
             color: white;
@@ -46,7 +46,7 @@
             background-color: #2ea043;
         }
         
-        /* Стили для кнопки Презентация (Deep Indigo/Blue) */
+        /* Стиль для кнопки Презентация (Blue) */
         .btn-presentation {
             background-color: #1e3a8a;
             color: white;
@@ -56,7 +56,7 @@
             background-color: #3753b2;
         }
         
-        /* Стили для кнопки CASPLAN */
+        /* Стиль для кнопки CASPLAN */
         .btn-casplan {
             background-color: #1d4ed8; 
             color: white;
@@ -71,17 +71,18 @@
             box-shadow: none;
         }
 
-        /* Стиль для кнопки "Записи лекций" */
+        /* Стиль для кнопки "Записи лекций" (КРАСНЫЙ - .btn-drive) */
         .btn-drive {
-            background-color: #4f46e5; /* Indigo */
+            background-color: #ef4444; /* Мягкий красный (Tailwind Red-500) */
             color: white;
             transition: background-color 0.3s ease, transform 0.3s ease;
         }
         .btn-drive:hover {
-            background-color: #4338ca;
+            background-color: #dc2626; /* Насыщенный, но не яркий (Red-600) */
             transform: scale(1.02);
         }
         .btn-drive:active {
+            background-color: #b91c1c; /* Темнее при нажатии (Red-700) */
             transform: scale(0.98);
         }
     </style>
@@ -90,31 +91,31 @@
 
     <div class="container mx-auto p-4 md:p-8 max-w-6xl">
 
-        <!-- Навигация, включая переключатель языка, кнопку Записей и CasPlan -->
+        <!-- Навигация: Языки, Записи лекций, CasPlan -->
         <nav class="flex justify-between items-center mb-8 pt-2 space-x-2 sm:space-x-4">
             
-            <!-- 1. Языковой переключатель -->
+            <!-- Языковой переключатель -->
             <div class="flex space-x-2">
                 <span class="py-1 px-3 rounded-lg font-semibold bg-sky-600 text-white text-sm shadow-md">RU</span>
                 <span title="Англоязычная версия неактивна" class="py-1 px-3 rounded-lg font-semibold bg-gray-300 text-gray-600 text-sm cursor-not-allowed opacity-70">EN</span>
             </div>
-
-            <!-- 2. Кнопка Записи лекций (Google Drive) - Сделана шире (px-6) и больше (sm:text-base) -->
+            
+            <!-- Кнопка Записи лекций (Google Drive) -->
             <a href="https://drive.google.com/drive/folders/1pEcORTD_SaEOKPKJGgjG8Q14X6YjSyCb?dmr=1&ec=wgc-drive-globalnav-goto"
                target="_blank"
                title="Перейти на записи лекций в Google Drive"
-               class="py-2 px-6 rounded-lg font-bold text-sm sm:text-base btn-drive shadow-lg hidden sm:inline-block">
+               class="py-2 px-4 md:px-6 rounded-lg font-bold text-sm sm:text-base btn-drive shadow-md">
                 ▶ Записи лекций
             </a>
             
-            <!-- 3. Кнопка перехода на CASPLAN.KZ -->
+            <!-- Кнопка перехода на CASPLAN.KZ -->
             <a href="https://casplan.kz/" 
                target="_blank" 
                class="py-2 px-4 rounded-lg font-bold text-sm md:text-base btn-casplan shadow-lg">
                 Узнайте больше на CasPlan.kz
             </a>
         </nav>
-
+        
         <header class="mb-12">
             <!-- Визитка -->
             <div class="bg-white rounded-2xl shadow-lg overflow-hidden border-none">
@@ -128,7 +129,7 @@
             <!-- Сетка лекций -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-                <!-- ------------------- АКТИВНЫЕ ЛЕКЦИИ (0-7) ------------------- -->
+                <!-- АКТИВНЫЕ ЛЕКЦИИ (0-7) -->
 
                 <!-- ЛЕКЦИЯ 0: Введение -->
                 <div class="card bg-white rounded-2xl shadow-lg">
@@ -284,13 +285,13 @@
                 </div>
 
 
-                <!-- ------------------- НЕАКТИВНЫЕ ЛЕКЦИИ (8-9) ------------------- -->
+                <!-- НЕАКТИВНЫЕ ЛЕКЦИИ (8-9) -->
 
                 <!-- ЛЕКЦИЯ 8: Безопасность -->
                 <div class="card card-inactive bg-gray-100 rounded-2xl shadow-md">
                     <div class="p-6 flex-grow">
                         <h2 class="text-xl font-bold text-gray-500 mb-3">Лекция 8: 🛡️ Безопасность</h2>
-                        <p class="text-gray-400 text-sm">Информационная безопасность и управление данными.</p>
+                    <p class="text-gray-400 text-sm">Информационная безопасность и управление данными.</p>
                     </div>
                     <div class="p-6 bg-gray-200 rounded-b-2xl mt-auto flex justify-between space-x-4">
                         <button disabled class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold bg-gray-300 text-gray-500 cursor-not-allowed">Инфографика</button>
