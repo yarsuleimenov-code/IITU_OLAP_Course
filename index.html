@@ -31,12 +31,12 @@
 
         /* Стиль для неактивных карточек (заглушек) */
         .card-inactive {
-            border-top: 5px solid #d1d5db; /* Светло-серый бордюр для неактивных */
+            border-top: 5px solid #d1d5db;
             cursor: not-allowed;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); /* Мягкая тень */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
         
-        /* Стили для кнопок действий */
+        /* Стили для кнопки Инфографика (GitHub Green) */
         .btn-lecture {
             background-color: #238636;
             color: white;
@@ -45,6 +45,8 @@
         .btn-lecture:hover {
             background-color: #2ea043;
         }
+        
+        /* Стили для кнопки Презентация (Deep Indigo/Blue) */
         .btn-presentation {
             background-color: #1e3a8a;
             color: white;
@@ -74,13 +76,12 @@
 
     <div class="container mx-auto p-4 md:p-8 max-w-6xl">
 
-        <!-- Навигация: языки и CASPLAN.KZ -->
+        <!-- Навигация и кнопка CasPlan -->
         <nav class="flex justify-between items-center mb-8 pt-2">
             
             <!-- Языковой переключатель -->
             <div class="flex space-x-2">
                 <span class="py-1 px-3 rounded-lg font-semibold bg-sky-600 text-white text-sm shadow-md">RU</span>
-                <!-- Неактивная кнопка для англоязычной версии -->
                 <span title="Англоязычная версия неактивна" class="py-1 px-3 rounded-lg font-semibold bg-gray-300 text-gray-600 text-sm cursor-not-allowed opacity-70">EN</span>
             </div>
             
@@ -102,18 +103,20 @@
         <main>
             <h1 class="text-3xl md:text-4xl font-bold text-center mb-10 text-gray-700">Материалы курса по OLAP-системам</h1>
 
-            <!-- Сетка лекций: 1x1 на мобильных, 2x2 на больших экранах -->
+            <!-- Сетка лекций -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-                <!-- Активные лекции 0-6 -->
-                
+                <!-- ------------------- АКТИВНЫЕ ЛЕКЦИИ (0-7) ------------------- -->
+
+                <!-- ЛЕКЦИЯ 0: Введение -->
                 <div class="card bg-white rounded-2xl shadow-lg">
                     <div class="p-6 flex-grow">
                         <h2 class="text-xl font-bold text-sky-900 mb-3">Лекция 0: 🚀 Введение</h2>
                         <p class="text-gray-700 text-sm">Введение в OLAP и роль в бизнесе. От Excel к многомерному анализу.</p>
                     </div>
+                    <!-- Кнопки: Инфографика (lec0_intro) и Презентация -->
                     <div class="p-6 bg-gray-50 rounded-b-2xl mt-auto flex justify-between space-x-4">
-                        <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/lectures/lecture1/" 
+                        <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/lectures/lec0_intro/" 
                            class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold btn-lecture">
                            Инфографика
                         </a>
@@ -124,13 +127,14 @@
                     </div>
                 </div>
 
+                <!-- ЛЕКЦИЯ 1: Архитектура -->
                 <div class="card bg-white rounded-2xl shadow-lg">
                     <div class="p-6 flex-grow">
                         <h2 class="text-xl font-bold text-sky-900 mb-3">Лекция 1: 🏗️ Архитектура</h2>
                         <p class="text-gray-700 text-sm">Архитектура OLAP-моделей: кубы, измерения, иерархии.</p>
                     </div>
                     <div class="p-6 bg-gray-50 rounded-b-2xl mt-auto flex justify-between space-x-4">
-                        <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/lectures/lecture_1a/" 
+                        <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/lectures/lec1_arch/" 
                            class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold btn-lecture">
                            Инфографика
                         </a>
@@ -142,13 +146,14 @@
                     </div>
                 </div>
                 
+                <!-- ЛЕКЦИЯ 2: IBP -->
                 <div class="card bg-white rounded-2xl shadow-lg">
                     <div class="p-6 flex-grow">
                         <h2 class="text-xl font-bold text-sky-900 mb-3">Лекция 2: 🔗 IBP</h2>
                         <p class="text-gray-700 text-sm">IBP: Интегрированное бизнес-планирование как единая система.</p>
                     </div>
                     <div class="p-6 bg-gray-50 rounded-b-2xl mt-auto flex justify-between space-x-4">
-                        <a href="/IITU_OLAP_Course/lectures/lecture2/"
+                        <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/lectures/lec2_ibp/"
                            class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold btn-lecture">
                           Инфографика
                         </a>
@@ -160,13 +165,14 @@
                       </div>
                     </div>
 
+                <!-- ЛЕКЦИЯ 3: S&OP -->
                 <div class="card bg-white rounded-2xl shadow-lg">
                     <div class="p-6 flex-grow">
                         <h2 class="text-xl font-bold text-sky-900 mb-3">Лекция 3: 📈 S&OP</h2>
                         <p class="text-gray-700 text-sm">S&OP: Планирование продаж и операций для баланса спроса и предложения.</p>
                     </div>
                       <div class="p-6 bg-gray-50 rounded-b-2xl mt-auto flex justify-between space-x-4">
-                        <a href="/IITU_OLAP_Course/lectures/lecture3/"
+                        <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/lectures/lec3_sop/"
                            class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold btn-lecture">
                           Инфографика
                         </a>
@@ -178,13 +184,14 @@
                       </div>
                     </div>
 
+                <!-- ЛЕКЦИЯ 4: Логистика -->
                 <div class="card bg-white rounded-2xl shadow-lg">
                     <div class="p-6 flex-grow">
                         <h2 class="text-xl font-bold text-sky-900 mb-3">Лекция 4: 🚚 Логистика</h2>
                         <p class="text-gray-700 text-sm">Планирование логистики и цепочек поставок.</p>
                     </div>
                     <div class="p-6 bg-gray-50 rounded-b-2xl mt-auto flex justify-between space-x-4">
-                            <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/lectures/lecture4/"
+                            <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/lectures/lec4_log/"
                            class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold btn-lecture">
                           Инфографика
                         </a>
@@ -196,13 +203,14 @@
                     </div>
                 </div>
 
+                <!-- ЛЕКЦИЯ 5: Бюджетирование -->
                 <div class="card bg-white rounded-2xl shadow-lg">
                     <div class="p-6 flex-grow">
                         <h2 class="text-xl font-bold text-sky-900 mb-3">Лекция 5: 💰 Бюджетирование</h2>
                         <p class="text-gray-700 text-sm">Бюджетирование и план-факт анализ: контроль финансов.</p>
                     </div>
                     <div class="p-6 bg-gray-50 rounded-b-2xl mt-auto flex justify-between space-x-4">
-                            <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/lectures/lecture5/"
+                            <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/lectures/lec5_budg/"
                            class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold btn-lecture">
                           Инфографика
                         </a>
@@ -214,13 +222,14 @@
                     </div>
                 </div>
 
+                <!-- ЛЕКЦИЯ 6: Финансовый анализ -->
                 <div class="card bg-white rounded-2xl shadow-lg">
                     <div class="p-6 flex-grow">
                         <h2 class="text-xl font-bold text-sky-900 mb-3">Лекция 6: 🔬 Финансовый анализ</h2>
                         <p class="text-gray-700 text-sm">Управление финансами: методы бюджетирования, "что, если?".</p>
                     </div>
                     <div class="p-6 bg-gray-50 rounded-b-2xl mt-auto flex justify-between space-x-4">
-                            <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/lectures/lecture6/"
+                            <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/lectures/lec6_fin/"
                            class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold btn-lecture">
                           Инфографика
                         </a>
@@ -231,20 +240,30 @@
                         </a>
                     </div>
                 </div>
-
-                <!-- Неактивные лекции 7-9 -->
                 
-                <div class="card card-inactive bg-gray-100 rounded-2xl shadow-md">
+                <!-- ЛЕКЦИЯ 7: KPI (АКТИВНА) -->
+                <div class="card bg-white rounded-2xl shadow-lg">
                     <div class="p-6 flex-grow">
-                        <h2 class="text-xl font-bold text-gray-500 mb-3">Лекция 7: 🎯 KPI</h2>
-                        <p class="text-gray-400 text-sm">KPI и управленческие метрики для оценки эффективности.</p>
+                        <h2 class="text-xl font-bold text-sky-900 mb-3">Лекция 7: 🎯 KPI</h2>
+                        <p class="text-gray-700 text-sm">KPI и управленческие метрики для оценки эффективности.</p>
                     </div>
-                    <div class="p-6 bg-gray-200 rounded-b-2xl mt-auto flex justify-between space-x-4">
-                        <button disabled class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold bg-gray-300 text-gray-500 cursor-not-allowed">Инфографика</button>
-                        <button disabled class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold bg-gray-300 text-gray-500 cursor-not-allowed">Презентация</button>
+                    <div class="p-6 bg-gray-50 rounded-b-2xl mt-auto flex justify-between space-x-4">
+                        <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/lectures/lec7_kpi/"
+                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold btn-lecture">
+                          Инфографика
+                        </a>
+                        <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/docs/lecture7_KPI.pdf" 
+                           target="_blank"
+                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold btn-presentation">
+                           Презентация
+                        </a>
                     </div>
                 </div>
 
+
+                <!-- ------------------- НЕАКТИВНЫЕ ЛЕКЦИИ (8-9) ------------------- -->
+
+                <!-- ЛЕКЦИЯ 8: Безопасность -->
                 <div class="card card-inactive bg-gray-100 rounded-2xl shadow-md">
                     <div class="p-6 flex-grow">
                         <h2 class="text-xl font-bold text-gray-500 mb-3">Лекция 8: 🛡️ Безопасность</h2>
@@ -256,6 +275,7 @@
                     </div>
                 </div>
                 
+                <!-- ЛЕКЦИЯ 9: Будущее -->
                 <div class="card card-inactive bg-gray-100 rounded-2xl shadow-md">
                     <div class="p-6 flex-grow">
                         <h2 class="text-xl font-bold text-gray-500 mb-3">Лекция 9: 🌐 Будущее</h2>
@@ -280,5 +300,3 @@
 
 </body>
 </html>
-
-
