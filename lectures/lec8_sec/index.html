@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-2cale=1.0">
     <title>Инфографика: Безопасность и OLAP</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -10,6 +10,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
+        /* CSS Variables для унификации цветов */
+        :root {
+            --color-primary: #003f5c;   /* Dark Blue */
+            --color-secondary: #58508d; /* Purple */
+            --color-danger: #ff6361;    /* Red */
+            --color-warning: #ffa600;   /* Orange */
+            --color-success: #22c55e;   /* Green */
+            --color-sky: #6ac1e3;
+            --color-sky-dark: #5FA6C7;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f0f4f8;
@@ -38,13 +49,16 @@
             box-shadow: 0 15px 20px -5px rgba(0, 0, 0, 0.1), 0 8px 8px -5px rgba(0, 0, 0, 0.04);
         }
         .header-bg {
-            background: linear-gradient(135deg, #6ac1e3, #5FA6C7);
+            /* Используем CSS Variables для градиента */
+            background: linear-gradient(135deg, var(--color-sky), var(--color-sky-dark));
         }
-        .color-dark-blue { color: #003f5c; }
-        .color-purple { color: #58508d; }
-        .color-red { color: #ff6361; }
-        .color-orange { color: #ffa600; }
-        .color-green { color: #22c55e; }
+        
+        /* Классы для текста, использующие переменные */
+        .color-primary { color: var(--color-primary); }
+        .color-purple { color: var(--color-secondary); }
+        .color-red { color: var(--color-danger); }
+        .color-orange { color: var(--color-warning); }
+        .color-green { color: var(--color-success); }
 
         .flow-step {
             display: flex;
@@ -56,19 +70,6 @@
             font-weight: 600;
             min-height: 60px;
         }
-        .btn-back {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.75rem 1.5rem;
-            background-color: #0d94de;
-            color: white;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
-        }
-        .btn-back:hover {
-            background-color: #0c7cd5;
-        }
     </style>
 </head>
 <body class="text-gray-800 p-4 sm:p-8">
@@ -76,7 +77,7 @@
     <div class="container mx-auto max-w-5xl">
 
         <div class="mb-6">
-            <a href="#" class="inline-flex items-center text-sky-700 hover:text-sky-900 transition-colors font-semibold">
+            <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/" class="inline-flex items-center text-sky-700 hover:text-sky-900 transition-colors font-semibold">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                 </svg>
@@ -98,7 +99,7 @@
             <!-- СЕКЦИЯ 1: Угроза и Доверие (Doughnut Chart) -->
             <section class="max-w-4xl mx-auto">
                 <div class="card p-8 bg-red-50 border-l-4 border-red-600">
-                    <h2 class="text-2xl font-bold mb-3 flex items-center color-dark-blue">
+                    <h2 class="text-2xl font-bold mb-3 flex items-center text-gray-800">
                         <span class="text-3xl mr-3 text-red-500">🔥</span> Угроза №1: Внутренний хаос и инсайдеры
                     </h2>
                     <p class="text-gray-700 mb-6">
@@ -115,7 +116,7 @@
 
             <!-- СЕКЦИЯ 2: Zero Trust Model -->
             <section class="max-w-6xl mx-auto">
-                <h2 class="text-3xl font-bold text-center mb-6 color-dark-blue">Zero Trust: Новая Философия Корпоративной Безопасности</h2>
+                <h2 class="text-3xl font-bold text-center mb-6 color-primary">Zero Trust: Новая Философия Корпоративной Безопасности</h2>
                 <p class="text-center text-lg text-gray-700 mb-8">
                     Модель "Никому не доверяй, всё проверяй" идеально ложится в архитектуру OLAP, требуя многофакторной проверки доступа к критически важным бизнес-данным.
                 </p>
@@ -140,7 +141,7 @@
             
             <!-- СЕКЦИЯ 3: Архитектура Безопасности OLAP (RLS, Аудит, Целостность) -->
             <section class="max-w-6xl mx-auto">
-                <h2 class="text-3xl font-bold text-center mb-6 color-dark-blue">Архитектура Безопасности: RLS, Аудит, Целостность</h2>
+                <h2 class="text-3xl font-bold text-center mb-6 color-primary">Архитектура Безопасности: RLS, Аудит, Целостность</h2>
                 <p class="text-center text-lg text-gray-700 mb-8">
                     Три ключевых механизма OLAP, обеспечивающих гранулярный контроль и защиту на уровне структуры данных.
                 </p>
@@ -196,27 +197,27 @@
 
             <!-- СЕКЦИЯ 4: IT-Фундамент Безопасности -->
             <section class="max-w-6xl mx-auto">
-                <h2 class="text-3xl font-bold text-center mb-6 color-dark-blue">IT-Фундамент: Шифрование и Аутентификация (IAM)</h2>
+                <h2 class="text-3xl font-bold text-center mb-6 color-primary">IT-Фундамент: Шифрование и Аутентификация (IAM)</h2>
                 <p class="text-center text-lg text-gray-700 mb-4">
                     OLAP-платформы строятся на промышленных IT-стандартах, которые защищают данные на этапе хранения и передачи, а также гарантируют доступность. Архитектурно CasPlan может размещаться как в облаке, так и on-premise в контуре организации, что повышает доверие и безопасность.
                 </p>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     
-                    <!-- 1. Шифрование In Transit (было 2) -->
+                    <!-- 1. Шифрование In Transit -->
                     <div class="card text-center border-t-4 border-orange-500 p-6">
                         <h3 class="text-xl font-bold color-orange mb-3">1. Шифрование In Transit (При передаче)</h3>
                         <div class="text-4xl mb-3">🔗</div>
                         <p class="text-sm text-gray-600">Защита API и веб-трафика с помощью <strong>HTTPS/TLS</strong>. Это гарантирует, что данные между сервером и браузером не могут быть перехвачены.</p>
                     </div>
 
-                    <!-- 2. IAM: SSO/MFA (было 3) -->
+                    <!-- 2. IAM: SSO/MFA -->
                     <div class="card text-center border-t-4 border-purple-500 p-6">
                         <h3 class="text-xl font-bold color-purple mb-3">2. IAM: SSO и MFA</h3>
                         <div class="text-4xl mb-3">👤</div>
                         <p class="text-sm text-gray-600">Идентификация и доступ (IAM) через <strong>SSO (Single Sign-On)</strong> и <strong>MFA (Многофакторная аутентификация)</strong> - обязательный стандарт для корпоративных систем.</p>
                     </div>
 
-                    <!-- 3. Availability: BCP/DR (было 4) -->
+                    <!-- 3. Availability: BCP/DR -->
                     <div class="card text-center border-t-4 border-green-500 p-6">
                         <h3 class="text-xl font-bold color-green mb-3">3. Availability: BCP и DR</h3>
                         <div class="text-4xl mb-3">⚡</div>
@@ -228,7 +229,7 @@
             <!-- СЕКЦИЯ 5: TCO (Bar Chart) -->
             <section class="max-w-4xl mx-auto">
                  <div class="card p-8 bg-sky-50 border-l-4 border-sky-600">
-                    <h2 class="text-2xl font-bold mb-3 flex items-center color-dark-blue">
+                    <h2 class="text-2xl font-bold mb-3 flex items-center color-primary">
                         <span class="text-3xl mr-3 text-sky-600">💵</span> Бизнес-кейс: Экономика Безопасности (TCO)
                     </h2>
                     <p class="text-gray-700 mb-6">
@@ -245,11 +246,11 @@
 
         </main>
 
-        <!-- FOOTER (Оформлен по образцу) -->
+        <!-- FOOTER -->
         <footer class="text-center mt-12 py-6 border-t border-gray-300">
             <div class="flex flex-col items-center">
                 <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/"
-                   class="btn-back mb-4">
+                   class="inline-flex items-center px-6 py-3 bg-sky-600 text-white rounded-lg shadow hover:bg-sky-700 transition duration-300 mb-4">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                     </svg>
@@ -266,6 +267,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // JS константы для цветов, используемые в Chart.js
             const colors = {
                 blue: 'rgb(59, 130, 246)',
                 red: 'rgb(239, 68, 68)',
@@ -274,6 +276,7 @@
                 softPurple: '#58508d'
             };
 
+            // Общий колбэк для тултипов в Chart.js
             const mandatoryTooltipCallback = {
                 title: function(tooltipItems) {
                     const item = tooltipItems[0];
@@ -286,6 +289,7 @@
                 }
             };
 
+            // Общие опции для всех графиков
             const commonChartOptions = {
                 responsive: true,
                 maintainAspectRatio: false,
@@ -302,12 +306,13 @@
                 }
             };
 
-            // 1. Threats Doughnut Chart
+            // 1. Диаграмма "Источники угроз" (Doughnut Chart)
             const threatsChartCtx = document.getElementById('threatsChart');
             if (threatsChartCtx) {
                 new Chart(threatsChartCtx, {
                     type: 'doughnut',
                     data: {
+                        // Массивы для меток, чтобы Chart.js корректно переносил текст
                         labels: ['Внутренние ошибки (55%)', 'Инсайдеры (злоумышл. 25%)', 'Внешние атаки (20%)'].map(l => l.split(' ')),
                         datasets: [{
                             label: 'Источники киберугроз',
@@ -334,7 +339,7 @@
                 });
             }
             
-            // 2. TCO Risk Bar Chart
+            // 2. Диаграмма "Экономика Безопасности (TCO)" (Bar Chart)
             const tcoLabels = [
                 ['TCO без OLAP', '(Высокий риск)'],
                 ['TCO с OLAP', '(Риски под контролем)']
