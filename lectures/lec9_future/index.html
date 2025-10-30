@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Инфографика: OLAP - Универсальный Мост в Будущее Планирования</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; 
+            color: #1f2937;
+        }
+        .card {
+            background-color: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .header-bg {
+            background: linear-gradient(135deg, #6ac1e3, #5FA6C7); 
+        }
+        .final-conclusion {
+            background: linear-gradient(135deg, #4f46e5, #9333ea);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 1rem;
+            text-align: center;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            margin-top: auto;
+        }
+        .chart-container-large {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            margin-top: auto;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+            .chart-container-large {
+                height: 400px;
+            }
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-dark-ref': '#003f5c',
+                        'accent-teal-ref': '#0d9488',
+                        'accent-red-ref': '#ff6361',
+                        'accent-orange-ref': '#ffa600',
+                        'accent-purple-ref': '#58508d',
+                        'base-gray-ref': '#f0f4f8',
+                        'text-dark-ref': '#1f2937',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-base-gray-ref text-text-dark-ref p-4 sm:p-8">
+
+    <div class="container mx-auto max-w-5xl">
+        
+        <!-- Кнопка Назад в Шапке -->
+        <div class="mb-4">
+            <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/" class="inline-flex items-center text-sky-700 hover:text-sky-900 transition-colors font-semibold">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                <span>Назад к списку лекций</span>
+            </a>
+        </div>
+
+        <header class="text-center mb-12 p-8 rounded-2xl header-bg text-white shadow-xl">
+            <!-- Логотип CasPlan (Обновлено на предоставленный путь) -->
+            <img src="/IITU_OLAP_Course/assets/Logo-white.png"
+                 alt="Casplan Logo"
+                 class="mx-auto mb-6 h-10 md:h-12">
+            <!-- /Логотип CasPlan -->
+            <h1 class="text-3xl md:text-5xl font-bold mb-2">OLAP: Универсальный Мост в Будущее Планирования</h1>
+            <p class="text-lg md:text-xl mt-2 text-sky-200">
+                OLAP - язык принятия решений. Он превращает хаос данных в структурированные срезы и служит фундаментом для Интегрированного Бизнес-Планирования (IBP).
+            </p>
+        </header>
+
+        <main class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            <section class="md:col-span-1 card border-t-4 border-accent-red-ref">
+                <h2 class="text-2xl font-bold text-accent-red-ref mb-3">Финансы: Моделирование "Что, если?"</h2>
+                <p class="text-gray-600 mb-4">
+                    OLAP позволяет мгновенно пересчитывать P&L и Cash Flow при изменении любого фактора, например, курса валют. Это превращает "Анализ чувствительности" из недельной задачи в минутное дело, давая менеджменту реальные сценарии для принятия решений.
+                </p>
+                <div class="chart-container">
+                    <canvas id="financeChart"></canvas>
+                </div>
+            </section>
+
+            <section class="md:col-span-1 card border-t-4 border-accent-orange-ref">
+                <h2 class="text-2xl font-bold text-accent-orange-ref mb-3">HR: От Кадров к Капиталу</h2>
+                <p class="text-gray-600 mb-4">
+                    Планирование Фонда Оплаты Труда (ФОТ) - сложная, многомерная задача. OLAP-системы, как Casplan, связывают HR-модель (ставки, налоги, бонусы) напрямую с финансовым планом, показывая, как найм одного сотрудника влияет на годовую прибыль.
+                </p>
+                <div class="chart-container">
+                    <canvas id="hrChart"></canvas>
+                </div>
+            </section>
+
+            <section class="md:col-span-2 card">
+                <h2 class="text-2xl font-bold text-primary-dark-ref mb-3">Логистика и Supply Chain: Сокращение "Пробелов"</h2>
+                <p class="text-gray-600 mb-4">
+                    В логистике OLAP прогнозирует спрос по тысячам срезов (Товар x Склад x Регион x Время). Это позволяет выявлять "узкие места" (bottlenecks) до того, как они парализуют работу, предотвращая дефицит или затоваривание складов.
+                </p>
+                <div class="chart-container-large">
+                    <canvas id="logisticsChart"></canvas>
+                </div>
+            </section>
+
+            <section class="md:col-span-1 card border-t-4 border-accent-teal-ref">
+                <h2 class="text-2xl font-bold text-accent-teal-ref mb-3">Кейс: Ритейл (Идеальный Ассортимент)</h2>
+                <p class="text-gray-600 mb-4">
+                    Для ритейла OLAP - ключ к выживанию в "войне за полку". Анализируя продажи по срезам (Магазин x Категория x Время x Покупатель), категорийный менеджер может моделировать цены и ассортимент для максимизации маржинальности всей категории.
+                </p>
+                <div class="chart-container">
+                    <canvas id="retailChart"></canvas>
+                </div>
+            </section>
+            
+            <section class="md:col-span-1 card border-t-4 border-accent-purple-ref">
+                <h2 class="text-2xl font-bold text-accent-purple-ref mb-3">Кейс: Производство (Оптимизация Мощностей)</h2>
+                <p class="text-gray-600 mb-4">
+                    OLAP связывает физический план (часы работы станка, килограммы сырья) с финансовым планом (деньги). Система мгновенно подсвечивает "красные флаги", если план продаж требует 750 часов работы от станка, который может работать только 600.
+                </p>
+                <div class="space-y-4 mt-auto p-4 bg-gray-50 rounded-lg border border-gray-200">
+                    <div class="flex items-center space-x-3">
+                        <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-accent-teal-ref text-white rounded-full font-bold">1</span>
+                        <p class="font-semibold text-gray-700">Прогноз Спроса (OLAP)</p>
+                    </div>
+                    <div class="ml-4 h-6 border-l-2 border-accent-teal-ref border-dashed"></div>
+                    <div class="flex items-center space-x-3">
+                        <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-accent-teal-ref text-white rounded-full font-bold">2</span>
+                        <p class="font-semibold text-gray-700">План Ресурсов (Материалы)</p>
+                    </div>
+                    <div class="ml-4 h-6 border-l-2 border-red-500 border-dashed"></div>
+                    <div class="flex items-center space-x-3">
+                        <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-red-600 text-white rounded-full font-bold">!</span>
+                        <p class="font-semibold text-red-600">Узкое Место: Станок (OLAP)</p>
+                    </div>
+                    <div class="ml-4 h-6 border-l-2 border-accent-teal-ref border-dashed"></div>
+                    <div class="flex items-center space-x-3">
+                        <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-accent-teal-ref text-white rounded-full font-bold">3</span>
+                        <p class="font-semibold text-gray-700">Корректировка Плана (IBP)</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="md:col-span-2 card">
+                <h2 class="text-2xl font-bold text-primary-dark-ref mb-3">Будущее: AI + OLAP = Рациональное Планирование</h2>
+                <p class="text-gray-600 mb-6">
+                    AI - это турбо-ускоритель для OLAP. OLAP поставляет качественные, структурированные данные, а AI находит в них скрытые паттерны (например, влияние погоды или новостей на спрос). Однако AI несет риски "черного ящика" и смещения данных. В будущем лучший результат даст формула: <strong>IBP + Человек (Стратегия) + AI (Инсайты)</strong>.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+                    <div class="border-2 border-accent-teal-ref rounded-lg p-4 text-center shadow-lg transition-shadow hover:shadow-xl">
+                        <p class="text-5xl mb-3 text-accent-teal-ref" aria-hidden="true">🤖</p>
+                        <h3 class="text-xl font-bold text-accent-teal-ref">AI (Инсайты)</h3>
+                        <p class="text-sm mt-2 text-gray-600">Прогнозы, поиск паттернов, "Черный ящик", рекомендации</p>
+                    </div>
+                    <div class="border-2 border-primary-dark-ref rounded-lg p-4 text-center shadow-lg transition-shadow hover:shadow-xl">
+                        <p class="text-5xl mb-3 text-primary-dark-ref" aria-hidden="true">👤</p>
+                        <h3 class="text-xl font-bold text-primary-dark-ref">Человек (Стратегия)</h3>
+                        <p class="text-sm mt-2 text-gray-600">Контроль, этика, проверка гипотез, принятие решений</p>
+                    </div>
+                    <div class="border-2 border-accent-red-ref rounded-lg p-4 text-center shadow-lg transition-shadow hover:shadow-xl">
+                        <p class="text-5xl mb-3 text-accent-red-ref" aria-hidden="true">🧊</p>
+                        <h3 class="text-xl font-bold text-accent-red-ref">OLAP (Данные)</h3>
+                        <p class="text-sm mt-2 text-gray-600">Структура, модели "Что, если?", интеграция планов (IBP)</p>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="md:col-span-2 final-conclusion">
+                <div class="flex items-center justify-center mb-4">
+                    <span class="text-4xl mr-3">💡</span>
+                    <h2 class="text-3xl font-bold">Ключевые Выводы</h2>
+                </div>
+                <ul class="space-y-3 list-disc list-inside mb-6 text-left max-w-xl mx-auto">
+                    <li><strong>OLAP универсален:</strong> Эффективен для финансов, HR, логистики и производства.</li>
+                    <li><strong>IBP связывает:</strong> Все планы (ФОТ, запасы, финансы) работают как единый организм.</li>
+                    <li><strong>Casplan-подобные системы</strong> дают скорость Excel при мощности многомерного куба.</li>
+                    <li><strong>Будущее за AI + OLAP:</strong> AI дает точный прогноз, но человек остается главным стратегом.</li>
+                </ul>
+                <p class="text-xl font-semibold border-t border-sky-400 pt-6 mt-6">
+                    🚀 <strong>Главная Мысль:</strong> OLAP - это не просто инструмент, это мышление менеджера, которое позволяет принимать решения, основанные на данных, а не на интуиции.
+                </p>
+            </footer>
+
+        </main>
+        
+        <!-- Финальный подвал с кнопкой и ссылкой -->
+        <footer class="text-center mt-12 py-6 border-t border-gray-300">
+             <div class="mt-6">
+                <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/"
+                   class="inline-flex items-center px-6 py-3 bg-sky-600 text-white rounded-lg shadow hover:bg-sky-700 transition duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                    Назад к списку лекций
+                </a>
+            </div>
+            <p class="text-gray-600 text-sm mt-4">
+                Платформа CasPlan | Узнайте больше на <a href="#" class="text-sky-700 hover:text-sky-900 font-medium">CasPlan.tech</a>
+            </p>
+        </footer>
+
+    </div>
+
+    <script>
+        (function() {
+            
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                if (!item) return '';
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                }
+                return label;
+            };
+
+            function wrapLabels(label, maxWidth = 16) {
+                if (typeof label !== 'string' || label.length <= maxWidth) {
+                    return label;
+                }
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + ' ' + word).trim().length > maxWidth) {
+                        if (currentLine) {
+                            lines.push(currentLine);
+                        }
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                }
+                if (currentLine) {
+                    lines.push(currentLine);
+                }
+                return lines.length > 0 ? lines : label;
+            }
+
+            const defaultOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    },
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: '#1f2937' 
+                        }
+                    }
+                },
+                scales: {
+                    y: { 
+                        beginAtZero: true,
+                        ticks: { color: '#1f2937' }
+                    },
+                    x: { 
+                        ticks: { 
+                            color: '#1f2937',
+                            maxRotation: 0,
+                            minRotation: 0,
+                            autoSkip: true
+                        } 
+                    }
+                }
+            };
+            
+            const chartColors = {
+                primaryDark: '#003f5c',
+                accentTeal: '#0d9488',
+                accentRed: '#ff6361',
+                accentOrange: '#ffa600',
+                accentPurple: '#58508d',
+                gray: '#e5e7eb'
+            };
+
+            const financeCtx = document.getElementById('financeChart')?.getContext('2d');
+            if (financeCtx) {
+                new Chart(financeCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['ФОТ', 'Маркетинг', 'Логистика', 'Операционные расходы', 'Прочее'],
+                        datasets: [{
+                            label: 'Структура бюджета',
+                            data: [45, 20, 15, 10, 10],
+                            backgroundColor: [
+                                chartColors.accentRed,
+                                chartColors.accentOrange,
+                                chartColors.accentPurple,
+                                chartColors.accentTeal,
+                                chartColors.gray
+                            ],
+                            borderColor: '#FFFFFF',
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            tooltip: {
+                                callbacks: {
+                                    title: tooltipTitleCallback
+                                }
+                            },
+                            legend: {
+                                position: 'right',
+                                labels: { color: '#1f2937' }
+                            },
+                            title: {
+                                display: true,
+                                text: 'Сценарий 1: Структура Бюджета',
+                                color: '#1f2937',
+                                font: { size: 16 }
+                            }
+                        }
+                    }
+                });
+            }
+
+            const hrCtx = document.getElementById('hrChart')?.getContext('2d');
+            if (hrCtx) {
+                const hrLabels = [
+                    'Отдел Продаж', 
+                    'Разработка (R&D)', 
+                    'Маркетинг', 
+                    'Администрация'
+                ].map(label => wrapLabels(label, 16));
+
+                new Chart(hrCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: hrLabels,
+                        datasets: [{
+                            label: 'ФОТ (млн руб.)',
+                            data: [120, 95, 60, 45],
+                            backgroundColor: chartColors.accentOrange,
+                            borderRadius: 4
+                        }]
+                    },
+                    options: {
+                        ...defaultOptions,
+                        plugins: {
+                            ...defaultOptions.plugins,
+                            title: {
+                                display: true,
+                                text: 'ФОТ по Департаментам',
+                                color: '#1f2937',
+                                font: { size: 16 }
+                            },
+                            legend: { display: false }
+                        }
+                    }
+                });
+            }
+
+            const logisticsCtx = document.getElementById('logisticsChart')?.getContext('2d');
+            if (logisticsCtx) {
+                new Chart(logisticsCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
+                        datasets: [
+                            {
+                                label: 'Прогноз (OLAP)',
+                                data: [120, 130, 140, 150, 145, 160, 180, 175, 170, 160, 190, 210],
+                                borderColor: chartColors.primaryDark,
+                                backgroundColor: 'rgba(0, 63, 92, 0.1)',
+                                fill: true,
+                                tension: 0.3
+                            },
+                            {
+                                label: 'Факт',
+                                data: [115, 135, 138, 155, 140, 165, 175, 180, 165, 162, 185, 205],
+                                borderColor: chartColors.accentTeal,
+                                backgroundColor: 'rgba(13, 148, 136, 0.1)',
+                                fill: false,
+                                tension: 0.3
+                            }
+                        ]
+                    },
+                    options: {
+                        ...defaultOptions,
+                        plugins: {
+                            ...defaultOptions.plugins,
+                            title: {
+                                display: true,
+                                text: 'Прогноз Спроса vs. Факт (Единиц Товара)',
+                                color: '#1f2937',
+                                font: { size: 16 }
+                            }
+                        }
+                    }
+                });
+            }
+
+            const retailCtx = document.getElementById('retailChart')?.getContext('2d');
+            if (retailCtx) {
+                const retailLabels = [
+                    'Молочная Продукция', 
+                    'Выпечка', 
+                    'Напитки', 
+                    'Бакалея'
+                ].map(label => wrapLabels(label, 16));
+
+                new Chart(retailCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: retailLabels,
+                        datasets: [
+                            {
+                                label: 'Маржа',
+                                data: [40, 60, 50, 30],
+                                backgroundColor: chartColors.accentTeal,
+                                stack: 'Stack 0',
+                            },
+                            {
+                                label: 'Себестоимость',
+                                data: [60, 40, 50, 70],
+                                backgroundColor: chartColors.gray,
+                                stack: 'Stack 0',
+                            }
+                        ]
+                    },
+                    options: {
+                        ...defaultOptions,
+                        scales: {
+                            x: { stacked: true, ...defaultOptions.scales.x },
+                            y: { stacked: true, ...defaultOptions.scales.y }
+                        },
+                        plugins: {
+                            ...defaultOptions.plugins,
+                            title: {
+                                display: true,
+                                text: 'Структура Продаж по Категориям',
+                                color: '#1f2937',
+                                font: { size: 16 }
+                            }
+                        }
+                    }
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
