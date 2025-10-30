@@ -1,1 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographics: OLAP in Logistics and SCM Planning</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; 
+            color: #1f2937;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .card-style { 
+            background-color: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-style:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .header-bg {
+            background: linear-gradient(135deg, #6ac1e3, #5FA6C7); 
+        }
+        .flow-arrow {
+            font-size: 2rem;
+            color: #58508d; 
+        }
+        /* Styles for IBP Indicator */
+        .ibp-step {
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: all 0.3s;
+        }
+        .ibp-active-logistics {
+            background-color: #58508d; /* Purple/Indigo for Supply/Logistics */
+            color: white;
+            box-shadow: 0 4px 6px rgba(88, 80, 141, 0.4);
+        }
+    </style>
+</head>
+<body class="text-gray-800 p-4 sm:p-8">
+
+    <div class="container mx-auto max-w-5xl">
+
+        <!-- Back Button (Start) -->
+        <div class="mb-4">
+            <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/en/index.html" class="inline-flex items-center text-sky-700 hover:text-sky-900 transition-colors font-semibold">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                <span>Back to Lecture List</span>
+            </a>
+        </div>
+        <!-- Back Button (End) -->
+
+        <header class="text-center mb-12 p-8 rounded-2xl header-bg text-white shadow-xl">
+            <!-- Logo (Start) -->
+            <img src="/IITU_OLAP_Course/assets/Logo-white.png"
+                 alt="Casplan Logo"
+                 class="mx-auto mb-6 h-16">
+            <!-- Logo (End) -->
+
+            <h1 class="text-3xl md:text-5xl font-bold mb-2">Logistics and Supply Chain Planning</h1>
+            <p class="text-lg md:text-xl mt-2 text-sky-200">The engine of integrated business planning that connects company strategy with daily actions.</p>
+        </header>
+        
+        <!-- IBP Cycle Indicator (Start) -->
+        <div class="mb-10 p-4 bg-white rounded-lg shadow-md border-b-2 border-gray-100 overflow-x-auto">
+            <h3 class="text-sm font-bold text-gray-700 mb-2">Our Path in IBP</h3>
+            <div class="flex space-x-4 items-center justify-between min-w-max">
+                 <span class="ibp-step bg-gray-200 text-gray-600">S&OP (Demand)</span>
+                <span class="text-gray-400">→</span>
+                <span class="ibp-step ibp-active-logistics">Logistics (Supply)</span>
+                <span class="text-gray-400">→</span>
+                <span class="ibp-step bg-gray-200 text-gray-600">Budgeting</span>
+                <span class="text-gray-400">→</span>
+                <span class="ibp-step bg-gray-200 text-gray-600">Financial Analysis</span>
+            </div>
+        </div>
+        <!-- IBP Cycle Indicator (End) -->
+
+        <main class="space-y-8">
+            <section id="pains">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 text-[#003f5c]">I. The Two Main Pains of Logistics</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="card-style flex flex-col items-center text-center p-6 border-l-4 border-[#ff6361]">
+                        <span class="text-6xl mb-4 text-[#ff6361]">❌</span>
+                        <h3 class="text-2xl font-semibold mb-2 text-[#ff6361]">Stock-Out</h3>
+                        <p class="text-gray-600">Inaccurate forecasting and supply chain disruptions lead to empty shelves.</p>
+                        <div class="mt-4 text-2xl font-bold text-[#ff6361]">-15% Annual Revenue</div>
+                        <p class="text-sm text-gray-500">(Lost sales and penalties)</p>
+                    </div>
+                    <div class="card-style flex flex-col items-center text-center p-6 border-l-4 border-[#ffa600]">
+                        <span class="text-6xl mb-4 text-[#ffa600]">📦</span>
+                        <h3 class="text-2xl font-semibold mb-2 text-[#ffa600]">Overstock</h3>
+                        <p class="text-gray-600">Over-insurance and incorrect inventory calculation freeze capital.</p>
+                        <div class="mt-4 text-2xl font-bold text-[#ffa600]">+25% Storage Costs</div>
+                        <p class="text-sm text-gray-500">(Rent, personnel, obsolescence)</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="olap-solution" class="text-center my-12">
+                 <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 text-[#003f5c]">II. How OLAP Solves These Problems</h2>
+                 <p class="max-w-3xl mx-auto text-gray-600 mb-8">An OLAP system like CasPlan translates the abstract sales plan into concrete, executable, and financially optimal logistics tasks.</p>
+                 <div class="flex flex-col md:flex-row items-center justify-center gap-4">
+                    <div class="card-style p-4 w-full md:w-1/4">
+                        <h3 class="font-bold text-lg text-[#003f5c]">Sales Plan</h3>
+                        <p class="text-sm text-gray-500">100,000 units of goods</p>
+                    </div>
+                    <div class="flow-arrow font-bold transform md:rotate-0 rotate-90">→</div>
+                     <div class="card-style p-4 w-full md:w-1/3 border-2 border-[#58508d] bg-indigo-50">
+                        <h3 class="font-bold text-lg text-[#58508d]">CasPlan OLAP Core</h3>
+                        <p class="text-sm text-gray-500">3D Analysis (SKU x Time x Location)</p>
+                    </div>
+                    <div class="flow-arrow font-bold transform md:rotate-0 rotate-90">→</div>
+                    <div class="card-style p-4 w-full md:w-1/4">
+                        <h3 class="font-bold text-lg text-[#003f5c]">Logistics Plan</h3>
+                        <p class="text-sm text-gray-500">18 trucks, 1500 units inventory</p>
+                    </div>
+                 </div>
+            </section>
+
+            <section id="deep-dive" class="my-12">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 text-[#003f5c]">III. Key Planning Tasks in OLAP</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- 1. Inventory Forecasting -->
+                    <div class="card-style p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-[#58508d]">1. Inventory Forecasting</h3>
+                        <p class="text-gray-600 mb-4">The key task is to determine the required Safety Stock (SS) dynamics over the planning horizon. The OLAP system recalculates SS monthly, taking into account seasonality and the projected inaccuracy of demand and supply.</p>
+                        <div class="chart-container"><canvas id="safetyStockChart"></canvas></div>
+                    </div>
+                    <!-- 2. Transportation Planning -->
+                    <div class="card-style p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-[#003f5c]">2. Transportation Planning</h3>
+                        <p class="text-gray-600 mb-4">OLAP translates the sales plan into a specific number of transport units. This allows peak loads to be anticipated and costs to be optimized, for example, by selecting the mode of transport or consolidating shipments.</p>
+                        <div class="chart-container"><canvas id="transportChart"></canvas></div>
+                    </div>
+                    <!-- 3. Warehouse Utilization (Interactive) -->
+                    <div class="card-style p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-[#ffa600]">3. Warehouse Utilization</h3>
+                        <p class="text-gray-600 mb-4">Select a warehouse to see where the planned load exceeds maximum capacity (bottleneck). Capacity deficit = unplanned rental expenses.</p>
+                        
+                        <!-- Warehouse Selector -->
+                        <select id="warehouseSelector" class="w-full mb-4 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#ffa600] focus:border-transparent">
+                            <option value="Sklad_A">Warehouse A (Astana)</option>
+                            <option value="Sklad_B">Warehouse B (Almaty)</option>
+                            <option value="Sklad_C">Warehouse C (Atyrau)</option>
+                        </select>
+                        
+                        <div class="chart-container"><canvas id="storageChart"></canvas></div>
+                    </div>
+                    <!-- 4. Procurement Planning -->
+                    <div class="card-style p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-[#bc5090]">4. Procurement Planning</h3>
+                        <p class="text-gray-600 mb-4">Assessing the need for Raw Materials based on the Production Plan, which is critical for maintaining supply chain continuity. <strong>The chart shows a potential deficit for key raw materials.</strong></p>
+                        <div class="chart-container"><canvas id="procurementChart"></canvas></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="ibp" class="my-12">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 text-[#003f5c]">IV. Logistics and Finance Integration (IBP)</h2>
+                <p class="max-w-3xl mx-auto text-center text-gray-600 mb-8">In an IBP system, the logistics plan is a driver for the financial plan. Every logistics decision is automatically and instantly reflected in the company's final profit.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                    <div class="card-style p-6">
+                        <h3 class="text-lg font-semibold text-[#58508d]">Logistics Drivers</h3>
+                        <ul class="text-left mt-4 space-y-2 list-disc list-inside text-gray-600">
+                            <li>Transportation cost</li>
+                            <li>Storage expenses</li>
+                            <li>Safety stock volume</li>
+                        </ul>
+                    </div>
+                    <div class="flex items-center justify-center flow-arrow font-bold transform md:rotate-0 rotate-90">→</div>
+                    <div class="card-style p-6">
+                         <h3 class="text-lg font-semibold text-[#ff6361]">Financial Effect (P&L)</h3>
+                        <ul class="text-left mt-4 space-y-2 list-disc list-inside text-gray-600">
+                            <li class="text-[#ff6361]">Increase in COGS (Cost of Goods Sold)</li>
+                            <li class="text-[#ffa600]">Increase in OpEx (Operating Expenses)</li>
+                            <li class="text-[#003f5c]">Change in Working Capital</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="scenarios" class="my-12">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 text-[#003f5c]">V. Scenario Modeling: Choosing the Optimal Solution</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="card-style p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-[#58508d]">Case: Comparing Carriers</h3>
+                        <p class="text-gray-600">The choice is between a reliable but expensive carrier "A" and a cheap but risky "B". OLAP analysis shows that the low transport costs of "B" are offset by much higher costs for storing increased safety stock, making "A" the more profitable solution in terms of final profit. <strong>The comparison shows that Plan A, despite more expensive transport, ensures higher final profit (EBITDA).</strong></p>
+                    </div>
+                    <div class="card-style p-6">
+                        <h3 class="text-lg font-semibold mb-4 text-center text-[#003f5c]">Comparison of Total Cost for Two Plans (in thousands $)</h3>
+                        <div class="chart-container"><canvas id="scenarioChart"></canvas></div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+        
+        <!-- Footer with "Back to Lecture List" Button (Start) -->
+        <footer class="text-center mt-12 py-6 border-t border-gray-300">
+            <p class="text-gray-600">OLAP in logistics is the operating system for a modern, flexible, and strategically oriented business.</p>
+            
+            <div class="mt-6">
+                <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/en/index.html"
+                   class="inline-flex items-center px-6 py-3 bg-sky-600 text-white rounded-lg shadow hover:bg-sky-700 transition duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                    Back to Lecture List
+                </a>
+            </div>
+        </footer>
+        <!-- Footer with "Back to Lecture List" Button (End) -->
+
+    </div>
+
+    <script>
+        const chartColors = {
+            darkBlue: '#003f5c',
+            purple: '#58508d',
+            magenta: '#bc5090',
+            red: '#ff6361',
+            orange: '#ffa600',
+            skyBlue: '#6ac1e3',
+            textColor: 'rgba(0, 0, 0, 0.8)',
+            gridColor: 'rgba(0, 0, 0, 0.1)'
+        };
+
+        const wrapLabel = (label) => {
+            const maxLength = 16;
+            if (typeof label !== 'string' || label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).trim().length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            }
+            if (currentLine) {
+                lines.push(currentLine.trim());
+            }
+            return lines;
+        };
+        
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+
+        const defaultChartOptions = {
+            maintainAspectRatio: false,
+            responsive: true,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: chartColors.textColor
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: { color: chartColors.textColor },
+                    grid: { color: chartColors.gridColor }
+                },
+                x: {
+                    ticks: { color: chartColors.textColor },
+                    grid: { color: chartColors.gridColor }
+                }
+            }
+        };
+
+        // --- Data for interactive storage chart (Task 3) ---
+        const warehouseData = {
+            Sklad_A: {
+                capacity: 3500,
+                load: [3000, 3200, 3500, 3800, 3600, 3400],
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']
+            },
+            Sklad_B: {
+                capacity: 5000,
+                load: [4000, 4200, 4500, 4800, 5200, 5500],
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']
+            },
+            Sklad_C: {
+                capacity: 2000,
+                load: [1500, 1800, 2100, 2300, 1900, 1700],
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']
+            }
+        };
+        
+        let storageChartInstance = null;
+        
+        function updateStorageChart(warehouseId) {
+            const data = warehouseData[warehouseId];
+            if (!data) return;
+            
+            const maxCapacity = data.capacity;
+            const loadData = data.load;
+            
+            const datasets = [
+                {
+                    label: 'Planned Load (pallet spots)',
+                    data: loadData,
+                    backgroundColor: loadData.map(d => d > maxCapacity ? chartColors.red : chartColors.orange),
+                    type: 'bar',
+                    order: 2,
+                },
+                {
+                    label: 'Max Capacity',
+                    data: Array(loadData.length).fill(maxCapacity),
+                    borderColor: chartColors.darkBlue,
+                    backgroundColor: 'transparent',
+                    borderWidth: 2,
+                    borderDash: [5, 5],
+                    type: 'line',
+                    pointRadius: 0,
+                    pointHoverRadius: 0,
+                    order: 1,
+                }
+            ];
+            
+            if (storageChartInstance) {
+                storageChartInstance.data.labels = data.labels;
+                storageChartInstance.data.datasets = datasets;
+                storageChartInstance.options.scales.y.suggestedMax = maxCapacity * 1.2;
+                storageChartInstance.update();
+            } else {
+                const ctx = document.getElementById('storageChart').getContext('2d');
+                storageChartInstance = new Chart(ctx, {
+                    data: {
+                        labels: data.labels.map(wrapLabel),
+                        datasets: datasets
+                    },
+                    options: {
+                        ...defaultChartOptions,
+                        scales: {
+                            ...defaultChartOptions.scales,
+                            y: {
+                                ...defaultChartOptions.scales.y,
+                                suggestedMax: maxCapacity * 1.2,
+                                title: { display: true, text: 'Volume (pallet spots)' }
+                            },
+                            x: {
+                                ...defaultChartOptions.scales.x,
+                                stacked: false
+                            }
+                        },
+                         plugins: {
+                            ...defaultChartOptions.plugins,
+                            tooltip: {
+                                callbacks: {
+                                    ...defaultChartOptions.plugins.tooltip.callbacks,
+                                    label: (context) => {
+                                        let label = context.dataset.label || '';
+                                        if (context.parsed.y !== null) {
+                                            label += `: ${context.parsed.y}`;
+                                        }
+                                        if (context.dataset.type === 'bar' && context.parsed.y > maxCapacity) {
+                                            label += ` (DEFICIT!)`;
+                                        }
+                                        return label;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const selector = document.getElementById('warehouseSelector');
+            if (selector) {
+                selector.addEventListener('change', (e) => updateStorageChart(e.target.value));
+                // Initial load
+                updateStorageChart(selector.value);
+            }
+        });
+        
+        // --- End of dynamic storage chart implementation ---
+
+        // 1. Inventory Forecasting 
+        new Chart(document.getElementById('safetyStockChart'), {
+            type: 'line',
+            data: {
+                labels: ['Jan 25', 'Feb 25', 'Mar 25', 'Apr 25', 'May 25', 'Jun 25'].map(wrapLabel),
+                datasets: [{
+                    label: 'Planned SS Volume (units)',
+                    data: [1500, 1450, 1600, 1800, 1750, 1950],
+                    borderColor: chartColors.purple,
+                    backgroundColor: 'rgba(88, 80, 141, 0.2)',
+                    fill: true,
+                    tension: 0.4
+                },
+                {
+                    label: 'Demand Forecast (units)',
+                    data: [1440, 1360, 1600, 2000, 1760, 2267], 
+                    borderColor: chartColors.red,
+                    backgroundColor: chartColors.red,
+                    fill: false,
+                    tension: 0.4,
+                    pointRadius: 4,
+                    pointHoverRadius: 6
+                }]
+            },
+            options: defaultChartOptions
+        });
+
+        // 2. Transportation Planning
+        new Chart(document.getElementById('transportChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'].map(wrapLabel),
+                datasets: [
+                    {
+                        label: 'Product A',
+                        data: [12, 19, 10, 15, 8, 14],
+                        backgroundColor: chartColors.darkBlue,
+                    },
+                    {
+                        label: 'Product B',
+                        data: [8, 12, 15, 11, 18, 22],
+                        backgroundColor: chartColors.magenta,
+                    },
+                    {
+                        label: 'Product C',
+                        data: [5, 6, 8, 10, 7, 9],
+                        backgroundColor: chartColors.orange, 
+                    },
+                    {
+                        label: 'Product D',
+                        data: [3, 4, 5, 6, 8, 5],
+                        backgroundColor: chartColors.red, 
+                    }
+                ]
+            },
+            options: { 
+                ...defaultChartOptions, 
+                scales: { 
+                    x: { stacked: true, title: { display: true, text: 'Month' } }, 
+                    y: { 
+                        stacked: true, 
+                        title: { display: true, text: 'Number of Trucks' },
+                        ...defaultChartOptions.scales.y 
+                    } 
+                } 
+            }
+        });
+
+        
+        // V. Scenario Modeling: Simplified Stacked Bar
+        new Chart(document.getElementById('scenarioChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Plan A (Reliable)', 'Plan B (Risky)'].map(wrapLabel),
+                datasets: [
+                    {
+                        label: 'Transportation Costs (COGS)',
+                        data: [120, 80], // 120K vs 80K
+                        backgroundColor: chartColors.darkBlue,
+                    },
+                    {
+                        label: 'Storage Costs (OpEx)',
+                        data: [30, 85], // 30K vs 85K
+                        backgroundColor: chartColors.orange,
+                    }
+                ]
+            },
+            options: {
+                ...defaultChartOptions,
+                scales: {
+                    x: {
+                        stacked: true,
+                        title: { display: true, text: 'Total Cost (K $)'}
+                    },
+                    y: {
+                        stacked: true,
+                        ticks: {
+                            callback: function(value) {
+                                return value + 'K $';
+                            }
+                        }
+                    }
+                },
+                 plugins: {
+                    ...defaultChartOptions.plugins,
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback,
+                             // Show total cost + details
+                            footer: (tooltipItems) => {
+                                const totalCost = tooltipItems.reduce((sum, item) => sum + item.parsed.y, 0);
+                                return `Total Cost: ${totalCost}K $`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        
+        // 4. Procurement Planning: Simplified Horizontal Bar Chart
+        new Chart(document.getElementById('procurementChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Raw Material A', 'Raw Material B', 'Packaging C', 'Components D'].map(wrapLabel),
+                datasets: [
+                    {
+                        label: 'Planned Requirement',
+                        data: [85, 70, 95, 60], 
+                        backgroundColor: chartColors.magenta,
+                    },
+                    {
+                        label: 'Current Order',
+                        data: [75, 80, 80, 70], 
+                        backgroundColor: chartColors.darkBlue,
+                    }
+                ]
+            },
+            options: {
+                ...defaultChartOptions,
+                indexAxis: 'y', // Horizontal bars
+                scales: {
+                    x: {
+                        stacked: false,
+                        suggestedMin: 0,
+                        suggestedMax: 100,
+                        title: { display: true, text: 'Volume (units)' }
+                    },
+                    y: {
+                        stacked: false,
+                        grid: { display: false }
+                    }
+                },
+                plugins: {
+                    ...defaultChartOptions.plugins,
+                    legend: {
+                        position: 'top'
+                    }
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
 
