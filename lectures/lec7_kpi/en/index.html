@@ -1,1 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographics: KPI and Management Metrics</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; 
+            color: #1f2937;
+        }
+        .card {
+            background-color: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .header-bg {
+            background: linear-gradient(135deg, #6ac1e3, #5FA6C7); 
+        }
+        .bp-callout {
+            background-color: #f0f9ff;
+            border-left: 6px solid #0d9488;
+            padding: 1.5rem;
+        }
+        .sync-card {
+            border-radius: 0.75rem;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+        }
+        .sync-card.prod { background-color: #e0f2f1; color: #0f766e; }
+        .sync-card.log { background-color: #fffbeb; color: #b45309; }
+        .sync-card.sales { background-color: #eff6ff; color: #2563eb; }
+        .sync-card.fin { background-color: #f3e8ff; color: #9333ea; }
+        .final-conclusion {
+            background: linear-gradient(135deg, #4f46e5, #9333ea);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 1rem;
+            text-align: center;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+        }
+        .conflict-pair {
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+        .conflict-pair:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+        .conflict-vs {
+            font-weight: 700;
+            margin: 0 0.5rem;
+            color: #ef4444; 
+        }
+        .mistake-card {
+            background-color: #fee2e2; 
+            border: 1px solid #f87171;
+            padding: 1rem;
+        }
+    </style>
+</head>
+<body class="text-gray-800 p-4 sm:p-8">
+
+    <div class="container mx-auto max-w-5xl">
+
+        <!-- Back Button -->
+        <div class="mb-4">
+            <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/en/index.html" class="inline-flex items-center text-sky-700 hover:text-sky-900 transition-colors font-semibold">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                <span>Back to Lecture List</span>
+            </a>
+        </div>
+        
+        <header class="text-center mb-12 p-8 rounded-2xl header-bg text-white shadow-xl">
+            <!-- Logo -->
+            <img src="/IITU_OLAP_Course/assets/Logo-white.png"
+                 alt="Casplan Logo"
+                 class="mx-auto mb-6 h-16">
+            <h1 class="text-3xl md:text-5xl font-bold mb-2">KPI and Management Metrics</h1>
+            <p class="text-lg md:text-xl mt-2 text-sky-200">The language of business: how to turn OLAP data into measurable goals and link strategy with operations.</p>
+        </header>
+
+        <main class="space-y-10">
+
+            <section id="definitions">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 text-[#003f5c]">I. Indicator ≠ Metric ≠ KPI</h2>
+                <p class="max-w-3xl mx-auto text-center text-gray-600 mb-8">To build an effective management system, it is necessary to clearly distinguish what we measure (indicator), how we evaluate it (metric), and why we do it (KPI).</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="card p-6 border-t-4 border-[#ff6361] text-center">
+                        <span class="text-4xl mb-3 block">🔢</span>
+                        <h3 class="text-xl font-semibold mb-2 text-[#ff6361]">Indicator</h3>
+                        <p class="text-gray-600 text-sm">A specific, recorded numerical value. <strong>A fact.</strong></p>
+                        <p class="text-sm mt-2 font-mono bg-gray-100 p-1 rounded">Revenue for July = $120M</p>
+                    </div>
+                    <div class="card p-6 border-t-4 border-[#ffa600] text-center">
+                        <span class="text-4xl mb-3 block">📏</span>
+                        <h3 class="text-xl font-semibold mb-2 text-[#ffa600]">Metric</h3>
+                        <p class="text-gray-600 text-sm">Formalized evaluation logic. <strong>Meaning.</strong></p>
+                        <p class="text-sm mt-2 font-mono bg-gray-100 p-1 rounded">Average Order Value (AOV) = Revenue / Number of Sales</p>
+                    </div>
+                    <div class="card p-6 border-t-4 border-[#0d9488] text-center">
+                        <span class="text-4xl mb-3 block">🎯</span>
+                        <h3 class="text-xl font-semibold mb-2 text-[#0d9488]">KPI (Key Performance Indicator)</h3>
+                        <p class="text-gray-600 text-sm">A key metric that measures the achievement of a <strong>Goal</strong>.</p>
+                        <p class="text-sm mt-2 font-mono bg-gray-100 p-1 rounded">KPI: AOV Growth by 5%</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="cross-functional">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 text-[#003f5c]">II. KPI Conflicts and End-to-End Integration</h2>
+                <p class="max-w-3xl mx-auto text-center text-gray-600 mb-8">Local KPI optimization leads to a "war of departments" and global sabotage. OLAP solves this problem through <strong>End-to-End KPIs</strong>, integrated into one model.</p>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- Extended and visually appealing conflict block -->
+                    <div class="card p-6 border-l-4 border-red-500 bg-red-50">
+                        <h3 class="text-xl font-semibold mb-4 text-red-700 text-center">Typical KPI Conflicts</h3>
+                        
+                        <div class="conflict-pair">
+                            <div class="flex justify-between items-center text-base">
+                                <span class="font-bold text-red-800">Sales (Volume)</span> 
+                                <span class="conflict-vs">VS</span> 
+                                <span class="font-bold text-red-800">Finance (Margin)</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-2">Sales grants a discount to meet their volume target &rarr; Finance cannot achieve the planned Margin.</p>
+                        </div>
+                        
+                        <div class="conflict-pair">
+                            <div class="flex justify-between items-center text-base">
+                                <span class="font-bold text-red-800">Procurement (Price)</span> 
+                                <span class="conflict-vs">VS</span> 
+                                <span class="font-bold text-red-800">Production (Quality)</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-2">Procurement chooses the cheapest supplier &rarr; Production receives low-quality raw materials, increasing Defects.</p>
+                        </div>
+                        
+                        <div class="conflict-pair">
+                            <div class="flex justify-between items-center text-base">
+                                <span class="font-bold text-red-800">Marketing (Promotion)</span> 
+                                <span class="conflict-vs">VS</span> 
+                                <span class="font-bold text-red-800">Logistics (Timeliness)</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-2">Marketing launches a promotion &rarr; Logistics fails to ship the goods on time &rarr; OTD suffers.</p>
+                        </div>
+
+                        <div class="conflict-pair">
+                            <div class="flex justify-between items-center text-base">
+                                <span class="font-bold text-red-800">HR (Hiring Speed)</span> 
+                                <span class="conflict-vs">VS</span> 
+                                <span class="font-bold text-red-800">Managers (Qualification)</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-2">HR fills vacancies quickly &rarr; Managers receive unsuitable candidates.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- New block End-to-End KPI: synchronization -->
+                    <div class="card p-6 border-l-4 border-teal-500 bg-teal-50 flex flex-col justify-between">
+                        <h3 class="text-xl font-semibold mb-4 text-teal-700 text-center">End-to-End KPIs: The Synchronization Effect</h3>
+                        <p class="text-center text-gray-600 mb-6 text-sm">End-to-End KPIs unify departmental goals and allow visibility into the entire chain of influence.</p>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="sync-card prod">
+                                <p class="font-bold text-base">Production</p>
+                                <p class="text-xs">On-time output</p>
+                            </div>
+                            <div class="sync-card log">
+                                <p class="font-bold text-base">Logistics</p>
+                                <p class="text-xs">Delay-free delivery</p>
+                            </div>
+                            <div class="sync-card sales">
+                                <p class="font-bold text-base">Sales</p>
+                                <p class="text-xs">Order fulfillment</p>
+                            </div>
+                            <div class="sync-card fin">
+                                <p class="font-bold text-base">Finance</p>
+                                <p class="text-xs">Profit growth</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 p-3 bg-white rounded-lg border border-teal-200">
+                             <p class="text-sm font-semibold text-gray-700">Best practice:</p>
+                             <p class="text-xs text-gray-600 mt-1">Automatic export of KPIs from OLAP cubes to the Casplan dashboard.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="kpi-examples">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 text-[#003f5c]">III. KPI Examples by Area (Business Analysis)</h2>
+                <p class="max-w-3xl mx-auto text-center text-gray-600 mb-8">Key metrics in different areas built on OLAP cubes (P&L, Logi-Plan, Mkt-Plan) and used for decision-making.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="card p-6 border-t-4 border-[#ff6361]">
+                        <h3 class="text-xl font-semibold mb-2 text-[#ff6361]">Finance</h3>
+                        <ul class="text-sm space-y-1">
+                            <li><strong>EBITDA/EBIT:</strong> Operating efficiency.</li>
+                            <li><strong>ROI/ROA/ROE:</strong> Return on investment/assets/equity.</li>
+                            <li><strong>Cash Flow:</strong> Movement of money (more important than profit).</li>
+                        </ul>
+                    </div>
+                    <div class="card p-6 border-t-4 border-[#ffa600]">
+                        <h3 class="text-xl font-semibold mb-2 text-[#ffa600]">Marketing/Sales</h3>
+                        <ul class="text-sm space-y-1">
+                            <li><strong>LTV:</strong> Customer Lifetime Value.</li>
+                            <li><strong>CAC:</strong> Customer Acquisition Cost.</li>
+                            <li><strong>AOV:</strong> Average Order Value.</li>
+                        </ul>
+                    </div>
+                    <div class="card p-6 border-t-4 border-[#58508d]">
+                        <h3 class="text-xl font-semibold mb-2 text-[#58508d]">Logistics/Production</h3>
+                        <ul class="text-sm space-y-1">
+                            <li><strong>OTIF:</strong> On-Time In-Full.</li>
+                            <li><strong>OEE:</strong> Overall Equipment Effectiveness.</li>
+                            <li><strong>Inventory Turnover:</strong> Stock inventory turnover rate.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="olap-role">
+                 <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 text-[#003f5c]">IV. OLAP: The Technological Foundation for KPI</h2>
+                <p class="max-w-3xl mx-auto text-center text-gray-600 mb-8">KPIs do not appear out of nowhere. The CasPlan OLAP system provides the speed and multidimensionality for their calculation and analysis.</p>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
+                    <div class="card p-6">
+                        <h3 class="text-xl font-semibold mb-4 text-[#003f5c]">End-to-End KPIs: Connecting Departments</h3>
+                        <p class="text-sm text-gray-700 mb-4">In OLAP, any metric can be calculated across any dimension. This allows for the creation of a KPI that links Marketing and Finance, motivating both departments to work toward overall profit.</p>
+                        <div class="mt-4 p-4 bg-gray-100 rounded-lg">
+                            <p class="font-bold text-sm text-gray-800 mb-2">Example of an End-to-End KPI:</p>
+                            <p class="text-xs text-gray-600"><strong><span class="text-[#ff6361]">Adjusted LTV</span></strong> (Customer Lifetime Value, minus service and logistics costs)</p>
+                            <p class="text-xs mt-2"><strong>IT Role:</strong> Analysts design cubes that can combine data from CRM (leads), ERP (costs), and Logi-Plan (delivery).</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card p-6 bg-gray-50 flex flex-col justify-center">
+                        <h3 class="text-xl font-semibold mb-4 text-[#003f5c] text-center">Execution of End-to-End KPIs</h3>
+                        <img src="/IITU_OLAP_Course/assets/UPD_Sales7.webp" 
+                             alt="OLAP KPI Visualizations" 
+                             class="w-full h-auto rounded-lg">
+                        <p class="text-center text-sm text-gray-500 mt-2">Allows decomposition of KPIs by years, months, products, suppliers, or regions</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- V. BEST PRACTICE IBP -->
+            <section id="best-practices" class="bp-callout rounded-xl">
+                 <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 text-[#003f5c]">V. IBP BEST PRACTICE: 3 Principles for the Analyst</h2>
+                <p class="max-w-3xl mx-auto text-center text-gray-700 mb-8 font-semibold">KPIs are not just formulas, but <strong>strategic management tools</strong> embedded in the data architecture. These principles are critical for designing OLAP-based KPI systems.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <div class="bg-white p-4 rounded-lg shadow-md border-t-4 border-[#003f5c]">
+                        <h4 class="font-bold text-lg mb-2 text-[#003f5c]">1. Cascading (Top-Down)</h4>
+                        <p class="text-sm text-gray-600">KPIs are structured hierarchically: from <strong>Strategy</strong> (ROI, EBITDA) down to <strong>Operations</strong> (OTD). OLAP (Roll-Up) ensures instantaneous aggregation of operational data to the strategic level.</p>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-lg shadow-md border-t-4 border-[#58508d]">
+                        <h4 class="font-bold text-lg mb-2 text-[#58508d]">2. End-to-End KPIs (TCO)</h4>
+                        <p class="text-sm text-gray-600">Solves the "war of departments" by motivating toward overall profit. Use <strong>TCO</strong> (Total Cost of Ownership) or <strong>Adjusted LTV</strong>, linking multiple functional blocks in one metric.</p>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-lg shadow-md border-t-4 border-[#ffa600]">
+                        <h4 class="font-bold text-lg mb-2 text-[#ffa600]">3. Flexibility (Rolling Forecast)</h4>
+                        <p class="text-sm text-gray-600">The KPI system must support <strong>Rolling Forecast</strong> and <strong>Scenario Analysis</strong> (Worst/Best Case). KPIs are measured not only by Actuals but also by the up-to-date Plan.</p>
+                    </div>
+
+                </div>
+            </section>
+            <!-- END V. IBP BEST PRACTICE -->
+
+            <!-- V.5. Common Mistakes -->
+            <section id="common-mistakes" class="mt-10">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 text-red-600">VI. Common Mistakes</h2>
+                <p class="max-w-3xl mx-auto text-center text-gray-600 mb-8">Common problems that reduce the effectiveness of the KPI system and lead to false conclusions.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <div class="mistake-card rounded-lg shadow-md">
+                        <div class="flex items-center mb-2">
+                            <span class="text-2xl mr-2 text-red-600">❌</span>
+                            <h4 class="font-bold text-lg text-red-800">KPI Redundancy</h4>
+                        </div>
+                        <p class="text-sm text-gray-700">When there are too many KPIs (more than 7-10 per department/person), they lose focus. Everything is measured, but nothing is controlled.</p>
+                    </div>
+
+                    <div class="mistake-card rounded-lg shadow-md">
+                        <div class="flex items-center mb-2">
+                            <span class="text-2xl mr-2 text-red-600">💥</span>
+                            <h4 class="font-bold text-lg text-red-800">"Blind" KPI</h4>
+                        </div>
+                        <p class="text-sm text-gray-700">A KPI is not linked to action. For example, "USD Exchange Rate" – you measure it but cannot change it with your decision. This is not a KPI.</p>
+                    </div>
+
+                    <div class="mistake-card rounded-lg shadow-md">
+                        <div class="flex items-center mb-2">
+                            <span class="text-2xl mr-2 text-red-600">💣</span>
+                            <h4 class="font-bold text-lg text-red-800">Local Conflict</h4>
+                        </div>
+                        <p class="text-sm text-gray-700">KPI of department A is met (e.g., sales volume), but this worsens the global KPI of department B (e.g., margin). Solved by end-to-end metrics.</p>
+                    </div>
+
+                </div>
+            </section>
+            <!-- END V.5. Common Mistakes -->
+            
+            <!-- KEY TAKEAWAY -->
+            <section class="final-conclusion">
+                <div class="flex items-center justify-center mb-4">
+                    <span class="text-4xl mr-3">💡</span>
+                    <h2 class="text-3xl font-bold">Key Takeaway</h2>
+                </div>
+                <p class="text-lg font-medium">KPI is the language of business. OLAP makes this language unified across all departments and converts data into management decisions.</p>
+                <p class="text-sm mt-3 opacity-80">Best practice: review KPIs at least once a quarter, with an analysis of the mutual influence of metrics.</p>
+            </section>
+
+        </main>
+        
+        <!-- Footer with Back to Lecture List Button -->
+        <footer class="text-center mt-12 py-6 border-t border-gray-300">
+            <p class="text-gray-600">KPI is strategy expressed in numbers. OLAP turns these numbers into a transparent and manageable system.</p>
+            
+            <div class="mt-6">
+                <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/en/index.html"
+                   class="inline-flex items-center px-6 py-3 bg-sky-600 text-white rounded-lg shadow hover:bg-sky-700 transition duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                    Back to Lecture List
+                </a>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+</body>
+</html>
 
