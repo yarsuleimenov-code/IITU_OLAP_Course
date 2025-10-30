@@ -1,1 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographics: Introduction to OLAP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+            color: #1f2937;
+        }
+        .card {
+            background-color: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        /* Gradient for the header */
+        .header-bg {
+            background: linear-gradient(135deg, #6ac1e3, #5FA6C7);
+        }
+        /* Color scheme for visual accents */
+        .color-purple { color: #58508d; }
+        .color-red { color: #ff6361; }
+        .color-orange { color: #ffa600; }
+        .color-green { color: #10b981; }
+        .border-purple { border-color: #58508d; }
+        .border-red { border-color: #ff6361; }
+        .border-orange { border-color: #ffa600; }
+        .border-green { border-color: #10b981; }
+        
+        /* Pro/Con icon styles */
+        .pro-icon { color: #10b981; }
+        .con-icon { color: #ff6361; }
 
+        /* Icon background for architecture section */
+        .architect-icon-bg {
+            background-color: #e0f2fe;
+            color: #0c4a6e;
+        }
+    </style>
+</head>
+<body class="text-gray-800 p-4 sm:p-8">
+
+    <div class="container mx-auto max-w-5xl">
+        <div class="mb-4">
+            <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/" class="inline-flex items-center text-sky-700 hover:text-sky-900 transition-colors font-semibold">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                <span>Back to Lecture List</span>
+            </a>
+        </div>
+        
+        <header class="text-center mb-12 p-8 rounded-2xl header-bg text-white shadow-xl">
+             <img src="/IITU_OLAP_Course/assets/Logo-white.png"
+                 alt="Casplan Logo"
+                 class="mx-auto mb-6 h-16">
+            <h1 class="text-3xl md:text-5xl font-bold mb-2">OLAP Models: From Data to Management Decisions</h1>
+            <p class="text-lg md:text-xl text-sky-200">How to stop drowning in Excel and start seeing your business in 3D</p>
+        </header>
+
+        <section class="mb-16">
+            <div class="card p-8 bg-sky-50 border-l-4 border-sky-600">
+                <h2 class="text-2xl font-bold text-sky-800 mb-3 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0h12a2 2 0 002-2v-6a2 2 0 00-2-2h-2a2 2 0 00-2 2v6a2 2 0 002 2zM9 10V5a2 2 0 00-2-2H7a2 2 0 00-2 2v5h4zm12 0V5a2 2 0 00-2-2h-2a2 2 0 00-2 2v5h4z" />
+                    </svg>
+                    OLAP: In Simple Terms
+                </h2>
+                <div class="grid md:grid-cols-3 gap-6 text-gray-700">
+                    <div>
+                        <h4 class="font-bold text-lg color-purple mb-1">1. What is it?</h4>
+                        <p class="text-sm">OLAP (Online Analytical Processing) is a technology that allows for quick analysis of data from various perspectives. Unlike ERP, which simply stores facts, OLAP **calculates and compares** metrics.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg color-red mb-1">2. Core Analogy</h4>
+                        <p class="text-sm">Imagine **Excel is a flat map**, and the **OLAP Cube is a 3D model**. You can instantly "rotate" the cube to see how sales are distributed across products, regions, and time simultaneously.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg color-green mb-1">3. Why is it needed?</h4>
+                        <p class="text-sm">For **Speed** and **Quality of Decisions**. It enables instantaneous complex financial analysis, actual vs. plan comparison, and scenario modeling ("what if?") - operations that take hours or days in Excel.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16">
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 text-[#003f5c]">I. Evolution of Business Intelligence Tools</h2>
+            <div class="grid md:grid-cols-3 gap-8 items-stretch">
+                <div class="card p-6 border-t-4 border-purple">
+                  <h3 class="text-2xl font-semibold mb-3 color-purple">1. Excel</h3>
+                  <p class="mb-4 text-gray-600">The first step in analytics. Flexible, but limited.</p>
+                  <div class="text-left space-y-2">
+                    <div class="flex items-center font-semibold text-gray-700"><span class="pro-icon mr-2 text-xl">＋</span> Accessibility and simplicity</div>
+                    <div class="flex items-center font-semibold text-gray-700"><span class="con-icon mr-2 text-xl">−</span> Manual entry errors</div>
+                    <div class="flex items-center font-semibold text-gray-700"><span class="con-icon mr-2 text-xl">−</span> Cannot handle Big Data</div>
+                    <div class="flex items-center font-semibold text-gray-700"><span class="con-icon mr-2 text-xl">−</span> Collaboration issues</div>
+                  </div>
+                </div>
+                
+                <div class="card p-6 border-t-4 border-red">
+                  <h3 class="text-2xl font-semibold mb-3 color-red">2. ERP Systems</h3>
+                  <p class="mb-4 text-gray-600">Centralized accounting and operational control.</p>
+                  <div class="text-left space-y-2">
+                    <div class="flex items-center font-semibold text-gray-700"><span class="pro-icon mr-2 text-xl">＋</span> Automation and discipline</div>
+                    <div class="flex items-center font-semibold text-gray-700"><span class="pro-icon mr-2 text-xl">＋</span> Single database</div>
+                    <div class="flex items-center font-semibold text-gray-700"><span class="con-icon mr-2 text-xl">−</span> Focus on fact recording</div>
+                    <div class="flex items-center font-semibold text-gray-700"><span class="con-icon mr-2 text-xl">−</span> Complexity for deep analytics</div>
+                  </div>
+                </div>
+                
+                <div class="card p-6 border-t-4 border-green">
+                  <h3 class="text-2xl font-semibold mb-3 color-green">3. OLAP Systems</h3>
+                  <p class="mb-4 text-gray-600">The "Brain" for analysis, not just a database.</p>
+                  <div class="text-left space-y-2">
+                    <div class="flex items-center font-semibold text-gray-700"><span class="pro-icon mr-2 text-xl">＋</span> Multidimensional analysis</div>
+                    <div class="flex items-center font-semibold text-gray-700"><span class="pro-icon mr-2 text-xl">＋</span> Instant speed</div>
+                    <div class="flex items-center font-semibold text-gray-700"><span class="pro-icon mr-2 text-xl">＋</span> Support for strategic decisions</div>
+                    <div class="flex items-center font-semibold text-gray-700"><span class="pro-icon mr-2 text-xl">＋</span> "What if?" scenarios</div>
+                  </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card p-8 mb-16">
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-10 text-[#58508d]">II. OLAP Architecture: How the Cube is Structured</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <div class="flex flex-col items-center text-center p-4 rounded-lg border border-gray-100 shadow-sm hover:shadow-md">
+                    <div class="w-20 h-20 mb-4 rounded-full architect-icon-bg flex items-center justify-center">
+                         <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 color-purple" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-14L4 7v10l8 4m0-14L4 7m16 0l-8 4m-8-4h16"/></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 color-purple">Cube</h3>
+                    <p class="text-sm text-gray-600">The place where one business metric is stored or calculated: revenue, cost of goods sold, margin, planned output. The formula is set once and automatically applies to all dimension elements.</p>
+                </div>
+
+                <div class="flex flex-col items-center text-center p-4 rounded-lg border border-gray-100 shadow-sm hover:shadow-md">
+                    <div class="w-20 h-20 mb-4 rounded-full architect-icon-bg flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 color-red" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2zm0 0l9 5 9-5"/></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 color-red">Dimensions</h3>
+                    <p class="text-sm text-gray-600">The axes of analysis ("lenses") through which we view the data: Product, Customer, Time, Region. Requires unified and clean master data (Master Data).</p>
+                </div>
+
+                <div class="flex flex-col items-center text-center p-4 rounded-lg border border-gray-100 shadow-sm hover:shadow-md">
+                    <div class="w-20 h-20 mb-4 rounded-full architect-icon-bg flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 color-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 color-orange">Hierarchies (Drill-Down / Roll-Up)</h3>
+                    <p class="text-sm text-gray-600">A nested structure within dimensions (Year → Quarter → Month). Allows "drilling down" to details (Drill-Down) and rolling up data to totals (Roll-Up).</p>
+                </div>
+
+                <div class="flex flex-col items-center text-center p-4 rounded-lg border border-gray-100 shadow-sm hover:shadow-md">
+                    <div class="w-20 h-20 mb-4 rounded-full architect-icon-bg flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 color-green" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 color-green">Aggregations</h3>
+                    <p class="text-sm text-gray-600">The secret to OLAP's high speed. Pre-calculation of total values, which ensures an instant response to queries instead of a lengthy recalculation.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="mb-16">
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 text-[#003f5c]">III. OLAP in Action: Interactive Analytics</h2>
+            <div class="card p-8 text-center bg-sky-50 border-t-4 border-sky-400">
+                <h3 class="text-2xl font-semibold text-sky-700 mb-4">From Flat Tables to an Interactive Dashboard</h3>
+                <p class="text-gray-700 mb-6 max-w-4xl mx-auto">
+                    Instead of dozens of disparate Excel reports, OLAP systems like Casplan allow you to visualize data in a single interactive dashboard. Users can instantly filter, drill down, and roll up information across any dimension, getting answers to complex business questions in seconds.
+                </p>
+                <img src="/IITU_OLAP_Course/assets/dashboard.jpg"
+                     alt="Sales Analytics Dashboard in Casplan"
+                     class="rounded-lg shadow-xl border border-gray-300 max-w-full mx-auto">
+            </div>
+        </section>
+        
+        <footer class="text-center mt-12 py-6 border-t border-gray-300">
+            <p class="text-gray-600">OLAP is not just data storage; it's a tool for instantly gaining insights and proactive management.</p>
+            
+            <div class="mt-6">
+                <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/"
+                   class="inline-flex items-center px-6 py-3 bg-sky-600 text-white rounded-lg shadow hover:bg-sky-700 transition duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                    Back to Lecture List
+                </a>
+            </div>
+        </footer>
+ </body>
+</html>
