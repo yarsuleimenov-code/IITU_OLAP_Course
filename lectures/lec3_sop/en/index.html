@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S&OP: Sales and Operations Planning</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; 
+            color: #1f2937;
+        }
+        .card-style { 
+            background-color: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-style:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .header-bg {
+            background: linear-gradient(135deg, #6ac1e3, #5FA6C7);
+        }
+        
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .flow-step {
+            border-left-width: 4px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        }
+        .flow-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .flow-connector {
+            display: none;
+        }
+         @media (min-width: 1024px) {
+            .flow-step-container {
+                position: relative;
+            }
+            .flow-connector {
+                display: block;
+                position: absolute;
+                top: 50%;
+                left: 100%;
+                transform: translate(-50%, -50%);
+                color: #cbd5e1;
+                font-size: 2.5rem;
+                line-height: 1;
+                z-index: 0;
+            }
+         }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+        <!-- Back to Lecture List Button -->
+        <div class="mb-4">
+            <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/en/index.html" class="inline-flex items-center text-sky-700 hover:text-sky-900 transition-colors font-semibold">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                <span>Back to Lecture List</span>
+            </a>
+        </div>
+        
+        <header class="text-center mb-12 p-8 rounded-2xl header-bg text-white">
+            <!-- Logo -->
+            <img src="/IITU_OLAP_Course/assets/Logo-white.png"
+                 alt="Casplan Logo"
+                 class="mx-auto mb-6 h-16">
+            <h1 class="text-4xl md:text-5xl font-bold mb-2">S&OP: Sales and Operations Planning</h1>
+            <p class="text-lg md:text-xl text-sky-200">The engine of Integrated Business Planning that connects company strategy with daily actions.</p>
+        </header>
+
+        <main class="container mx-auto p-4 md:p-8 pt-0">
+            
+        <!-- IBP Cycle Indicator (Start) -->
+        <div class="mb-10 p-4 bg-white rounded-lg shadow-md border-b-2 border-gray-100">
+          <h3 class="text-sm font-bold text-gray-700 mb-3">Our Path in IBP</h3> 
+          <div class="flex flex-wrap items-center gap-4"> 
+            <!-- S&OP - Active Stage (Accent Color: Indigo) -->
+            <span class="ibp-step px-4 py-2 rounded-lg bg-indigo-600 text-white font-semibold text-sm shadow-lg">S&OP (Demand)</span>
+            <span class="text-gray-400">→</span>
+        
+            <span class="ibp-step px-4 py-2 rounded-lg bg-gray-200 text-gray-800 font-semibold text-sm">Logistics (Supply)</span>
+            <span class="text-gray-400">→</span>
+        
+            <span class="ibp-step px-4 py-2 rounded-lg bg-gray-200 text-gray-800 font-semibold text-sm">Budgeting</span>
+            <span class="text-gray-400">→</span>
+        
+            <span class="ibp-step px-4 py-2 rounded-lg bg-gray-200 text-gray-800 font-semibold text-sm">Financial Analysis</span>
+          </div>
+        </div>
+        <!-- IBP Cycle Indicator (End) -->
+            
+            <section id="balance" class="my-12">
+                <div class="text-center max-w-3xl mx-auto">
+                    <h2 class="text-3xl font-bold mb-2 text-gray-700">Key Objective: Balancing Demand and Supply</h2>
+                    <p class="text-slate-600 mb-8">S&OP helps companies avoid two costly mistakes by finding the ideal equilibrium between market opportunities and production realities.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <div class="card-style p-8 border border-red-200">
+                        <div class="flex items-center">
+                            <span class="text-4xl mr-4">📉</span>
+                            <div>
+                                <h3 class="text-xl font-bold text-red-600">Deficit: Risk of missed opportunity</h3>
+                                <p class="text-slate-600 mt-2">When demand exceeds supply. The company cannot satisfy all customers, losing market share and profit.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-style p-8 border border-blue-200">
+                        <div class="flex items-center">
+                            <span class="text-4xl mr-4">📦</span>
+                            <div>
+                                <h3 class="text-xl font-bold text-blue-600">Surplus: Risk of frozen assets</h3>
+                                <p class="text-slate-600 mt-2">When supply exceeds demand. Capital is frozen in excess inventory, and storage costs increase.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="cycle" class="my-16 md:my-24">
+                 <div class="text-center max-w-3xl mx-auto">
+                    <h2 class="text-3xl font-bold mb-2 text-gray-700">Managed Process: The 5 Steps of the S&OP Cycle</h2>
+                    <p class="text-slate-600 mb-12">S&OP is not chaotic meetings, but a structured monthly cycle where each stage prepares data for the next.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+                    <!-- Flow steps are set to take full width -->
+                    <div class="flow-step-container">
+                        <div class="flow-step bg-white p-6 rounded-lg shadow-md border-teal-500 w-full">
+                            <h4 class="font-bold text-lg text-teal-600">1. Product Review</h4>
+                            <p class="text-sm text-slate-600 mt-2">Portfolio analysis: which products to launch and which to discontinue (delisting).</p>
+                        </div>
+                        <div class="flow-connector hidden lg:block">→</div>
+                    </div>
+                     <div class="flow-step-container">
+                        <div class="flow-step bg-white p-6 rounded-lg shadow-md border-sky-500 w-full">
+                            <h4 class="font-bold text-lg text-sky-600">2. Demand Review</h4>
+                            <p class="text-sm text-slate-600 mt-2">Formulating an "unconstrained" sales forecast based on statistics, marketing plans, and sales team input.</p>
+                        </div>
+                        <div class="flow-connector hidden lg:block">→</div>
+                    </div>
+                     <div class="flow-step-container">
+                        <div class="flow-step bg-white p-6 rounded-lg shadow-md border-amber-500 w-full">
+                            <h4 class="font-bold text-lg text-amber-600">3. Supply Review</h4>
+                            <p class="text-sm text-slate-600 mt-2">Assessing production capacity and identifying bottlenecks that prevent fulfilling unconstrained demand.</p>
+                        </div>
+                        <div class="flow-connector hidden lg:block">→</div>
+                    </div>
+                     <div class="flow-step-container">
+                        <div class="flow-step bg-white p-6 rounded-lg shadow-md border-violet-500 w-full">
+                            <h4 class="font-bold text-lg text-violet-600">4. Financial Review</h4>
+                            <p class="text-sm text-slate-600 mt-2">Translating the agreed operational plan (in units) into financial metrics (P&L, Cash Flow).</p>
+                        </div>
+                        <div class="flow-connector hidden lg:block">→</div>
+                    </div>
+                     <div class="flow-step-container">
+                         <div class="flow-step bg-white p-6 rounded-lg shadow-md border-rose-500 w-full">
+                            <h4 class="font-bold text-lg text-rose-600">5. Executive S&OP Meeting</h4>
+                            <p class="text-sm text-slate-600 mt-2">Making final decisions on trade-offs and approving the unified plan for the entire company.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="players" class="my-16 md:my-24">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                     <div>
+                        <h2 class="text-3xl font-bold mb-2 text-gray-700">Cross-Functional Team and Their Goals</h2>
+                        <p class="text-slate-600 mb-6">The success of S&OP depends on a cohesive team effort, where each department has its own objectives. OLAP systems, like Casplan, create a "single source of truth" so everyone speaks the same data language.</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start"><span class="text-blue-500 font-bold mr-3">✓</span> <strong>Commercial:</strong> Maximize revenue and market share.</li>
+                            <li class="flex items-start"><span class="text-amber-500 font-bold mr-3">✓</span> <strong>Production:</strong> Minimize cost and ensure stable capacity utilization.</li>
+                            <li class="flex items-start"><span class="text-teal-500 font-bold mr-3">✓</span> <strong>Logistics:</strong> Optimize delivery costs and inventory levels.</li>
+                            <li class="flex items-start"><span class="text-violet-500 font-bold mr-3">✓</span> <strong>Finance:</strong> Ensure maximum profitability (EBITDA) and cash flow manageability.</li>
+                        </ul>
+                    </div>
+                    <!-- Chart replaced with static image "Cost Map" -->
+                    <div class="card-style p-6">
+                        <h3 class="text-xl font-bold text-center mb-4 text-gray-700">Cost Map: Full Breakdown of Cost of Goods Sold</h3>
+                        <img src="/IITU_OLAP_Course/assets/cost_price.jpg" 
+                             alt="Chart of cross-functional team goals" 
+                             class="w-full h-auto rounded-lg shadow-md">
+                    </div>
+                </div>
+            </section>
+
+            <section id="reality-check" class="my-16 md:my-24">
+                <div class="text-center max-w-3xl mx-auto">
+                    <h2 class="text-3xl font-bold mb-2 text-gray-700">From Dream to Reality: Identifying Bottlenecks</h2>
+                    <p class="text-slate-600 mb-12">The S&OP process pits the ideal sales plan against the harsh reality of production constraints to form an executable plan.</p>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <div class="card-style p-6">
+                        <h3 class="text-xl font-bold text-center mb-4 text-gray-700">Step 2: Unconstrained Demand Forecast</h3>
+                        <div class="chart-container">
+                            <canvas id="demandChart"></canvas>
+                        </div>
+                    </div>
+                     <div class="card-style p-6">
+                        <h3 class="text-xl font-bold text-center mb-4 text-gray-700">Step 3: Finding the Bottleneck</h3>
+                         <div class="chart-container">
+                            <canvas id="supplyChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="scenarios" class="my-16 md:my-24">
+                 <div class="text-center max-w-3xl mx-auto">
+                    <h2 class="text-3xl font-bold mb-2 text-gray-700">The Power of OLAP: "What-If" Scenarios for Decision Making</h2>
+                    <p class="text-slate-600 mb-12">The main advantage of OLAP systems in S&OP is the ability to instantly model different scenarios and see their financial result, choosing the most profitable trade-off.</p>
+                </div>
+                <div class="card-style p-6">
+                    <h3 class="text-xl font-bold text-center mb-1 text-gray-700">Which plan will generate the most profit?</h3>
+                    <p class="text-center text-slate-500 mb-6">Comparing Net Profit (EBITDA) for three possible solutions to eliminate the bottleneck.</p>
+                    <div class="chart-container">
+                        <canvas id="scenariosChart"></canvas>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <footer class="text-center mt-12 pt-8 border-t border-gray-300">
+        <p class="text-gray-600">S&OP is the culture of data-driven decision making.</p>
+      <!-- Back to Lecture List Button -->
+      <div class="mt-6">
+        <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/en/index.html"
+           class="inline-flex items-center px-6 py-3 bg-sky-600 text-white rounded-lg shadow hover:bg-sky-700 transition duration-300">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Back to Lecture List
+        </a>
+      </div>
+    </footer>
+    
+<script>
+    // Utility function to wrap long labels in Chart.js
+    function wrapLabels(label) {
+        if (typeof label === 'string' && label.length > 16) {
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + word).length > 16) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            });
+            lines.push(currentLine.trim());
+            return lines;
+        }
+        return label;
+    }
+
+    // Callback to display full label in tooltip title
+    const tooltipTitleCallback = function(tooltipItems) {
+        const item = tooltipItems[0];
+        let label = item.chart.data.labels[item.dataIndex];
+        // If label was wrapped (array), join it back to a string
+        if (Array.isArray(label)) {
+            return label.join(' ');
+        } else {
+            return label;
+        }
+    };
+
+    // Shared options for all standard charts (Line, Bar)
+    const sharedChartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                position: 'bottom',
+                labels: {
+                    padding: 20,
+                    font: {
+                       size: 14
+                    }
+                }
+            },
+            tooltip: {
+                callbacks: {
+                    title: tooltipTitleCallback
+                }
+            }
+        },
+        scales: {
+            x: {
+                grid: {
+                    display: false
+                },
+                 ticks: {
+                    font: {
+                       size: 12
+                    }
+                }
+            },
+            y: {
+                beginAtZero: true,
+                grid: {
+                    color: '#e2e8f0'
+                },
+                 ticks: {
+                    font: {
+                       size: 12
+                    }
+                }
+            }
+        }
+    };
+
+    // --- demandChart (Step 2: Unconstrained Demand Forecast) ---
+    const demandChartCtx = document.getElementById('demandChart');
+    if (demandChartCtx) {
+        new Chart(demandChartCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [
+                    {
+                        label: 'Historical Sales',
+                        data: [1200, 1150, 1300, 1250, 1400, 1350],
+                        borderColor: '#94a3b8',
+                        backgroundColor: '#94a3b8',
+                        tension: 0.3
+                    },
+                     {
+                        label: 'Unconstrained Forecast',
+                        data: [1300, 1400, 1600, 1800, 1750, 1900],
+                        borderColor: '#0ea5e9',
+                        backgroundColor: '#0ea5e9',
+                        tension: 0.3,
+                        borderDash: [5, 5]
+                    }
+                ]
+            },
+            options: sharedChartOptions
+        });
+    }
+
+    // --- supplyChart (Step 3: Finding the Bottleneck) ---
+    const supplyChartCtx = document.getElementById('supplyChart');
+    if (supplyChartCtx) {
+        new Chart(supplyChartCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Assembly, man-hours', 'Testing, station-hours', 'Smelting Area, hours', 'Packaging, man-hours'].map(wrapLabels),
+                datasets: [{
+                    label: 'Resource Requirement',
+                    data: [480, 350, 650, 500],
+                    backgroundColor: ['#34d399', '#34d399', '#ef4444', '#34d399'],
+                },
+                {
+                    label: 'Available Capacity',
+                    data: [500, 400, 500, 500],
+                    type: 'line',
+                    borderColor: '#4f46e5',
+                    backgroundColor: '#4f46e5',
+                    fill: false,
+                    pointRadius: 5,
+                    pointHoverRadius: 7
+                }]
+            },
+            options: { 
+                ...sharedChartOptions, 
+                scales: { 
+                    ...sharedChartOptions.scales, 
+                    x: { ...sharedChartOptions.scales.x, stacked: false },
+                    y: { ...sharedChartOptions.scales.y, stacked: false } 
+                } 
+            }
+        });
+    }
+    
+    // --- scenariosChart (Comparing Profit) ---
+    const scenariosChartCtx = document.getElementById('scenariosChart');
+    if (scenariosChartCtx) {
+        new Chart(scenariosChartCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Plan A: Reduce Sales', 'Plan B: Overtime Work', 'Plan C: Outsourcing'].map(wrapLabels),
+                datasets: [
+                    {
+                        label: 'Profit (EBITDA)',
+                        data: [250, 300, 200], 
+                        backgroundColor: ['#3b82f6', '#10b981', '#f59e0b'], 
+                    }
+                ]
+            },
+            options: {
+                ...sharedChartOptions,
+                indexAxis: 'x', 
+                scales: {
+                    x: {
+                        stacked: false, 
+                    },
+                    y: {
+                        stacked: false,
+                        title: {
+                            display: true,
+                            text: 'Profit (M $)'
+                        },
+                        ticks: {
+                             callback: function(value) {
+                                return value + 'M $';
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    ...sharedChartOptions.plugins,
+                    legend: {
+                        display: false // Hide legend
+                    },
+                    tooltip: {
+                         callbacks: {
+                            title: tooltipTitleCallback,
+                            label: (context) => {
+                                return `${context.dataset.label}: ${context.formattedValue} M $`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+</script>
+</body>
+</html>
