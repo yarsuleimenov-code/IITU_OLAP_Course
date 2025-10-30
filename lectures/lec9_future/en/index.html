@@ -1,1 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographics: OLAP - The Universal Bridge to Planning Future</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; 
+            color: #1f2937;
+        }
+        .card {
+            background-color: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .header-bg {
+            background: linear-gradient(135deg, #6ac1e3, #5FA6C7); 
+        }
+        .final-conclusion {
+            background: linear-gradient(135deg, #4f46e5, #9333ea);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 1rem;
+            text-align: center;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            margin-top: auto;
+        }
+        .chart-container-large {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            margin-top: auto;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+            .chart-container-large {
+                height: 400px;
+            }
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-dark-ref': '#003f5c',
+                        'accent-teal-ref': '#0d9488',
+                        'accent-red-ref': '#ff6361',
+                        'accent-orange-ref': '#ffa600',
+                        'accent-purple-ref': '#58508d',
+                        'base-gray-ref': '#f0f4f8',
+                        'text-dark-ref': '#1f2937',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-base-gray-ref text-text-dark-ref p-4 sm:p-8">
+
+    <div class="container mx-auto max-w-5xl">
+        
+        <!-- Back Button in Header -->
+        <div class="mb-4">
+            <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/en/index.html" class="inline-flex items-center text-sky-700 hover:text-sky-900 transition-colors font-semibold">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                <span>Back to Lecture List</span>
+            </a>
+        </div>
+
+        <header class="text-center mb-12 p-8 rounded-2xl header-bg text-white shadow-xl">
+            <!-- CasPlan Logo -->
+            <img src="/IITU_OLAP_Course/assets/Logo-white.png"
+                 alt="Casplan Logo"
+                 class="mx-auto mb-6 h-10 md:h-12">
+            <!-- /CasPlan Logo -->
+            <h1 class="text-3xl md:text-5xl font-bold mb-2">OLAP: The Universal Bridge to Planning Future</h1>
+            <p class="text-lg md:text-xl mt-2 text-sky-200">
+                OLAP is the language of decision-making. It transforms data chaos into structured slices and serves as the foundation for Integrated Business Planning (IBP).
+            </p>
+        </header>
+
+        <main class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            <section class="md:col-span-1 card border-t-4 border-accent-red-ref">
+                <h2 class="text-2xl font-bold text-accent-red-ref mb-3">Finance: "What-If" Modeling</h2>
+                <p class="text-gray-600 mb-4">
+                    OLAP allows for instant recalculation of P&L and Cash Flow when any factor, such as the currency exchange rate, changes. This turns "Sensitivity Analysis" from a week-long task into a minute-long one, giving management real scenarios for decision-making.
+                </p>
+                <div class="chart-container">
+                    <canvas id="financeChart"></canvas>
+                </div>
+            </section>
+
+            <section class="md:col-span-1 card border-t-4 border-accent-orange-ref">
+                <h2 class="text-2xl font-bold text-accent-orange-ref mb-3">HR: From Headcount to Capital</h2>
+                <p class="text-gray-600 mb-4">
+                    Planning the Payroll Fund (PFR) is a complex, multidimensional task. OLAP systems, like Casplan, link the HR model (salaries, taxes, bonuses) directly to the financial plan, showing how hiring a single employee affects annual profit.
+                </p>
+                <div class="chart-container">
+                    <canvas id="hrChart"></canvas>
+                </div>
+            </section>
+
+            <section class="md:col-span-2 card">
+                <h2 class="text-2xl font-bold text-primary-dark-ref mb-3">Logistics and Supply Chain: Reducing Gaps</h2>
+                <p class="text-gray-600 mb-4">
+                    In logistics, OLAP forecasts demand across thousands of slices (Product x Warehouse x Region x Time). This allows bottlenecks to be identified before they paralyze operations, preventing stock-outs or overstocking.
+                </p>
+                <div class="chart-container-large">
+                    <canvas id="logisticsChart"></canvas>
+                </div>
+            </section>
+
+            <section class="md:col-span-1 card border-t-4 border-accent-teal-ref">
+                <h2 class="text-2xl font-bold text-accent-teal-ref mb-3">Case: Retail (Ideal Assortment)</h2>
+                <p class="text-gray-600 mb-4">
+                    For retail, OLAP is the key to survival in the "war for shelf space". By analyzing sales across slices (Store x Category x Time x Customer), a category manager can model prices and assortment to maximize the marginality of the entire category.
+                </p>
+                <div class="chart-container">
+                    <canvas id="retailChart"></canvas>
+                </div>
+            </section>
+            
+            <section class="md:col-span-1 card border-t-4 border-accent-purple-ref">
+                <h2 class="text-2xl font-bold text-accent-purple-ref mb-3">Case: Manufacturing (Capacity Optimization)</h2>
+                <p class="text-gray-600 mb-4">
+                    OLAP links the physical plan (machine hours, kilograms of raw materials) with the financial plan (money). The system instantly highlights "red flags" if the sales plan requires 750 machine hours from a machine that can only run for 600.
+                </p>
+                <div class="space-y-4 mt-auto p-4 bg-gray-50 rounded-lg border border-gray-200">
+                    <div class="flex items-center space-x-3">
+                        <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-accent-teal-ref text-white rounded-full font-bold">1</span>
+                        <p class="font-semibold text-gray-700">Demand Forecast (OLAP)</p>
+                    </div>
+                    <div class="ml-4 h-6 border-l-2 border-accent-teal-ref border-dashed"></div>
+                    <div class="flex items-center space-x-3">
+                        <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-accent-teal-ref text-white rounded-full font-bold">2</span>
+                        <p class="font-semibold text-gray-700">Resource Plan (Materials)</p>
+                    </div>
+                    <div class="ml-4 h-6 border-l-2 border-red-500 border-dashed"></div>
+                    <div class="flex items-center space-x-3">
+                        <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-red-600 text-white rounded-full font-bold">!</span>
+                        <p class="font-semibold text-red-600">Bottleneck: Machine (OLAP)</p>
+                    </div>
+                    <div class="ml-4 h-6 border-l-2 border-accent-teal-ref border-dashed"></div>
+                    <div class="flex items-center space-x-3">
+                        <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-accent-teal-ref text-white rounded-full font-bold">3</span>
+                        <p class="font-semibold text-gray-700">Plan Adjustment (IBP)</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="md:col-span-2 card">
+                <h2 class="text-2xl font-bold text-primary-dark-ref mb-3">The Future: AI + OLAP = Rational Planning</h2>
+                <p class="text-gray-600 mb-6">
+                    AI is the turbocharger for OLAP. OLAP supplies high-quality, structured data, and AI finds hidden patterns within it (e.g., the influence of weather or news on demand). However, AI carries the risks of a "black box" and data bias. In the future, the best result will come from the formula: <strong>IBP + Human (Strategy) + AI (Insights)</strong>.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+                    <div class="border-2 border-accent-teal-ref rounded-lg p-4 text-center shadow-lg transition-shadow hover:shadow-xl">
+                        <p class="text-5xl mb-3 text-accent-teal-ref" aria-hidden="true">🤖</p>
+                        <h3 class="text-xl font-bold text-accent-teal-ref">AI (Insights)</h3>
+                        <p class="text-sm mt-2 text-gray-600">Forecasting, pattern discovery, "Black box", recommendations</p>
+                    </div>
+                    <div class="border-2 border-primary-dark-ref rounded-lg p-4 text-center shadow-lg transition-shadow hover:shadow-xl">
+                        <p class="text-5xl mb-3 text-primary-dark-ref" aria-hidden="true">👤</p>
+                        <h3 class="text-xl font-bold text-primary-dark-ref">Human (Strategy)</h3>
+                        <p class="text-sm mt-2 text-gray-600">Control, ethics, hypothesis testing, decision making</p>
+                    </div>
+                    <div class="border-2 border-accent-red-ref rounded-lg p-4 text-center shadow-lg transition-shadow hover:shadow-xl">
+                        <p class="text-5xl mb-3 text-accent-red-ref" aria-hidden="true">🧊</p>
+                        <h3 class="text-xl font-bold text-accent-red-ref">OLAP (Data)</h3>
+                        <p class="text-sm mt-2 text-gray-600">Structure, "What-if" models, plan integration (IBP)</p>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="md:col-span-2 final-conclusion">
+                <div class="flex items-center justify-center mb-4">
+                    <span class="text-4xl mr-3">💡</span>
+                    <h2 class="text-3xl font-bold">Key Takeaways</h2>
+                </div>
+                <ul class="space-y-3 list-disc list-inside mb-6 text-left max-w-xl mx-auto">
+                    <li><strong>OLAP is Universal:</strong> Effective for finance, HR, logistics, and manufacturing.</li>
+                    <li><strong>IBP Connects:</strong> All plans (PFR, inventory, finance) work as a single organism.</li>
+                    <li><strong>Casplan-like Systems</strong> provide the speed of Excel with the power of a multidimensional cube.</li>
+                    <li><strong>The Future is AI + OLAP:</strong> AI provides accurate forecasting, but the human remains the main strategist.</li>
+                </ul>
+                <p class="text-xl font-semibold border-t border-sky-400 pt-6 mt-6">
+                    🚀 <strong>Main Idea:</strong> OLAP is not just a tool; it's a manager's mindset that allows decisions to be made based on data, not intuition.
+                </p>
+            </footer>
+
+        </main>
+        
+        <!-- Final Footer with button and link -->
+        <footer class="text-center mt-12 py-6 border-t border-gray-300">
+             <div class="mt-6">
+                <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/en/index.html"
+                   class="inline-flex items-center px-6 py-3 bg-sky-600 text-white rounded-lg shadow hover:bg-sky-700 transition duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                    Back to Lecture List
+                </a>
+            </div>
+            <p class="text-gray-600 text-sm mt-4">
+                CasPlan Platform | Learn more at <a href="#" class="text-sky-700 hover:text-sky-900 font-medium">CasPlan.tech</a>
+            </p>
+        </footer>
+
+    </div>
+
+    <script>
+        (function() {
+            
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                if (!item) return '';
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                }
+                return label;
+            };
+
+            function wrapLabels(label, maxWidth = 16) {
+                if (typeof label !== 'string' || label.length <= maxWidth) {
+                    return label;
+                }
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + ' ' + word).trim().length > maxWidth) {
+                        if (currentLine) {
+                            lines.push(currentLine);
+                        }
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                }
+                if (currentLine) {
+                    lines.push(currentLine);
+                }
+                return lines.length > 0 ? lines : label;
+            }
+
+            const defaultOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    },
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: '#1f2937' 
+                        }
+                    }
+                },
+                scales: {
+                    y: { 
+                        beginAtZero: true,
+                        ticks: { color: '#1f2937' }
+                    },
+                    x: { 
+                        ticks: { 
+                            color: '#1f2937',
+                            maxRotation: 0,
+                            minRotation: 0,
+                            autoSkip: true
+                        } 
+                    }
+                }
+            };
+            
+            const chartColors = {
+                primaryDark: '#003f5c',
+                accentTeal: '#0d9488',
+                accentRed: '#ff6361',
+                accentOrange: '#ffa600',
+                accentPurple: '#58508d',
+                gray: '#e5e7eb'
+            };
+
+            const financeCtx = document.getElementById('financeChart')?.getContext('2d');
+            if (financeCtx) {
+                new Chart(financeCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['PFR', 'Marketing', 'Logistics', 'Operating Expenses', 'Other'],
+                        datasets: [{
+                            label: 'Budget Structure',
+                            data: [45, 20, 15, 10, 10],
+                            backgroundColor: [
+                                chartColors.accentRed,
+                                chartColors.accentOrange,
+                                chartColors.accentPurple,
+                                chartColors.accentTeal,
+                                chartColors.gray
+                            ],
+                            borderColor: '#FFFFFF',
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            tooltip: {
+                                callbacks: {
+                                    title: tooltipTitleCallback
+                                }
+                            },
+                            legend: {
+                                position: 'right',
+                                labels: { color: '#1f2937' }
+                            },
+                            title: {
+                                display: true,
+                                text: 'Scenario 1: Budget Structure',
+                                color: '#1f2937',
+                                font: { size: 16 }
+                            }
+                        }
+                    }
+                });
+            }
+
+            const hrCtx = document.getElementById('hrChart')?.getContext('2d');
+            if (hrCtx) {
+                const hrLabels = [
+                    'Sales Department', 
+                    'Development (R&D)', 
+                    'Marketing', 
+                    'Administration'
+                ].map(label => wrapLabels(label, 16));
+
+                new Chart(hrCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: hrLabels,
+                        datasets: [{
+                            label: 'PFR (M RUB)',
+                            data: [120, 95, 60, 45],
+                            backgroundColor: chartColors.accentOrange,
+                            borderRadius: 4
+                        }]
+                    },
+                    options: {
+                        ...defaultOptions,
+                        plugins: {
+                            ...defaultOptions.plugins,
+                            title: {
+                                display: true,
+                                text: 'PFR by Department',
+                                color: '#1f2937',
+                                font: { size: 16 }
+                            },
+                            legend: { display: false }
+                        }
+                    }
+                });
+            }
+
+            const logisticsCtx = document.getElementById('logisticsChart')?.getContext('2d');
+            if (logisticsCtx) {
+                new Chart(logisticsCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                        datasets: [
+                            {
+                                label: 'Forecast (OLAP)',
+                                data: [120, 130, 140, 150, 145, 160, 180, 175, 170, 160, 190, 210],
+                                borderColor: chartColors.primaryDark,
+                                backgroundColor: 'rgba(0, 63, 92, 0.1)',
+                                fill: true,
+                                tension: 0.3
+                            },
+                            {
+                                label: 'Actual',
+                                data: [115, 135, 138, 155, 140, 165, 175, 180, 165, 162, 185, 205],
+                                borderColor: chartColors.accentTeal,
+                                backgroundColor: 'rgba(13, 148, 136, 0.1)',
+                                fill: false,
+                                tension: 0.3
+                            }
+                        ]
+                    },
+                    options: {
+                        ...defaultOptions,
+                        plugins: {
+                            ...defaultOptions.plugins,
+                            title: {
+                                display: true,
+                                text: 'Demand Forecast vs. Actual (Units of Goods)',
+                                color: '#1f2937',
+                                font: { size: 16 }
+                            }
+                        }
+                    }
+                });
+            }
+
+            const retailCtx = document.getElementById('retailChart')?.getContext('2d');
+            if (retailCtx) {
+                const retailLabels = [
+                    'Dairy Products', 
+                    'Bakery', 
+                    'Beverages', 
+                    'Groceries'
+                ].map(label => wrapLabels(label, 16));
+
+                new Chart(retailCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: retailLabels,
+                        datasets: [
+                            {
+                                label: 'Margin',
+                                data: [40, 60, 50, 30],
+                                backgroundColor: chartColors.accentTeal,
+                                stack: 'Stack 0',
+                            },
+                            {
+                                label: 'Cost of Goods Sold',
+                                data: [60, 40, 50, 70],
+                                backgroundColor: chartColors.gray,
+                                stack: 'Stack 0',
+                            }
+                        ]
+                    },
+                    options: {
+                        ...defaultOptions,
+                        scales: {
+                            x: { stacked: true, ...defaultOptions.scales.x },
+                            y: { stacked: true, ...defaultOptions.scales.y }
+                        },
+                        plugins: {
+                            ...defaultOptions.plugins,
+                            title: {
+                                display: true,
+                                text: 'Sales Structure by Category',
+                                color: '#1f2937',
+                                font: { size: 16 }
+                            }
+                        }
+                    }
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
 
