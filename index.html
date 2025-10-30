@@ -4,24 +4,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Курс по OLAP-системам - Ярослав Сулейменов</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Шрифт Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f0f4f8; /* gray-100 */
+            background-color: #f0f4f8;
         }
-        /* Стиль для карточки с hover-эффектом */
-        .card-hover-effect {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        
+        /* Общие стили для карточек */
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            border-top: 5px solid #147850; 
         }
-        .card-hover-effect:hover {
+        
+        /* Стили при наведении на активную карточку */
+        .card:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.15); 
+            border-color: #147850; 
+        }
+
+        /* Стиль для неактивных карточек */
+        .card-inactive {
+            border-top: 5px solid #d1d5db;
+            cursor: not-allowed;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Стиль для кнопки Инфографика (Green) */
+        .btn-lecture {
+            background-color: #238636;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        .btn-lecture:hover {
+            background-color: #2ea043;
+        }
+        
+        /* Стиль для кнопки Презентация (Blue) */
+        .btn-presentation {
+            background-color: #1e3a8a;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        .btn-presentation:hover {
+            background-color: #3753b2;
+        }
+        
+        /* Стиль для кнопки CASPLAN */
+        .btn-casplan {
+            background-color: #1d4ed8; 
+            color: white;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .btn-casplan:hover {
+            background-color: #1e40af; 
+            transform: scale(1.03);
+        }
+        .btn-casplan:active {
+            transform: scale(0.98);
+            box-shadow: none;
+        }
+
+        /* Стиль для кнопки "Записи лекций" (КРАСНЫЙ - .btn-drive) */
+        .btn-drive {
+            background-color: #ef4444; /* Мягкий красный (Tailwind Red-500) */
+            color: white;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .btn-drive:hover {
+            background-color: #dc2626; /* Насыщенный, но не яркий (Red-600) */
+            transform: scale(1.02);
+        }
+        .btn-drive:active {
+            background-color: #b91c1c; /* Темнее при нажатии (Red-700) */
+            transform: scale(0.98);
         }
     </style>
 </head>
@@ -43,23 +105,21 @@
                    class="py-1 px-3 rounded-lg font-semibold bg-blue-600 hover:bg-blue-700 active:scale-95 text-white text-sm shadow-md transition duration-300 ease-in-out">EN</a>
             </div>
             
-            <!-- Группа кнопок -->
+            <!-- 2. Группа кнопок Записи/CasPlan (Справа) -->
             <div class="flex space-x-2 sm:space-x-4">
                 
-                <!-- Записи лекций (Google Drive) -->
+                <!-- Кнопка Записи лекций (Google Drive) -->
                 <a href="https://drive.google.com/drive/folders/1pEcORTD_SaEOKPKJGgjG8Q14X6YjSyCb?dmr=1&ec=wgc-drive-globalnav-goto"
                    target="_blank"
                    title="Перейти на записи лекций в Google Drive"
-                   class="py-2 px-3 sm:px-4 rounded-lg font-bold text-xs sm:text-sm md:text-base 
-                          bg-red-600 hover:bg-red-700 active:scale-95 text-white shadow-md transition duration-300 ease-in-out">
+                   class="py-2 px-3 sm:px-4 rounded-lg font-bold text-xs sm:text-sm md:text-base btn-drive shadow-md">
                     ▶ Записи лекций
                 </a>
                 
-                <!-- CASPLAN.KZ -->
+                <!-- Кнопка перехода на CASPLAN.KZ -->
                 <a href="https://casplan.kz/" 
                    target="_blank" 
-                   class="py-2 px-3 sm:px-4 rounded-lg font-bold text-xs sm:text-sm md:text-base 
-                          bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white shadow-lg transition duration-300 ease-in-out">
+                   class="py-2 px-3 sm:px-4 rounded-lg font-bold text-xs sm:text-sm md:text-base btn-casplan shadow-lg">
                     CasPlan.kz
                 </a>
             </div>
@@ -78,211 +138,194 @@
             <!-- Сетка лекций -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
+                <!-- АКТИВНЫЕ ЛЕКЦИИ (0-7) -->
+
                 <!-- ЛЕКЦИЯ 0: Введение -->
-                <div class="card-hover-effect bg-white rounded-2xl shadow-lg border-t-5 border-green-700 flex flex-col">
+                <div class="card bg-white rounded-2xl shadow-lg">
                     <div class="p-6 flex-grow">
                         <h2 class="text-xl font-bold text-sky-900 mb-3">Лекция 0: 🚀 Введение</h2>
                         <p class="text-gray-700 text-sm">Введение в OLAP и роль в бизнесе. От Excel к многомерному анализу.</p>
                     </div>
+                    <!-- Кнопки: Инфографика (lec0_intro) и Презентация (PDF) -->
                     <div class="p-6 bg-gray-50 rounded-b-2xl mt-auto flex justify-between space-x-4">
                         <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/lectures/lec0_intro/" 
-                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold 
-                                  bg-green-700 hover:bg-green-600 text-white transition duration-300 ease-in-out">
+                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold btn-lecture">
                            Инфографика
                         </a>
                         <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/docs/lecture0_intro.pdf"  
                            target="_blank"
-                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold 
-                                  bg-blue-800 hover:bg-blue-700 text-white transition duration-300 ease-in-out">
+                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold btn-presentation">
                            Презентация
                         </a>
                     </div>
                 </div>
 
                 <!-- ЛЕКЦИЯ 1: Архитектура -->
-                <div class="card-hover-effect bg-white rounded-2xl shadow-lg border-t-5 border-green-700 flex flex-col">
+                <div class="card bg-white rounded-2xl shadow-lg">
                     <div class="p-6 flex-grow">
                         <h2 class="text-xl font-bold text-sky-900 mb-3">Лекция 1: 🏗️ Архитектура</h2>
                         <p class="text-gray-700 text-sm">Архитектура OLAP-моделей: кубы, измерения, иерархии.</p>
                     </div>
                     <div class="p-6 bg-gray-50 rounded-b-2xl mt-auto flex justify-between space-x-4">
                         <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/lectures/lec1_arch/" 
-                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold 
-                                  bg-green-700 hover:bg-green-600 text-white transition duration-300 ease-in-out">
+                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold btn-lecture">
                            Инфографика
                         </a>
                          <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/docs/lecture1_architecture.pdf" 
                            target="_blank"
-                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold 
-                                  bg-blue-800 hover:bg-blue-700 text-white transition duration-300 ease-in-out">
+                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold btn-presentation">
                            Презентация
                         </a>
                     </div>
                 </div>
                 
                 <!-- ЛЕКЦИЯ 2: IBP -->
-                <div class="card-hover-effect bg-white rounded-2xl shadow-lg border-t-5 border-green-700 flex flex-col">
+                <div class="card bg-white rounded-2xl shadow-lg">
                     <div class="p-6 flex-grow">
                         <h2 class="text-xl font-bold text-sky-900 mb-3">Лекция 2: 🔗 IBP</h2>
                         <p class="text-gray-700 text-sm">IBP: Интегрированное бизнес-планирование как единая система.</p>
                     </div>
                     <div class="p-6 bg-gray-50 rounded-b-2xl mt-auto flex justify-between space-x-4">
                         <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/lectures/lec2_ibp/"
-                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold 
-                                  bg-green-700 hover:bg-green-600 text-white transition duration-300 ease-in-out">
+                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold btn-lecture">
                           Инфографика
                         </a>
                         <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/docs/lecture2_IBP.pdf" 
                            target="_blank"
-                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold 
-                                  bg-blue-800 hover:bg-blue-700 text-white transition duration-300 ease-in-out">
+                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold btn-presentation">
                            Презентация
                         </a>
                       </div>
                     </div>
 
                 <!-- ЛЕКЦИЯ 3: S&OP -->
-                <div class="card-hover-effect bg-white rounded-2xl shadow-lg border-t-5 border-green-700 flex flex-col">
+                <div class="card bg-white rounded-2xl shadow-lg">
                     <div class="p-6 flex-grow">
                         <h2 class="text-xl font-bold text-sky-900 mb-3">Лекция 3: 📈 S&OP</h2>
                         <p class="text-gray-700 text-sm">S&OP: Планирование продаж и операций для баланса спроса и предложения.</p>
                     </div>
                       <div class="p-6 bg-gray-50 rounded-b-2xl mt-auto flex justify-between space-x-4">
                         <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/lectures/lec3_sop/"
-                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold 
-                                  bg-green-700 hover:bg-green-600 text-white transition duration-300 ease-in-out">
+                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold btn-lecture">
                           Инфографика
                         </a>
                         <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/docs/lecture3_SnOP.pdf" 
                            target="_blank"
-                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold 
-                                  bg-blue-800 hover:bg-blue-700 text-white transition duration-300 ease-in-out">
+                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold btn-presentation">
                            Презентация
                         </a>
                       </div>
                     </div>
 
                 <!-- ЛЕКЦИЯ 4: Логистика -->
-                <div class="card-hover-effect bg-white rounded-2xl shadow-lg border-t-5 border-green-700 flex flex-col">
+                <div class="card bg-white rounded-2xl shadow-lg">
                     <div class="p-6 flex-grow">
                         <h2 class="text-xl font-bold text-sky-900 mb-3">Лекция 4: 🚚 Логистика</h2>
                         <p class="text-gray-700 text-sm">Планирование логистики и цепочек поставок.</p>
                     </div>
                     <div class="p-6 bg-gray-50 rounded-b-2xl mt-auto flex justify-between space-x-4">
                             <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/lectures/lec4_log/"
-                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold 
-                                  bg-green-700 hover:bg-green-600 text-white transition duration-300 ease-in-out">
+                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold btn-lecture">
                           Инфографика
                         </a>
                         <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/docs/lecture4_SCM.pdf" 
                            target="_blank"
-                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold 
-                                  bg-blue-800 hover:bg-blue-700 text-white transition duration-300 ease-in-out">
+                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold btn-presentation">
                            Презентация
                         </a>
                     </div>
                 </div>
 
                 <!-- ЛЕКЦИЯ 5: Бюджетирование -->
-                <div class="card-hover-effect bg-white rounded-2xl shadow-lg border-t-5 border-green-700 flex flex-col">
+                <div class="card bg-white rounded-2xl shadow-lg">
                     <div class="p-6 flex-grow">
                         <h2 class="text-xl font-bold text-sky-900 mb-3">Лекция 5: 💰 Бюджетирование</h2>
                         <p class="text-gray-700 text-sm">Бюджетирование и план-факт анализ: контроль финансов.</p>
                     </div>
                     <div class="p-6 bg-gray-50 rounded-b-2xl mt-auto flex justify-between space-x-4">
                             <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/lectures/lec5_budg/"
-                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold 
-                                  bg-green-700 hover:bg-green-600 text-white transition duration-300 ease-in-out">
+                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold btn-lecture">
                           Инфографика
                         </a>
                         <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/docs/lecture5_budget.pdf" 
                            target="_blank"
-                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold 
-                                  bg-blue-800 hover:bg-blue-700 text-white transition duration-300 ease-in-out">
+                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold btn-presentation">
                            Презентация
                         </a>
                     </div>
                 </div>
 
                 <!-- ЛЕКЦИЯ 6: Финансовый анализ -->
-                <div class="card-hover-effect bg-white rounded-2xl shadow-lg border-t-5 border-green-700 flex flex-col">
+                <div class="card bg-white rounded-2xl shadow-lg">
                     <div class="p-6 flex-grow">
                         <h2 class="text-xl font-bold text-sky-900 mb-3">Лекция 6: 🔬 Финансовый анализ</h2>
                         <p class="text-gray-700 text-sm">Управление финансами: методы бюджетирования, "что, если?".</p>
                     </div>
                     <div class="p-6 bg-gray-50 rounded-b-2xl mt-auto flex justify-between space-x-4">
                             <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/lectures/lec6_fin/"
-                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold 
-                                  bg-green-700 hover:bg-green-600 text-white transition duration-300 ease-in-out">
+                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold btn-lecture">
                           Инфографика
                         </a>
                         <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/docs/lecture6_analysis.pdf" 
                            target="_blank"
-                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold 
-                                  bg-blue-800 hover:bg-blue-700 text-white transition duration-300 ease-in-out">
+                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold btn-presentation">
                            Презентация
                         </a>
                     </div>
                 </div>
                 
-                <!-- ЛЕКЦИЯ 7: KPI -->
-                <div class="card-hover-effect bg-white rounded-2xl shadow-lg border-t-5 border-green-700 flex flex-col">
+                <!-- ЛЕКЦИЯ 7: KPI (АКТИВНА) -->
+                <div class="card bg-white rounded-2xl shadow-lg">
                     <div class="p-6 flex-grow">
                         <h2 class="text-xl font-bold text-sky-900 mb-3">Лекция 7: 🎯 KPI</h2>
                         <p class="text-gray-700 text-sm">KPI и управленческие метрики для оценки эффективности.</p>
                     </div>
                     <div class="p-6 bg-gray-50 rounded-b-2xl mt-auto flex justify-between space-x-4">
                         <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/lectures/lec7_kpi/"
-                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold 
-                                  bg-green-700 hover:bg-green-600 text-white transition duration-300 ease-in-out">
+                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold btn-lecture">
                           Инфографика
                         </a>
                         <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/docs/lecture7_KPI.pdf" 
                            target="_blank"
-                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold 
-                                  bg-blue-800 hover:bg-blue-700 text-white transition duration-300 ease-in-out">
+                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold btn-presentation">
                            Презентация
                         </a>
                     </div>
                 </div>
 
                 <!-- ЛЕКЦИЯ 8: Безопасность -->
-                <div class="card-hover-effect bg-white rounded-2xl shadow-lg border-t-5 border-green-700 flex flex-col">
+                <div class="card bg-white rounded-2xl shadow-lg">
                     <div class="p-6 flex-grow">
                         <h2 class="text-xl font-bold text-sky-900 mb-3">Лекция 8: 🛡️ Безопасность</h2>
                         <p class="text-gray-700 text-sm">Информационная безопасность и управление данными.</p>
                     </div>
                     <div class="p-6 bg-gray-50 rounded-b-2xl mt-auto flex justify-between space-x-4">
                         <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/lectures/lec8_sec/"
-                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold 
-                                  bg-green-700 hover:bg-green-600 text-white transition duration-300 ease-in-out">
+                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold btn-lecture">
                           Инфографика
                         </a>
                         <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/docs/lecture8_IS.pdf" 
                            target="_blank"
-                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold 
-                                  bg-blue-800 hover:bg-blue-700 text-white transition duration-300 ease-in-out">
+                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold btn-presentation">
                            Презентация
                         </a>
                     </div>
                 </div>
                 
                 <!-- ЛЕКЦИЯ 9: Будущее -->
-                <div class="card-hover-effect bg-white rounded-2xl shadow-lg border-t-5 border-green-700 flex flex-col">
+                <div class="card bg-white rounded-2xl shadow-lg">
                     <div class="p-6 flex-grow">
                         <h2 class="text-xl font-bold text-sky-900 mb-3">Лекция 9: 🌐 Будущее</h2>
                         <p class="text-gray-700 text-sm">OLAP в разных сферах и будущее интегрированного планирования.</p>
                     </div>
                     <div class="p-6 bg-gray-50 rounded-b-2xl mt-auto flex justify-between space-x-4">
                         <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/lectures/lec9_future/"
-                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold 
-                                  bg-green-700 hover:bg-green-600 text-white transition duration-300 ease-in-out">
+                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold btn-lecture">
                           Инфографика
                         </a>
                         <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/docs/lecture9_future.pdf" 
                            target="_blank"
-                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold 
-                                  bg-blue-800 hover:bg-blue-700 text-white transition duration-300 ease-in-out">
+                           class="w-1/2 text-center py-3 px-4 rounded-lg font-semibold btn-presentation">
                            Презентация
                         </a>
                     </div>
@@ -301,3 +344,6 @@
 
 </body>
 </html>
+
+
+
