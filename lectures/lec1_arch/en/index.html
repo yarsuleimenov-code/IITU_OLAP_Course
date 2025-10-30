@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographics: OLAP Model Architecture</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        /* Updated styles for cards */
+        .card {
+            background-color: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        /* Gradient header style from the template */
+        .header-bg {
+            background: linear-gradient(135deg, #6ac1e3, #5FA6C7);
+        }
+        /* Style for images to make them look like cards */
+        .image-container {
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            border: 1px solid #e2e8f0; /* Add a light border */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Light shadow */
+        }
+        .image-container img {
+            width: 100%;
+            height: auto;
+            object-fit: contain; /* Ensures the image fits while maintaining aspect ratio */
+        }
+        
+        /* Styles for the new Roll-Up diagram */
+        .rollup-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        .data-block {
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.375rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #ffffff;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            width: 90%;
+            font-size: 0.875rem;
+        }
+        .arrow-down {
+            margin: 0.5rem 0;
+            font-size: 1.5rem;
+            color: #bc5090;
+            font-weight: 900;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-5xl">
+
+        <!-- Back to Main Page Button -->
+        <div class="mb-4">
+            <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/en/index.html" class="inline-flex items-center text-sky-700 hover:text-sky-900 transition-colors font-semibold">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                <span>Back to Lecture List</span>
+            </a>
+        </div>
+        
+        <!-- Header, styled according to the template -->
+        <header class="text-center mb-12 p-8 rounded-2xl header-bg text-white shadow-xl">
+            <img src="/IITU_OLAP_Course/assets/Logo-white.png"
+                 alt="Casplan Logo"
+                 class="mx-auto mb-6 h-16">
+            <h1 class="text-4xl md:text-5xl font-bold mb-2">OLAP Model Architecture</h1>
+            <p class="text-lg md:text-xl text-sky-200">Cubes, Dimensions, and Hierarchies: Building the Foundation for Integrated Business Planning (IBP).</p>
+        </header>
+
+        <!-- NEW BLOCK: I. OLAP: Core Concept -->
+        <section class="mb-16">
+             <div class="card p-8 bg-sky-50 border-l-4 border-sky-600">
+                <h2 class="text-2xl font-bold text-sky-800 mb-3 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c1.657 0 3 .895 3 2s-1.343 2-3 2h-1v2h2m-5-2V7h4v3m-4 0v1h4m-4-7h8a2 2 0 012 2v10a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2z" />
+                    </svg>
+                    OLAP: Core Concept
+                </h2>
+                <div class="grid md:grid-cols-3 gap-6 text-gray-700">
+                    <div>
+                        <h4 class="font-bold text-lg color-purple mb-1">1. What is it?</h4>
+                        <p class="text-sm">OLAP (Online Analytical Processing) is a technology for <strong>fast and multidimensional</strong> data analysis. Its goal is not storage, but <strong>management insights</strong>.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg color-red mb-1">2. Metaphor</h4>
+                        <p class="text-sm">The OLAP Cube is a <strong>3D data model</strong> (like a 3D map), allowing you to instantly "rotate" the data along different axes (Dimensions), which is impossible in a flat Excel table.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg color-green mb-1">3. Key Difference</h4>
+                        <p class="text-sm">Speed is achieved through <strong>Aggregations</strong> (pre-calculated totals), and reliability is ensured by a <strong>Single Version of the Truth</strong> (Master Data).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="olap-vs-excel" class="card">
+            <h2 class="text-3xl font-bold text-center mb-6 text-[#003f5c]">OLAP: Multidimensional Analysis vs. Excel Flatness</h2>
+            <p class="text-center mb-8 max-w-3xl mx-auto">OLAP (Online Analytical Processing) is a technology that allows viewing the same data from different angles. This is a fundamental difference from traditional spreadsheets.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4 text-[#ff6361]">Excel: Flat Sheet</h3>
+                    <div class="image-container">
+                        <img src="/IITU_OLAP_Course/assets/xls_example.jpg" alt="Image of an Excel sheet with a long list of transactions (fact table)">
+                    </div>
+                    <ul class="space-y-3 mt-4 text-gray-600">
+                        <li><strong>Structure:</strong> Two-dimensional table (rows/columns).</li>
+                        <li><strong>Speed:</strong> Slow recalculation with large data volumes.</li>
+                        <li><strong>Analysis:</strong> Difficult to see interrelationships.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4 text-[#58508d]">OLAP: 3D Data Model</h3>
+                    <div class="image-container">
+                        <img src="/IITU_OLAP_Course/assets/olap-3d-cube.png" alt="Image of a 3D cube with 'Product', 'Geography', 'Time' axes">
+                    </div>
+                     <ul class="space-y-3 mt-4 text-gray-600">
+                        <li><strong>Structure:</strong> Multidimensional Cube.</li>
+                        <li><strong>Speed:</strong> Instantaneous due to aggregations.</li>
+                        <li><strong>Analysis:</strong> Easy to "rotate" data and gain context.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="cube-anatomy" class="card">
+            <h2 class="text-3xl font-bold text-center mb-6 text-[#003f5c]">Anatomy of the OLAP Cube: Measure and Dimensions</h2>
+            <p class="text-center mb-8 max-w-3xl mx-auto">The Cube is a repository for <strong>one</strong> key metric, surrounded by contextual axes that allow for its analysis. The intersection of all axes is a unique data cell (Fact).</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="p-5 rounded-lg border-b-4 border-[#003f5c] bg-gray-50">
+                    <div class="text-4xl mb-2 text-[#003f5c]">🧊</div>
+                    <h3 class="text-xl font-bold mb-1">CUBE</h3>
+                    <p class="text-sm text-gray-600">The place where a single metric (Measure) is stored or calculated, e.g., Revenue or Planned Output.</p>
+                </div>
+                <div class="p-5 rounded-lg border-b-4 border-[#58508d] bg-gray-50">
+                    <div class="text-4xl mb-2 text-[#58508d]">📐</div>
+                    <h3 class="text-xl font-bold mb-1">DIMENSIONS</h3>
+                    <p class="text-sm text-gray-600">The axes that define the analysis structure: Products, Regions, Time, Versions.</p>
+                </div>
+                <div class="p-5 rounded-lg border-b-4 border-[#bc5090] bg-gray-50">
+                    <div class="text-4xl mb-2 text-[#bc5090]">📍</div>
+                    <h3 class="text-xl font-bold mb-1">FACT</h3>
+                    <p class="text-sm text-gray-600">The value in a unique cell, at the intersection of all Dimensions (e.g., Revenue from Product X in Region Y in Month Z).</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="dimensions" class="card">
+            <h2 class="text-3xl font-bold text-center mb-6 text-[#003f5c]">Dimensions and Master Data: The Company's Single Language</h2>
+            <p class="text-center mb-8 max-w-3xl mx-auto">Each Dimension relies on Master Data (Dictionaries/Reference Data). Master Data ensures that "Valve" in sales, production, and finance refers to the exact same Valve. This is the foundation of data trust.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="image-container">
+                    <img src="/IITU_OLAP_Course/assets/Olap_dict.jpg" alt="Screenshot of Casplan with 'Organizational Structure' or 'Nomenclature' Master Data">
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4 text-[#58508d]">Dimension Examples</h3>
+                    <ul class="space-y-2 list-disc list-inside text-gray-700">
+                        <li><strong>Nomenclature:</strong> Products, services, raw materials.</li>
+                        <li><strong>Org Structure:</strong> Departments, branches, profit centers.</li>
+                        <li><strong>Time:</strong> Years, quarters, months, days.</li>
+                        <li><strong>Scenarios:</strong> Plan, Actual, Budget, Forecast.</li>
+                    </ul>
+                    <h3 class="text-2xl font-semibold mt-6 mb-4 text-[#ff6361]">Business Impact</h3>
+                    <p class="text-gray-700">Master Data eliminates discrepancies. When data is <strong>clean</strong>, Integrated Business Planning (IBP) becomes possible.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="hierarchy" class="card">
+            <h2 class="text-3xl font-bold text-center mb-6 text-[#003f5c]">Hierarchies: Roll-Up and Drill-Down</h2>
+            <p class="text-center mb-8 max-w-3xl mx-auto">A Hierarchy is nested logic within a Dimension (e.g.: Cities &rarr; Regions &rarr; Country). This allows for instantly changing the level of analysis detail.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+                <div class="text-center">
+                    <div class="text-5xl mb-3 text-[#ffa600]">&#8679;</div>
+                    <h3 class="text-xl font-bold text-[#ffa600]">Roll-Up (Aggregation)</h3>
+                    <p class="text-sm text-gray-600">Aggregating data to a higher level. <br> <strong>Example:</strong> Summing sales of all branches to see the country total.</p>
+                </div>
+                <div class="image-container">
+                    <img src="/IITU_OLAP_Course/assets/drill-down-olap-operation.png" alt="Roll-Up/Drill-Down diagram or Casplan screenshot with a product hierarchy">
+                </div>
+                <div class="text-center">
+                    <div class="text-5xl mb-3 text-[#bc5090]">&#8681;</div>
+                    <h3 class="text-xl font-bold text-[#bc5090]">Drill-Down (Detailing)</h3>
+                    <p class="text-sm text-gray-600">Expanding data to a lower level. <br> <strong>Example:</strong> Seeing country sales dropped and drilling down to the specific city level.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="aggregation" class="card">
+            <h2 class="text-3xl font-bold text-center mb-6 text-[#003f5c]">Aggregations: The Secret to OLAP Speed</h2>
+            <p class="text-center mb-8 max-w-3xl mx-auto">Aggregation is the process of pre-calculating totals. The OLAP system does not recalculate sums every time you make a query; it stores them ready-made. This allows for instantaneous work with Big Data.</p>
+            
+            <!-- NEW ROLL-UP DIAGRAM (Aggregation Visualization) -->
+            <div class="grid grid-cols-3 gap-4 text-center items-start justify-items-center mt-6">
+                <!-- Step 1: Details (SKU) -->
+                <div class="rollup-step w-full">
+                    <div class="data-block bg-[#ff6361]">SKU 1: $100</div>
+                    <div class="data-block bg-[#ff6361]">SKU 2: $250</div>
+                    <div class="data-block bg-[#ff6361]">SKU 3: $50</div>
+                    <p class="mt-2 text-sm font-medium text-gray-600">Level: Details (SKU)</p>
+                </div>
+
+                <!-- Step 2: Roll-Up Arrow -->
+                <div class="flex flex-col items-center justify-center h-full pt-10">
+                    <div class="text-2xl font-bold text-[#58508d]">ROLL-UP</div>
+                    <div class="arrow-down">&#8679;</div>
+                    <p class="text-xs text-gray-500">Pre-calculation</p>
+                </div>
+                
+                <!-- Step 3: Aggregated Total (Category) -->
+                <div class="rollup-step w-full">
+                    <div class="data-block bg-[#003f5c] h-32 flex items-center justify-center text-2xl">
+                        Category A: $400
+                    </div>
+                    <p class="mt-2 text-sm font-medium text-gray-600">Level: Category</p>
+                </div>
+            </div>
+            <!-- END OF NEW DIAGRAM -->
+
+            <ul class="space-y-3 mt-8 text-gray-700">
+                <li class="flex items-center"><span class="text-green-500 mr-2">&#10003;</span> <strong>Accelerated Analysis:</strong> Totals are pre-calculated.</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">&#10003;</span> <strong>Scalability:</strong> The system works quickly with millions of rows.</li>
+                <li class="flex items-center"><span class="text-green-500 mr-2">&#10003;</span> <strong>Accuracy:</strong> Data is automatically summed across the entire hierarchy structure.</li>
+            </ul>
+        </section>
+
+        <section id="multicube" class="card">
+            <h2 class="text-3xl font-bold text-center mb-6 text-[#003f5c]">Multicube: Connecting Business Processes</h2>
+            <p class="text-center mb-8 max-w-3xl mx-auto">A Multicube (or connected system of cubes) is what enables IBP. Different functional areas (Sales, Production, Finance) have their own Cubes, but they are linked by common Dimensions (e.g., "Time" and "Product").</p>
+             <div class="image-container">
+                <img src="/IITU_OLAP_Course/assets/Casplan_MC.jpg" alt="Block diagram or Casplan Multicube schema">
+            </div>
+            <h3 class="text-2xl font-semibold mt-6 mb-4 text-[#58508d]">Business Impact (P&L as a Multicube)</h3>
+            <p class="text-gray-700">The P&L model (Profit and Loss Statement) becomes not a separate document, but the <strong>result</strong> of calculations from other cubes. Casplan takes Revenue data from the Sales Cube and Cost of Goods Sold data from the Production Cube to calculate Profit.</p>
+        </section>
+
+        <footer class="text-center mt-12 py-6 border-t">
+            <p class="text-gray-600">OLAP architecture is the technological basis for data-driven decision-making. Casplan allows these principles to be used for building complex integrated planning models.</p>
+                <!-- Back to Lecture List Button -->
+              <div class="mt-4">
+                <a href="https://yarsuleimenov-code.github.io/IITU_OLAP_Course/en/index.html"
+                   class="inline-flex items-center px-6 py-3 bg-sky-600 text-white rounded-lg shadow hover:bg-sky-700 transition duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                  </svg>
+                  Back to Lecture List
+                </a>
+              </div>
+        </footer>
+    </div>
+
+    <script>
+        window.onload = function() {
+            // Function to wrap long labels in Chart.js (not used in this version but kept for structure)
+            const wrapLabel = (label) => {
+                const maxLength = 16;
+                if (label.length <= maxLength) {
+                    return label;
+                }
+                const words = label.split(' ');
+                let lines = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + ' ' + word).trim().length > maxLength) {
+                        lines.push(currentLine.trim());
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                });
+                lines.push(currentLine.trim());
+                return lines;
+            };
+
+            // Custom tooltip title callback (not used in this version but kept for structure)
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                }
+                return label;
+            };
+            
+            // Common chart options (not used in this version but kept for structure)
+            const commonChartOptions = {
+                maintainAspectRatio: false,
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            };
+
+            const colors = {
+                blue: '#003f5c',
+                purple: '#58508d',
+                magenta: '#bc5090',
+                red: '#ff6361',
+                orange: '#ffa600',
+                green: '#22c55e',
+                yellow: '#f59e0b',
+                base: '#6b7280'
+            };
+        };
+    </script>
+</body>
+</html>
